@@ -23,7 +23,7 @@ function Add-Folders{
     $RootPath = "$env:systemdrive\Relativiy_Env"
     if(Test-Path $RootPath){
         
-        New-Item -ItemType "directory" $RootPath | Out-Null -ErrorAction SilentlyContinue
+        New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue | Out-Null 
 
         $paths  = @(
 
@@ -43,7 +43,7 @@ function Add-Folders{
             if ($paths.Count -gt 0) {
               
                 $paths | Foreach-Object {
-                New-Item -ItemType "directory" "$RootPath\$_" | Out-Null -ErrorAction SilentlyContinue
+                New-Item -ItemType "directory" "$RootPath\$_" -ErrorAction SilentlyContinue | Out-Null 
             }
         }     
     }
