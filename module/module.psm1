@@ -103,6 +103,21 @@ function Get-DownloadManual
 
 
 
+
+<#
+
+function Install-Zip([string]$UtilDownloadPath,[string]$UtilBinPath)
+{
+
+    # zip installs
+    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
+    }
+
+}
+
 function Install-Exe([string]$UtilDownloadPath)
 {
 
@@ -128,19 +143,7 @@ function Install-Msi([string]$UtilDownloadPath)
 }
 
 
-<#
 
-function Install-Zip([string]$UtilDownloadPath,[string]$UtilBinPath)
-{
-
-    # zip installs
-    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
-    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
-    }
-
-}
 
 function Install-Exe([string]$UtilDownloadPath)
 {
