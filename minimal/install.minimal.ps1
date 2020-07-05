@@ -41,7 +41,7 @@ $ChocoInstalls = @(
         'nano',
         'vim',
         'openssl',
-        'mitmproxy';
+        'mitmproxy',
         'phantomjs',
         'ffmpeg',
         'nmap',
