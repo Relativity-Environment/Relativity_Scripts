@@ -71,7 +71,7 @@ $ManualDownloadInstall = @{
 }
 
 $UtilBinPath = "$env:SystemDrive\Analisis de Vulnerabilidades"
-Get-DownloadManual -UtilDownloadPath "C:\tmp\vuls" -UtilBinPath "$UtilBinPath"
+Get-DownloadManual -UtilDownloadPath "C:\tmp\vuls"
 
 
 
