@@ -81,7 +81,7 @@ function Test-PSProfile
     
     Write-Host " Creando Powershell Profile" -ForegroundColor Green 
     
-    New-Item -path $PROFILE -type File -Force
+    New-Item -path $PROFILE -type File -Force | Out-Null
     
   }else{
 
