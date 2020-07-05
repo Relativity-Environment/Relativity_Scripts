@@ -7,7 +7,7 @@ if (Test-PendingReboot) { Invoke-Reboot }
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
-Write-Information "import"
+Write-Host "import module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 Add-Folders
