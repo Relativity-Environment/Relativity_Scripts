@@ -44,7 +44,7 @@ function Add-Folders{
               
                 $paths | Foreach-Object {
                 echo "Creando path $_"
-                New-Item -ItemType "directory" "$RootPath\$_" -ErrorAction SilentlyContinue 
+                New-Item -ItemType "directory" "$RootPath\$_"
             }
         }     
     }
