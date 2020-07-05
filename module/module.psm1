@@ -85,8 +85,8 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
     
     }
 
-     # exe installs
-     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+        # exe installs
+        Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         Start-Proc -Exe $_.FullName -waitforexit
         }
     
