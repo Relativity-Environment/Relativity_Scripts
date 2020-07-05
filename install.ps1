@@ -169,7 +169,7 @@ function Install-Module{
 ## Funciones de instalacion
 
 $minimal     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/minimal/install.minimal.ps1"
-$full        =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/minimal/install.full.ps1" 
+$full        =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/full/install.full.ps1" 
 
 
 
@@ -183,7 +183,7 @@ function Install-Minimal{
 }
 
 
-function Install-Minimal{ 
+function Install-Full{ 
       
     Join-Initial
     #Test-DiskSpace "Install-Full"
@@ -226,25 +226,21 @@ function menu {
   
   switch($inp){
         10 {
-            Clear-Host
+            Clear-Host;
             Install-Minimal;
             pause;
             menu;
             break
         }
         20 {
-            Clear-Host
+            Clear-Host;
             Install-Full;
             pause;
             menu;
             break
         }
         CHKPOINT {
-            Clear-Host
-            Write-Host "-----------------------------------------------------";
-            Write-Host "Instalando herramientas Analisis de Vulnerabilidades ";
-            Write-Host "-----------------------------------------------------";
-            InstallVulns;
+            Clear-Host;
             pause;
             menu;
             break
