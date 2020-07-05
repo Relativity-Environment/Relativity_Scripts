@@ -72,9 +72,7 @@ $global:ManualDownloadInstall = @{
 
 
 
-If (-not (Test-Path $global:UtilDownloadPath)) {
-    mkdir $global:UtilDownloadPath -Force
-}
+
 Get-DownloadManual 
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
 #Install-Exe -UtilDownloadPath $UtilDownloadPath
