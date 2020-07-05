@@ -107,6 +107,11 @@ $global:ManualDownloadInstall = @{
     }
     
     Add-EnvPath -Location 'User' -NewPath $global:UtilBinPath
+
+        # Kick off msi installs
+        Get-ChildItem -Path $global:UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+            Start-Proc -Exe $_.FullName -waitforexit
+        }
     
     
     # Kick off exe installs
@@ -114,10 +119,7 @@ $global:ManualDownloadInstall = @{
         Start-Proc -Exe $_.FullName -waitforexit
     }
     
-    # Kick off msi installs
-    Get-ChildItem -Path $global:UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Start-Proc -Exe $_.FullName -waitforexit
-    }
+
 
 
 
