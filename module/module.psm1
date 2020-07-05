@@ -50,7 +50,7 @@ function Add-Folders{
 }
 
 
-<#function Get-DownloadManual($UtilDownloadPath)
+function Get-DownloadManual($UtilDownloadPath)
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
@@ -84,25 +84,7 @@ function Add-Folders{
         }
     
     }
-    # exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Start-Proc -Exe $_.FullName -waitforexit
-    }
-
-    # msi installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Start-Proc -Exe $_.FullName -waitforexit
-    }
-    # zip installs
-    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
-    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
-    }
-    
-
-
-}#>
+ }
 
 function Install-Zip($UtilDownloadPath, $UtilBinPath)
 {
@@ -116,7 +98,7 @@ function Install-Zip($UtilDownloadPath, $UtilBinPath)
 
 }
 
-function Install-Soft($UtilDownloadPath)
+function Install-Exe($UtilDownloadPath)
 {
 
          
@@ -125,6 +107,13 @@ function Install-Soft($UtilDownloadPath)
      Start-Proc -Exe $_.FullName -waitforexit
      }
  
+ 
+}
+
+function Install-Msi($UtilDownloadPath)
+{
+  
+     
      # msi installs
      Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
      Start-Proc -Exe $_.FullName -waitforexit
@@ -133,6 +122,7 @@ function Install-Soft($UtilDownloadPath)
 
 
 }
+
 
 
 function Install-ChocoPackages

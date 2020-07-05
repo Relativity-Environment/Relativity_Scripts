@@ -70,48 +70,12 @@ $ManualDownloadInstall = @{
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
-function Get-DownloadManual
-{
-
-    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-    
-    $FilesDownloaded = @()
-
-    If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
-    }
-
-    If (-not (Test-Path $UtilBinPath)) {
-        mkdir $UtilBinPath -Force
-    }
-    
-    Push-Location $UtilDownloadPath
-    
-    Foreach($software in $ManualDownloadInstall.keys) {
-    
-    Write-Output "Downloading $software"
-    if ( -not (Test-Path $software) ) {
-        try {
-                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
-                $FilesDownloaded += $software
-                
-        }
-        catch {}
-    }
-    else {
-
-            Write-Warning "File is already downloaded, skipping: $software"
-        }
-    
-    } 
-
-
-}
-
 $UtilDownloadPath = "C:\tmp\vuls"
 $UtilBinPath      = "$env:SystemDrive\Analisis de Vulnerabilidades"
 Get-DownloadManual 
-
+Install-Zip
+Install-Exe
+Install-Msi
 
 
 
