@@ -86,7 +86,7 @@ function Get-DownloadManual($UtilDownloadPath)
     }
  }
 
-function Install-Zip($UtilDownloadPath, $UtilBinPath)
+function Install-Zip
 {
 
     # zip installs
@@ -98,7 +98,7 @@ function Install-Zip($UtilDownloadPath, $UtilBinPath)
 
 }
 
-function Install-Exe($UtilDownloadPath)
+function Install-Exe
 {
 
          
@@ -110,7 +110,7 @@ function Install-Exe($UtilDownloadPath)
  
 }
 
-function Install-Msi($UtilDownloadPath)
+function Install-Msi
 {
   
      
