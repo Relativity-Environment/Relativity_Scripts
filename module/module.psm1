@@ -83,7 +83,7 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
         }
     }
 
-    # msi installs
+    # zip installs
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
     Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
@@ -91,7 +91,7 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
 
     Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
 
-    # msi installs
+    # exe installs
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
     Start-Proc -Exe $_.FullName -waitforexit
     }
