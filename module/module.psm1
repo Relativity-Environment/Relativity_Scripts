@@ -29,7 +29,6 @@ function Add-Folders{
 
             'Recopilacion de Informacion',
             'Analisis de Vulnerabilidades',
-            'Analisis Aplicaciones Web',
             'Analisis Bases de Datos',
             'Ataques de Contraseña',
             'Herramientas de Explotacion',

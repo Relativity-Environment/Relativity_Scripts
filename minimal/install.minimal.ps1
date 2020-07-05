@@ -61,7 +61,7 @@ $ChocoInstalls = @(
 
 #Install-ChocoPackages
     # Vuls
-$global:ManualDownloadInstall = @{
+$ManualDownloadInstall = @{
 
     'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
     'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
@@ -70,21 +70,21 @@ $global:ManualDownloadInstall = @{
 }
 
 
-    $global:UtilDownloadPath   = "C:\tmp\vuls"
-    $global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
+    $UtilDownloadPath   = "C:\tmp\vuls"
+    $UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
 
-    If (-not (Test-Path $global:UtilDownloadPath)) {
-        mkdir $global:UtilDownloadPath -Force
+    If (-not (Test-Path $UtilDownloadPath)) {
+        mkdir $UtilDownloadPath -Force
     }
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     
-        Push-Location $global:UtilDownloadPath
+        Push-Location $UtilDownloadPath
         # Store all the file we download for later processing
         $FilesDownloaded = @()
 
-    Foreach ($software in $global:ManualDownloadInstall.keys) {
+    Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
@@ -98,24 +98,24 @@ $global:ManualDownloadInstall = @{
         }
     }
 
-    echo "$global:UtilDownloadPath"
-    echo "$global:UtilBinPath"
+    echo "$UtilDownloadPath"
+    echo "$UtilBinPath"
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $global:UtilBinPath -Force
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
     }
     
-    Add-EnvPath -Location 'User' -NewPath $global:UtilBinPath
+    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
 
         # Kick off msi installs
-        Get-ChildItem -Path $global:UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
             Start-Proc -Exe $_.FullName -waitforexit
-        }
+    }
     
     
     # Kick off exe installs
-    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         Start-Proc -Exe $_.FullName -waitforexit
     }
     
