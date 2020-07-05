@@ -85,7 +85,7 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
 
 }
 
-functio Install-Zip($UtilDownloadPath, $UtilBinPath)
+function Install-Zip($UtilDownloadPath, $UtilBinPath)
 {
 
     # zip installs

@@ -15,7 +15,7 @@ function Install-Module{
 } 
 
 Install-Module
-echo "import" -ForegroundColor red
+Write-Information "import"
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 Add-Folders
