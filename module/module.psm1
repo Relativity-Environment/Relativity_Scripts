@@ -112,7 +112,7 @@ function Install-ChocoPackages
 
     # Don't try to download and install a package if it shows already installed
     $InstalledChocoPackages = (Get-ChocoPackages).Name
-    $ChocoInstalls = $ChocoInstalls | Where { $InstalledChocoPackages -notcontains $_ }
+    $ChocoInstalls = $ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
 
     if ($ChocoInstalls.Count -gt 0) {
         # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
