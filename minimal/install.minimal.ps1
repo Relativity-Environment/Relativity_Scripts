@@ -103,7 +103,7 @@ $ManualDownloadInstall = @{
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force -ErrorAction SilentlyContinue
     }
     
     Add-EnvPath -Location 'User' -NewPath $UtilBinPath
