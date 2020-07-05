@@ -80,7 +80,7 @@ $ManualDownloadInstall = @{
 }
 
 Get-DownloadManual -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath "$UtilBinPath\Analisis de Vulnerabilidades"
-Install-Soft -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath $UtilBinPath
+Install-Soft -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath "$UtilBinPath\Analisis de Vulnerabilidades"
 Add-EnvPath
 
 
