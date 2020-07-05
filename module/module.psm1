@@ -50,7 +50,7 @@ function Add-Folders{
 }
 
 
-function Get-DownloadManual
+function Get-DownloadManual($UtilDownloadPath)
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
@@ -61,10 +61,7 @@ function Get-DownloadManual
         mkdir $UtilDownloadPath -Force -ErrorAction SilentlyContinue
     }
 
-    If (-not (Test-Path $UtilBinPath)) {
-        mkdir $UtilBinPath -Force -ErrorAction SilentlyContinue
-    }
-    
+   
     Push-Location $UtilDownloadPath
     
     Foreach($software in $ManualDownloadInstall.keys) {
@@ -86,7 +83,7 @@ function Get-DownloadManual
     }
  }
 
-function Install-Zip
+function Install-Zip($UtilDownloadPath,$UtilBinPath)
 {
 
     # zip installs
@@ -98,7 +95,7 @@ function Install-Zip
 
 }
 
-function Install-Exe
+function Install-Exe($UtilDownloadPath)
 {
 
          
@@ -110,7 +107,7 @@ function Install-Exe
  
 }
 
-function Install-Msi
+function Install-Msi($UtilDownloadPath)
 {
        
      # msi installs
