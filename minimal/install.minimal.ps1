@@ -61,6 +61,81 @@ $ChocoInstalls = @(
 #Install-ChocoPackages
 
 
+
+function Get-DownloadManual([string]$UtilDownloadPath)
+{
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+    
+    $FilesDownloaded = @()
+
+    If (-not (Test-Path $UtilDownloadPath)) {
+        mkdir $UtilDownloadPath -Force -ErrorAction SilentlyContinue
+    }
+
+   
+    Push-Location $UtilDownloadPath
+    
+    Foreach($software in $ManualDownloadInstall.keys) {
+    
+    Write-Output "Downloading $software"
+    if ( -not (Test-Path $software) ) {
+        try {
+                
+                echo "$UtilDownloadPath"
+                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
+                $FilesDownloaded += $software
+                
+        }
+        catch {}
+    }
+    else {
+
+            Write-Warning "File is already downloaded, skipping: $software"
+        }
+    
+    }
+ }
+
+
+function Install-Zip([string]$UtilDownloadPath,[string]$UtilBinPath)
+{
+
+    # zip installs
+    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
+    }
+
+}
+
+function Install-Exe([string]$UtilDownloadPath)
+{
+
+         
+     # exe installs
+     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+     Start-Proc -Exe $_.FullName -waitforexit
+     }
+ 
+ 
+}
+
+function Install-Msi([string]$UtilDownloadPath)
+{
+       
+     # msi installs
+     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+     Start-Proc -Exe $_.FullName -waitforexit
+     }
+
+
+
+}
+
+
+
 # Vuls
 $ManualDownloadInstall = @{
 
@@ -69,6 +144,9 @@ $ManualDownloadInstall = @{
     'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
+
+
+
 
 $UtilDownloadPath = "C:\tmp\vuls"
 $UtilBinPath      = "$env:SystemDrive\Analisis de Vulnerabilidades"
