@@ -103,23 +103,7 @@ function Get-DownloadManual
             Write-Warning "File is already downloaded, skipping: $software"
         }
     
-    }
-    # exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Start-Proc -Exe $_.FullName -waitforexit
-    }
-
-    # msi installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Start-Proc -Exe $_.FullName -waitforexit
-    }
-    # zip installs
-    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
-    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
-    }
-    
+    } 
 
 
 }
