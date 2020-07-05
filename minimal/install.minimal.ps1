@@ -60,9 +60,16 @@ $ChocoInstalls = @(
 )
 
 #Install-ChocoPackages
+    # Vuls
+$global:ManualDownloadInstall = @{
 
-function Get-DownloadManual
-{
+    'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
+    'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
+    'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
+    'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+}
+
+
     $global:UtilDownloadPath   = "C:\tmp\vuls"
     $global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
 
@@ -112,22 +119,11 @@ function Get-DownloadManual
         Start-Proc -Exe $_.FullName -waitforexit
     }
 
-}
-
-
-# Vuls
-$global:ManualDownloadInstall = @{
-
-    'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
-    'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
-    'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
-    'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-}
 
 
 
 
-Get-DownloadManual 
+
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
 #Install-Exe -UtilDownloadPath $UtilDownloadPath
 #Install-Msi -UtilDownloadPath $UtilDownloadPath
