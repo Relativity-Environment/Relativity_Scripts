@@ -144,7 +144,7 @@ function Test-HostSupported
 
 
 # Modulo funciones propias para optimizacion
-function Install-OptimizeEnvModule{
+function Install-Module{
   
  
   $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
@@ -158,7 +158,7 @@ function Install-OptimizeEnvModule{
   Test-AdminExecution;
   Test-HostSupported;
   Test-PSProfile;
-  Install-OptimizeEnvModule;
+  Install-Module;
   Install-BoxStarter
  
 
@@ -177,9 +177,8 @@ $full        =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 function Install-Minimal{ 
       
     Join-Initial
-    Test-DiskSpace "Install-Minimal"
+    #Test-DiskSpace "Install-Minimal"
     Write-Host "[+] Instalando Minimal Version...." -ForegroundColor Green
-    #Install-BoxstarterPackage -PackageName  $Base, $url$Info, $url$Vuls, $url$Web, $url$Bbdd, $url$Passwd, $url$Explot, $url$Spoof, $url$Set -ErrorAction Continue
     Install-BoxstarterPackage -PackageName $minimal
 }
 
@@ -189,8 +188,7 @@ function Install-Minimal{
     Join-Initial
     #Test-DiskSpace "Install-Full"
     Write-Host "[+] Instalando Full Version...." -ForegroundColor Green
-    #Install-BoxstarterPackage -PackageName  $Base, $url$Info, $url$Vuls, $url$Web, $url$Bbdd, $url$Passwd, $url$Explot, $url$Spoof, $url$Set -ErrorAction Continue
-    Install-BoxstarterPackage -PackageName $full
+    Install-BoxstarterPackage -PackageName $minimal,$full
 }
 
 
