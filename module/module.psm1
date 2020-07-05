@@ -56,8 +56,8 @@ function Get-DownloadManual
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
+    If (-not (Test-Path $global:UtilDownloadPath)) {
+        mkdir $global:UtilDownloadPath -Force
     }
 
         Push-Location $UtilDownloadPath
@@ -77,23 +77,25 @@ function Get-DownloadManual
             Write-Warning "File is already downloaded, skipping: $software"
         }
     }
-    
+
+    echo "$global:UtilDownloadPath"
+    echo "$global:UtilBinPath"
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Expand-Archive -Path $_.FullName -DestinationPath $global:UtilBinPath -Force
     }
     
-    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+    Add-EnvPath -Location 'User' -NewPath $global:UtilBinPath
     Update-SessionEnvironment
     
     # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         Start-Proc -Exe $_.FullName -waitforexit
     }
     
     # Kick off msi installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $global:UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         Start-Proc -Exe $_.FullName -waitforexit
     }
 
