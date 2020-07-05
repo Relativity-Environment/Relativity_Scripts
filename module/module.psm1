@@ -50,7 +50,7 @@ function Add-Folders{
 }
 
 
-function Get-DownloadManual([param]$UtilDownloadPath)
+function Get-DownloadManual([string]$UtilDownloadPath)
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
