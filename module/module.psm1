@@ -108,7 +108,7 @@ function Install-Exe([param]$UtilDownloadPath)
  
 }
 
-function Install-Msi($UtilDownloadPath)
+function Install-Msi([param]$UtilDownloadPath)
 {
        
      # msi installs
