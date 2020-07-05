@@ -10,7 +10,7 @@ Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relat
 Write-Host "import module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 #Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
-Add-Folders
+#Add-Folders
 
 
 
