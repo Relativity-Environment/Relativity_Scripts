@@ -5,6 +5,13 @@ $BoxPackageName         =   "install.minimal"
 
 if (Test-PendingReboot) { Invoke-Reboot }   
 
+$null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
+Write-Host "import module" -ForegroundColor red
+Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
+#Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Add-Folders
+
 
 
 
@@ -51,51 +58,6 @@ $ChocoInstalls = @(
         'tor-browser'    
         
 )
-
-function Add-Folders{
-
-    $RootPath = "$env:systemdrive\Relativiy_Env"
-    if(Test-Path $RootPath){
-        
-        New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue | Out-Null 
-
-        $paths  = @(
-
-            'Recopilacion de Informacion',
-            'Analisis de Vulnerabilidades',
-            'Analisis Aplicaciones Web',
-            'Analisis Bases de Datos',
-            'Ataques de Contraseña',
-            'Herramientas de Explotacion',
-            'Herramientas para Sniffing/Spoofing',
-            'Herramientas para Ing. Social',
-            'Utilidades'
-
-
-        )
-
-            if ($paths.Count -gt 0) {
-              
-                $paths | Foreach-Object {
-                echo "Creando path $_"
-                New-Item -ItemType "directory" "$RootPath\$_" -ErrorAction SilentlyContinue | Out-Null 
-            }
-        }     
-    }
-}
-
-
-
-$null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
-Write-Host "import module" -ForegroundColor red
-Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
-#Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
-Add-Folders
-
-
-
-
 
 #Install-ChocoPackages
 
