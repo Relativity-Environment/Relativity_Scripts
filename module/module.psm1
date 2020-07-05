@@ -20,7 +20,7 @@ Function Add-EnvPath {
 
 function Add-Folders{
 
-    $RootPath = "$env:systemdrive\Relativiy_Env"
+    $RootPath = "$env:systemdrive\Relativity_Tools"
     if(-not(Test-Path $RootPath)){
         
         New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue 
