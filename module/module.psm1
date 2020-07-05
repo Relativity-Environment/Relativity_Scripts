@@ -21,7 +21,7 @@ Function Add-EnvPath {
 function Add-Folders{
 
     $RootPath = "$env:systemdrive\Relativiy_Env"
-    if(Test-Path $RootPath){
+    if(-not(Test-Path $RootPath)){
         
         New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue 
 
