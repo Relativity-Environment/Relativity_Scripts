@@ -14,7 +14,7 @@ function Install-Module{
   
 } 
 
-
+Install-Module
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
 $ErrorActionPreference  =   'Continue'
