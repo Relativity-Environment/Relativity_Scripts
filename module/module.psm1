@@ -69,6 +69,8 @@ function Get-DownloadManual([string]$UtilDownloadPath)
     Write-Output "Downloading $software"
     if ( -not (Test-Path $software) ) {
         try {
+                
+                echo "$UtilDownloadPath"
                 Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
                 $FilesDownloaded += $software
                 
