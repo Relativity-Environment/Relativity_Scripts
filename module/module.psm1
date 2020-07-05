@@ -50,7 +50,7 @@ function Add-Folders{
 }
 
 
-function Get-DownloadManual($UtilDownloadPath)
+<#function Get-DownloadManual($UtilDownloadPath)
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
@@ -102,7 +102,7 @@ function Get-DownloadManual($UtilDownloadPath)
     
 
 
-}
+}#>
 
 function Install-Zip($UtilDownloadPath, $UtilBinPath)
 {

@@ -70,7 +70,7 @@ $ManualDownloadInstall = @{
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
-function Get-DownloadManual($UtilDownloadPath)
+function Get-DownloadManual
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
@@ -124,9 +124,9 @@ function Get-DownloadManual($UtilDownloadPath)
 
 }
 
-
-$UtilBinPath = "$env:SystemDrive\Analisis de Vulnerabilidades"
-Get-DownloadManual -UtilDownloadPath "C:\tmp\vuls"
+$UtilDownloadPath = "C:\tmp\vuls"
+$UtilBinPath      = "$env:SystemDrive\Analisis de Vulnerabilidades"
+Get-DownloadManual 
 
 
 
