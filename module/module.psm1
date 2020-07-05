@@ -51,52 +51,55 @@ function Add-Folders{
 }
 
 
-function Get-DownloadManual([string]$UtilDownloadPath)
+function Get-DownloadManual
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force -ErrorAction SilentlyContinue
-    }
-    
-    Push-Location $UtilDownloadPath
-    # Store all the file we download for later processing
-    $FilesDownloaded = @{}  
-   
-    Push-Location $UtilDownloadPath
-    
-    Foreach($software in $ManualDownloadInstall.keys) {
-    
-    Write-Output "Downloading $software"
-    if ( -not (Test-Path $software) ) {
-        try {
-                
-                echo "$UtilDownloadPath"
+        mkdir $UtilDownloadPath -Force
+
+        Push-Location $UtilDownloadPath
+        # Store all the file we download for later processing
+        $FilesDownloaded = @()
+
+    Foreach ($software in $ManualDownloadInstall.keys) {
+        Write-Output "Downloading $software"
+        if ( -not (Test-Path $software) ) {
+            try {
                 Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
                 $FilesDownloaded += $software
-                
+            }
+            catch {}
         }
-        catch {}
-    }
-    else {
-
+        else {
             Write-Warning "File is already downloaded, skipping: $software"
         }
-    
     }
-
-    function Install-Zip([string]$UtilDownloadPath,[string]$UtilBinPath)
-{
-
-    # zip installs
+    
+    # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-    Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
-    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+    }
+    
+    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+    Update-SessionEnvironment
+    
+    # Kick off exe installs
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Start-Proc -Exe $_.FullName -waitforexit
+    }
+    
+    # Kick off msi installs
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Start-Proc -Exe $_.FullName -waitforexit
     }
 
 }
+
+
+
 
 function Install-Exe([string]$UtilDownloadPath)
 {
