@@ -79,7 +79,8 @@ $ManualDownloadInstall = @{
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
-Get-DownloadManual -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath "$UtilBinPath\Analisis de Vulnerabilidades"
+$UtilBinPath = "$env:SystemDrive\Analisis de Vulnerabilidades"
+Get-DownloadManual -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath "$UtilBinPath"
 Install-Soft -UtilDownloadPath "$env:TEMP\vuls" -UtilBinPath "$UtilBinPath\Analisis de Vulnerabilidades"
 Add-EnvPath
 
