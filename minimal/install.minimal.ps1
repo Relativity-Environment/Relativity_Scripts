@@ -71,8 +71,7 @@ $global:ManualDownloadInstall = @{
 }
 
 
-$global:UtilDownloadPath   = "C:\tmp\vuls"
-$global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
+
 If (-not (Test-Path $global:UtilDownloadPath)) {
     mkdir $global:UtilDownloadPath -Force
 }

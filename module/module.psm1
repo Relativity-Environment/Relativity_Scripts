@@ -53,6 +53,8 @@ function Add-Folders{
 
 function Get-DownloadManual
 {
+    $global:UtilDownloadPath   = "C:\tmp\vuls"
+    $global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
