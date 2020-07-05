@@ -18,13 +18,12 @@ Function Add-EnvPath {
     }
 }
 
-
 function Add-Folders{
 
     $RootPath = "$env:systemdrive\Relativiy_Env"
-    if(-not(Test-Path $RootPath)){
+    if(Test-Path $RootPath){
         
-        New-Item -ItemType "directory" $RootPath | Out-Null
+        New-Item -ItemType "directory" $RootPath | Out-Null -ErrorAction SilentlyContinue
 
         $paths  = @(
 
@@ -35,7 +34,8 @@ function Add-Folders{
             'Ataques de Contraseña',
             'Herramientas de Explotacion',
             'Herramientas para Sniffing/Spoofing',
-            'Herramientas para Ing. Social'
+            'Herramientas para Ing. Social',
+            'Utilidades'
 
 
         )
@@ -43,7 +43,7 @@ function Add-Folders{
             if ($paths.Count -gt 0) {
               
                 $paths | Foreach-Object {
-                New-Item -ItemType "directory" "$RootPath\$_" | Out-Null
+                New-Item -ItemType "directory" "$RootPath\$_" | Out-Null -ErrorAction SilentlyContinue
             }
         }     
     }
@@ -89,6 +89,8 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
     Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
     }
 
+    Add-EnvPath -Location 'machine' -NewPath $UtilBinPath
+
     # msi installs
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
     Start-Proc -Exe $_.FullName -waitforexit
@@ -101,8 +103,6 @@ function Get-DownloadManual($UtilDownloadPath, $UtilBinPath)
 
 
 }
-
-
 
 function Install-ChocoPackages
 {
@@ -128,3 +128,71 @@ function Install-ChocoPackages
 
 
 }
+
+
+
+function Start-Proc {
+    param([string]$Exe = $(Throw "An executable must be specified"),
+          [string]$Arguments,
+          [switch]$Hidden,
+          [switch]$waitforexit)
+
+    $startinfo = New-Object System.Diagnostics.ProcessStartInfo
+    $startinfo.FileName = $Exe
+    $startinfo.Arguments = $Arguments
+    if ($Hidden) {
+        $startinfo.WindowStyle = 'Hidden'
+        $startinfo.CreateNoWindow = $True
+    }
+    $process = [System.Diagnostics.Process]::Start($startinfo)
+    if ($waitforexit) { $process.WaitForExit() }
+}
+
+
+Function Get-SpecialPaths {
+    $SpecialFolders = @{}
+
+    $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+
+    foreach($name in $names) {
+        $SpecialFolders[$name] = [Environment]::GetFolderPath($name)
+    }
+
+    $SpecialFolders
+}
+
+
+
+Function Get-SpecialPaths {
+    $SpecialFolders = @{}
+
+    $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+
+    foreach($name in $names) {
+        $SpecialFolders[$name] = [Environment]::GetFolderPath($name)
+    }
+
+    $SpecialFolders
+}
+
+$SpecialPaths = Get-SpecialPaths
+$packages = Get-Package
+
+Pop-Location
+
+$ClearDesktopShortcuts = $true
+
+function Get-DesktopShortcuts{
+
+        
+        Write-Output "Moving .lnk files from $($SpecialPaths['CommonDesktopDirectory']) to the Shortcuts folder"
+        Get-ChildItem -Path  $SpecialPaths['CommonDesktopDirectory'] -Filter '*.lnk' | ForEach-Object {
+            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
+        }
+    
+        Write-Output "Moving .lnk files from $Desktop to the Shortcuts folder"
+        Get-ChildItem -Path $Desktop -Filter '*.lnk' | ForEach-Object {
+            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
+        }
+}
+   
