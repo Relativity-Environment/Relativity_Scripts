@@ -8,8 +8,8 @@ if (Test-PendingReboot) { Invoke-Reboot }
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
 Write-Host "import module" -ForegroundColor red
-Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
+#Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 Add-Folders
 
 $ErrorActionPreference  =   'Continue'
@@ -72,10 +72,10 @@ $ManualDownloadInstall = @{
 
 $UtilDownloadPath = "C:\tmp\vuls"
 $UtilBinPath      = "$env:SystemDrive\Analisis de Vulnerabilidades"
-Get-DownloadManual $UtilDownloadPath
-Install-Zip $UtilDownloadPath $UtilBinPath   
-Install-Exe $UtilDownloadPath
-Install-Msi $UtilDownloadPath
+Get-DownloadManual -UtilDownloadPath $UtilDownloadPath
+Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
+Install-Exe -UtilDownloadPath $UtilDownloadPath
+Install-Msi -UtilDownloadPath $UtilDownloadPath
 
 
 
