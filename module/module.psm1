@@ -58,6 +58,7 @@ function Get-DownloadManual
 
     If (-not (Test-Path $UtilDownloadPath)) {
         mkdir $UtilDownloadPath -Force
+    }
 
         Push-Location $UtilDownloadPath
         # Store all the file we download for later processing
@@ -125,8 +126,6 @@ function Install-Msi([string]$UtilDownloadPath)
 
 }
 
-
- }
 
 <#
 
