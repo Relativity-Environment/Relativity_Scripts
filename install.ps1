@@ -168,8 +168,8 @@ function Install-OptimizeEnvModule{
 
 ## Funciones de instalacion
 
-$minimal     =  "https://gist.githubusercontent.com"
-$full        =     
+$minimal     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/minimal/install.minimal.ps1"
+$full        =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/minimal/install.full.ps1" 
 
 
 
@@ -178,88 +178,20 @@ function Install-Minimal{
       
     Join-Initial
     Test-DiskSpace "Install-Minimal"
-    Write-Host "[+] Instalando version minima...." -ForegroundColor Green
+    Write-Host "[+] Instalando Minimal Version...." -ForegroundColor Green
     #Install-BoxstarterPackage -PackageName  $Base, $url$Info, $url$Vuls, $url$Web, $url$Bbdd, $url$Passwd, $url$Explot, $url$Spoof, $url$Set -ErrorAction Continue
-    Install-BoxstarterPackage -PackageName 
+    Install-BoxstarterPackage -PackageName $minimal
 }
 
 
-function InstallInfo{ 
+function Install-Minimal{ 
       
-    Join-Setup
-    #Test-DiskSpace "InstallInfo"
-    Write-Host "[+] Instalando paquete Recopilacion de Informacion..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $minimal
-
-  }
-
-
-function InstallVulns{ 
-      
-    InitialSetup
-    Test-DiskSpace "InstallVuls"
-    Write-Host "[+] Instalando paquete Analisis de Vulnerabilidades..." -ForegroundColor Green
-    #Install-Nessus
-    Install-BoxstarterPackage -PackageName $url$Vuls
-
-  }
-
-function InstallWeb{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Analisis de Aplcaciones Web..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Web
-
-  }
-
-function InstallBbdd{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Analisis de Bases de datos..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Bbdd
-
-  }
-
-
-function InstallPasswd{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Ataques de Contraseña..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Passwd
-
-  }
-
-function InstallExplot{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Herramientas de Explotacion..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Explot
-
-  }
-
-
-function InstallSpoof{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Herramientas de Sniff/Spoof.." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Spoof
-
-  }
-
-
-function InstallSet{ 
-
-    InitialSetup
-
-    Write-Host "[+] Instalando paquete Herramientas para Ing. Social.." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $Set
-
-  }
+    Join-Initial
+    #Test-DiskSpace "Install-Full"
+    Write-Host "[+] Instalando Full Version...." -ForegroundColor Green
+    #Install-BoxstarterPackage -PackageName  $Base, $url$Info, $url$Vuls, $url$Web, $url$Bbdd, $url$Passwd, $url$Explot, $url$Spoof, $url$Set -ErrorAction Continue
+    Install-BoxstarterPackage -PackageName $full
+}
 
 
 
@@ -267,57 +199,49 @@ function InstallSet{
 function menu {
 
   Write-Host "`n"
-  Write-Host " __________________________________________________________________________________________________ " -ForegroundColor Red 
-  Write-Host "|                                                                                                  |" -ForegroundColor Red 
-  Write-Host "|                                          Creado por                                              |" -ForegroundColor Red 
-  Write-Host "|                                         Victor M. Gil                                            |" -ForegroundColor Red 
-  Write-Host "|                                                                                                  |" -ForegroundColor Red 
-  Write-Host "|                                    Instalador de Gravity_tools                                   |" -ForegroundColor Red 
-  Write-Host "|                                                                                                  |" -ForegroundColor Red 
-  Write-Host "|                                                                                                  |" -ForegroundColor Red 
-  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Red 
-  Write-Host "|                                   Inciando Menu...                                               |" -ForegroundColor Red 
-  Write-Host "|                                                                                                  |" -ForegroundColor Red
-  Write-Host "|                                  00. Instalar todas las herramientas                             |" -ForegroundColor Red
-  Write-Host "|                                  10. Instalar solo Recopilacion de Informacion                   |" -ForegroundColor Red
-  Write-Host "|                                  20. Instalar solo Analisis de Vulnerabilidades                  |" -ForegroundColor Red
-  Write-Host "|                                  30. Instalar solo Analisis Aplicaciones Web                     |" -ForegroundColor Red
-  Write-Host "|                                  40. Instalar solo Analisis Bases de Datos                       |" -ForegroundColor Red
-  Write-Host "|                                  50. Instalar solo Ataques de Contraseña                         |" -ForegroundColor Red
-  Write-Host "|                                  60. Instalar solo Herramientas de Explotacion                   |" -ForegroundColor Red
-  Write-Host "|                                  70. Instalar solo Herramientas para Sniffing/Spoofing           |" -ForegroundColor Red
-  Write-Host "|                                  80. Instalar solo Herramientas para Ing. Social                 |" -ForegroundColor Red
-  Write-Host "|                                                                                                  |" -ForegroundColor Red
-  Write-Host "|                                  [-] SALIR Ctrl + C                                              |" -ForegroundColor Red
-  Write-Host "|                                                                                                  |" -ForegroundColor Red
-  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Red 
+  Write-Host " __________________________________________________________________________________________________ " -ForegroundColor Green 
+  Write-Host "|                                                                                                  |" -ForegroundColor Green 
+  Write-Host "|                                          Creado por                                              |" -ForegroundColor Green 
+  Write-Host "|                                         Victor M. Gil                                            |" -ForegroundColor Green 
+  Write-Host "|                                                                                                  |" -ForegroundColor Green 
+  Write-Host "|                                    Instalador de Gravity_tools                                   |" -ForegroundColor Green 
+  Write-Host "|                                                                                                  |" -ForegroundColor Green 
+  Write-Host "|                                                                                                  |" -ForegroundColor Green
+  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green  
+  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green 
+  Write-Host "|                                   Inciando Menu...                                               |" -ForegroundColor Green 
+  Write-Host "|                                                                                                  |" -ForegroundColor Green
+  Write-Host "|                                  10. Instalar Minimal Version (10GB)                             |" -ForegroundColor Green
+  Write-Host "|                                  20. Instalar Full Version    (20gb)                             |" -ForegroundColor Green
+  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green 
+  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green 
+  Write-Host "|   |" -ForegroundColor Green -NoNewLine; Write-Host "CHKPOINT - Restaura el sistema al punto de restauracion" -ForegroundColor Yellow  
+  Write-Host "|                                                                                                  |" -ForegroundColor Green
+  Write-Host "|                                  [-] SALIR Ctrl + C                                              |" -ForegroundColor Green
+  Write-Host "|                                                                                                  |" -ForegroundColor Green
+  Write-Host "|                                                                                                  |" -ForegroundColor Green
+  Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green
   Write-Host ""
   
   
   while(($inp = Read-Host -Prompt "Select an option") -ne "9"){  #> Control opciones
   
   switch($inp){
-        00 {
-            Clear-Host
-            Write-Host "----------------------------------";
-            Write-Host "Instalando todas las herramientas "; 
-            Write-Host "----------------------------------";
-            InstallAll;
-            pause;
-            menu;
-            break
-        }
         10 {
             Clear-Host
-            Write-Host "----------------------------------------------------";
-            Write-Host "Instalando herramientas Recopilacion de Informacion ";
-            Write-Host "----------------------------------------------------";
-            InstallInfo;
+            Install-Minimal;
             pause;
             menu;
             break
         }
         20 {
+            Clear-Host
+            Install-Full;
+            pause;
+            menu;
+            break
+        }
+        CHKPOINT {
             Clear-Host
             Write-Host "-----------------------------------------------------";
             Write-Host "Instalando herramientas Analisis de Vulnerabilidades ";
@@ -327,67 +251,6 @@ function menu {
             menu;
             break
         }
-        30 {
-            Clear-Host
-            Write-Host "-----------------------------------------";
-            Write-Host "Instalando herramientas Aplicaciones Web ";
-            Write-Host "-----------------------------------------";
-            InstallWeb;
-            pause;
-            menu;
-            break
-        }
-        40 {
-            Clear-Host
-            Write-Host "------------------------------------------------";
-            Write-Host "Instalando herramientas Analisis Bases de Datos ";
-            Write-Host "------------------------------------------------";
-            InstallBbdd;
-            pause;
-            menu;
-            break
-        }
-        50 {
-            Clear-Host
-            Write-Host "-----------------------------------------------------";
-            Write-Host "Instalando herramientas para Ataques de Constraseñas ";
-            Write-Host "-----------------------------------------------------";
-            InstallPasswd;
-            pause;
-            menu;
-            break
-        }
-        60 {
-            Clear-Host
-            Write-Host "---------------------------------------";
-            Write-Host "Instalando herramientas de Explotacion ";
-            Write-Host "---------------------------------------";
-            InstallExplot;
-            pause;
-            menu;
-            break
-        }
-        70 {
-          Clear-Host
-          Write-Host "--------------------------------------------";
-          Write-Host "Instalando herramientas Sniffing y Spoofing ";
-          Write-Host "--------------------------------------------";
-          InstallSpoof;
-          pause;
-          menu;
-          break
-        }
-        80 {
-          Clear-Host
-          Write-Host "------------------------------------";
-          Write-Host "Instalando herramientas Ing. Social ";
-          Write-Host "------------------------------------";
-          InstallSet;
-          pause;
-          menu;
-          break
-       }
-
        C{"Exit"; exit}
        
       default {Write-Host -ForegroundColor red -BackgroundColor white "Opcion invalida. Escoge otra opcion";pause}
