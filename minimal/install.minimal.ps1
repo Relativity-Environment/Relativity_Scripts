@@ -64,7 +64,7 @@ $ChocoInstalls = @(
         'tor-browser'    
         
 )
-Install-ChocoPackages
+#Install-ChocoPackages
 
 
 # Vuls
