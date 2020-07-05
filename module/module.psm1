@@ -63,7 +63,7 @@ function Get-DownloadManual
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     
-        Push-Location $UtilDownloadPath
+        Push-Location $global:UtilDownloadPath
         # Store all the file we download for later processing
         $FilesDownloaded = @()
 
