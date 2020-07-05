@@ -56,15 +56,12 @@ function Get-DownloadManual
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    If (-not (Test-Path $global:UtilDownloadPath)) {
-        mkdir $global:UtilDownloadPath -Force
-    }
-
+    
         Push-Location $UtilDownloadPath
         # Store all the file we download for later processing
         $FilesDownloaded = @()
 
-    Foreach ($software in $ManualDownloadInstall.keys) {
+    Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {

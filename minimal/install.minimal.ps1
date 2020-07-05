@@ -62,7 +62,7 @@ $ChocoInstalls = @(
 #Install-ChocoPackages
 
 # Vuls
-$ManualDownloadInstall = @{
+$global:ManualDownloadInstall = @{
 
     'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
     'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
@@ -71,9 +71,11 @@ $ManualDownloadInstall = @{
 }
 
 
-$UtilDownloadPath = "C:\tmp\vuls"
-$UtilBinPath      = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
-
+$global:UtilDownloadPath   = "C:\tmp\vuls"
+$global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
+If (-not (Test-Path $global:UtilDownloadPath)) {
+    mkdir $global:UtilDownloadPath -Force
+}
 Get-DownloadManual 
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
 #Install-Exe -UtilDownloadPath $UtilDownloadPath
