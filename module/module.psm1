@@ -146,18 +146,3 @@ function Install-ChocoPackages
 }
 
 
-
-function Get-ChocoPackages
-{
-    if (get-command clist -ErrorAction:SilentlyContinue) {
-        clist -lo -r -all | ForEach-Object {
-            $Name,$Version = $_ -split '\|'
-            New-Object -TypeName psobject -Property @{
-                'Name' = $Name
-                'Version' = $Version
-            }
-        }
-    }
-}
-
-
