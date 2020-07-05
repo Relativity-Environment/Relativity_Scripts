@@ -58,11 +58,11 @@ function Get-DownloadManual($UtilDownloadPath)
     $FilesDownloaded = @()
 
     If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
+        mkdir $UtilDownloadPath -Force -ErrorAction SilentlyContinue
     }
 
     If (-not (Test-Path $UtilBinPath)) {
-        mkdir $UtilBinPath -Force
+        mkdir $UtilBinPath -Force -ErrorAction SilentlyContinue
     }
     
     Push-Location $UtilDownloadPath
@@ -112,8 +112,7 @@ function Install-Exe
 
 function Install-Msi
 {
-  
-     
+       
      # msi installs
      Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
      Start-Proc -Exe $_.FullName -waitforexit
