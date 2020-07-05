@@ -17,8 +17,10 @@ function Install-Module{
 Install-Module
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Add-Folders
 
 $ErrorActionPreference  =   'Continue'
+
 
 
 $ChocoInstalls = @(
@@ -76,7 +78,7 @@ $ManualDownloadInstall = @{
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
-$UtilBinPath = Join-Path "$env:SystemDrive" "/Analisis de Vulnerabilidades"
+$UtilBinPath = Join-Path "$env:SystemDrive\Relativiy_Env" "\Analisis de Vulnerabilidades"
 Get-DownloadManual -UtilDownloadPath "$env:TEMP\vulsweb" -UtilBinPath $UtilBinPath
 Add-EnvPath
 
