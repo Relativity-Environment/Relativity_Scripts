@@ -108,9 +108,9 @@ $ManualDownloadInstall = @{
     
     Add-EnvPath -Location 'User' -NewPath $UtilBinPath
 
-        # Kick off msi installs
+    # Kick off msi installs
     Get-ChildItem -Path $UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-            Start-Proc -Exe $_.FullName -waitforexit
+           echo $FilesDownloaded | Start-Proc -Exe $_.FullName -waitforexit
     }
     
     
