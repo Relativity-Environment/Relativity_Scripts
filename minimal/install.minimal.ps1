@@ -5,14 +5,7 @@ $BoxPackageName         =   "install.minimal"
 
 if (Test-PendingReboot) { Invoke-Reboot }   
 
-$null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
-Write-Host "import module" -ForegroundColor red
-Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
-#Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
-Add-Folders
 
-$ErrorActionPreference  =   'Continue'
 
 
 $ChocoInstalls = @(
@@ -58,6 +51,18 @@ $ChocoInstalls = @(
         'tor-browser'    
         
 )
+
+$null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
+Write-Host "import module" -ForegroundColor red
+Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
+#Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Add-Folders
+
+
+
+
+
 #Install-ChocoPackages
 
 
@@ -144,8 +149,6 @@ $ManualDownloadInstall = @{
     'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
-
-
 
 
 $UtilDownloadPath = "C:\tmp\vuls"

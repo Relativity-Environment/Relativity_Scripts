@@ -43,6 +43,7 @@ function Add-Folders{
             if ($paths.Count -gt 0) {
               
                 $paths | Foreach-Object {
+                echo "Creando path $_"
                 New-Item -ItemType "directory" "$RootPath\$_" -ErrorAction SilentlyContinue | Out-Null 
             }
         }     
