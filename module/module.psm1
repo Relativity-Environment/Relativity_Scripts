@@ -86,7 +86,7 @@ function Get-DownloadManual
     }
     
     Add-EnvPath -Location 'User' -NewPath $global:UtilBinPath
-    Update-SessionEnvironment
+    
     
     # Kick off exe installs
     Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
