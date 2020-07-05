@@ -110,9 +110,7 @@ $ManualDownloadInstall = @{
 
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
-    Get-ChildItem -Path $UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-           echo $FilesDownloaded | Start-Proc -Exe $_.FullName -waitforexit
-    }
+    Get-ChildItem -Path $UtilDownloadPath-File -Filter '*.msi' | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
     
     
     # Kick off exe installs
