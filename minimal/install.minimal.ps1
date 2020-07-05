@@ -34,7 +34,7 @@ $ChocoInstalls = @(
         'golang',
         'strawberryperl', 
         'curl',
-        'php';
+        'php',
         'Cygwin',
         'Firefox',
         'keypirinha',
@@ -59,32 +59,12 @@ $ChocoInstalls = @(
         '7zip',
         '7zip.commandline',
         'rar',
-        'winpcap';
+        'winpcap',
         'javaruntime',
         'tor-browser'    
         
 )
-Write-Output "Installing software via chocolatey" 
-# Don't try to download and install a package if it shows already installed
-$InstalledChocoPackages = (Get-ChocoPackages).Name
-$ChocoInstalls = $ChocoInstalls | Where { $InstalledChocoPackages -notcontains $_ }
-
-if ($ChocoInstalls.Count -gt 0) {
-    # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
-    $ChocoInstalls | Foreach-Object {
-        try {
-            
-            cinst -y $_
-        }
-        catch {
-            Write-Warning "Unable to install software package with Chocolatey: $($_)"
-        }
-    }
-        }
-        else {
-            Write-Output 'There were no packages to install!'
-    }
-
+Install-ChocoPackages
 <#
 
     $ManualDownloadInstall = @{
