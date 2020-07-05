@@ -114,8 +114,7 @@ $ManualDownloadInstall = @{
     
     
     # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Start-Proc -Exe $_.FullName -waitforexit
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit
     }
     
 
