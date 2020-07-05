@@ -97,7 +97,7 @@ function Get-DownloadManual
     }
     
     # Kick off msi installs
-    Get-ChildItem -Path $global:UtilDownloadPath-File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         Start-Proc -Exe $_.FullName -waitforexit
     }
 
