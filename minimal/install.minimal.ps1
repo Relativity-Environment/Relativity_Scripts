@@ -52,7 +52,7 @@ Add-Folders
         'yumi',
         '7zip',
         '7zip.commandline',
-        'rar',
+        'winrar',
         'winpcap',
         'javaruntime',
         'tor-browser'    
@@ -69,7 +69,7 @@ $global:ChocoInstalls = @(
         'gitextensions',
         '7zip',
         '7zip.commandline',
-        'rar',
+        'winrar',
         'winpcap',
         'javaruntime'
  

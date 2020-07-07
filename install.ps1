@@ -243,6 +243,7 @@ function menu {
         }
         CHKPOINT {
             Clear-Host;
+            Write-Host "Has elegido restaurar el sistema"
             pause;
             menu;
             break
