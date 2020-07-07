@@ -14,7 +14,7 @@ Add-Folders
 
 $BypassDefenderPaths = @('C:\')
 $ByPassDefenderPaths | Add-DefenderBypassPath
-
+Disable-UAC = $true
 
 
 <#$ChocoInstalls = @(
