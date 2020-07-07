@@ -59,7 +59,7 @@ Add-Folders
         
 )#>
 
-$ChocoInstalls = @(
+$global:ChocoInstalls = @(
         
 
         'nuget.commandline',
@@ -75,7 +75,6 @@ $ChocoInstalls = @(
  
         
 )
-
 Install-ChocoPackages
 refreshenv
 

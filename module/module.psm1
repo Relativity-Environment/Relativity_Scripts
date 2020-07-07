@@ -1,7 +1,4 @@
-﻿
-
-
-Function Add-EnvPath {
+﻿Function Add-EnvPath {
     # Adds a path to the $ENV:Path list for a user or system if it does not already exist (in both the system and user Path variables)
     param (
         [string]$Location,
@@ -199,15 +196,13 @@ function Install-Msi([string]$UtilDownloadPath)
 #>
 
 
-
-
 function Install-ChocoPackages
 {
 
 
     Write-Output "Installing software via chocolatey" 
 
-    if ($ChocoInstalls.Count -gt 0) {
+    if ($global:ChocoInstalls.Count -gt 0) {
         # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
         $ChocoInstalls | Foreach-Object {
             try {
