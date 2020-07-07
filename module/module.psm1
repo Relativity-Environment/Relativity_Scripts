@@ -1,4 +1,29 @@
-﻿Function Add-EnvPath {
+﻿
+
+function Add-DefenderBypassPath {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true, ValueFromPipeline = $true)]
+        [string[]]$Path
+    )
+    begin {
+        $Paths = @()
+    }
+    process {
+        $Paths += $Path
+    }
+    end {
+        $Paths | Foreach-Object {
+            if (-not [string]::isnullorempty($_)) {
+                Add-MpPreference -ExclusionPath $_ -Force
+            }
+        }
+    }
+} 
+#$BypassDefenderPaths = @('C:\')
+#$ByPassDefenderPaths | Add-DefenderBypassPath
+
+Function Add-EnvPath {
     # Adds a path to the $ENV:Path list for a user or system if it does not already exist (in both the system and user Path variables)
     param (
         [string]$Location,
