@@ -107,8 +107,8 @@ function Get-DownloadManual($tool)
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         
-        Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $_.Name
+        #Push-Location $UtilBinPath
+        Expand-Archive -Path $_.FullName -DestinationPath $($_.Basename)
     }
     
     Add-EnvPath -Location 'User' -NewPath $UtilBinPath
