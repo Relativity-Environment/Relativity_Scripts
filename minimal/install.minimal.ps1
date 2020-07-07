@@ -1,6 +1,8 @@
 ﻿
 <# Opcion 1 - Instalacion de opcion minimal #>
 
+Invoke-BoxStarter
+
 $BoxPackageName         =   "install.minimal"
 
 if (Test-PendingReboot) { Invoke-Reboot }   
@@ -15,6 +17,7 @@ Add-Folders
 $BypassDefenderPaths = @('C:\')
 $ByPassDefenderPaths | Add-DefenderBypassPath
 Disable-UAC = $true
+Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
 
 
 <#$ChocoInstalls = @(
