@@ -101,6 +101,7 @@ function Install-Apps($tool)
     {   
         &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process
+        Add-EnvPath -Location 'User' -NewPath $UtilBinPath
     }
     
 
