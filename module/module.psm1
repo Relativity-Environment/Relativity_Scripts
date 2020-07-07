@@ -49,24 +49,21 @@ function Add-Folders{
     }
 }
 
-function Get-DownloadManual
+function Get-DownloadManual($tool)
 {   
-    Param(
-    [Parameter(Mandatory=$true,
-    ParameterSetName="Path")]
-    [String[]]
-    $Path,
-
     
-    [Parameter(Mandatory=$false,
-    ParameterSetName="DestinationPath")]
-    [String[]]
-    $DestinationPath,
 
-
-    [hashtable]$ManualDownloadInstall
-
-)
+    Switch (($tool) )
+    {
+        'Recopilacion de Informacion'{$UtilDownloadPath         = "C:\tmp\info"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Recopilacion de Informacion" }
+        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "C:\tmp\vuls"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades" }
+        'Analisis Bases de Datos'{$UtilDownloadPath             = "C:\tmp\bbdd"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Analisis Bases de Datos" }
+        'Ataques de Contraseña'{$UtilDownloadPath               = "C:\tmp\passwd"   ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Ataques de Contraseña" }
+        'Herramientas de Explotacion'{$UtilDownloadPath         = "C:\tmp\expl"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas de Explotacion" }
+        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "C:\tmp\spoof"    ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas para Sniffing/Spoofing" }
+        'Herramientas para Ing. Social'{$UtilDownloadPath       = "C:\tmp\social"   ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas para Ing. Social" }
+                  
+    }
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
@@ -80,8 +77,6 @@ function Get-DownloadManual
     Push-Location $UtilDownloadPath
     # Store all the file we download for later processing
     $FilesDownloaded = @()
-
-    Get-Item $ManualDownloadInstall
 
     Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
