@@ -14,7 +14,8 @@ function Join-Initial
     if ($InstallBoxStarter -and (-not (Test-Path $PathBixStarter))) {
     
       try {
- 
+        
+        Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force
         return $true
         Write-Host "Boxstarter Instalado!!" -ForegroundColor Green
