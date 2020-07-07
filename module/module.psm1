@@ -59,7 +59,7 @@ function Get-DownloadManual
 
     [Parameter(Mandatory=$true,Position=2,
     ParameterSetName="ManualDownloadInstall")]
-    [String[]]
+    [hashtable[]]
     $ManualDownloadInstall,
 
     [Parameter(Mandatory=$false,Position=3,
