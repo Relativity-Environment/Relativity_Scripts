@@ -108,7 +108,7 @@ function Get-DownloadManual($tool)
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         
         #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $($_.Basename)
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
     }
     
     Add-EnvPath -Location 'User' -NewPath $UtilBinPath
