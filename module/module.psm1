@@ -85,7 +85,7 @@ function test-hash{
 
 
 
-function Get-DownloadManual($tool,$ManualDownloadInstall)
+function Get-DownloadManual($tool)
 {   
 
     Switch (($tool) )
@@ -116,11 +116,11 @@ function Get-DownloadManual($tool,$ManualDownloadInstall)
     $FilesDownloaded = @()
 
     
-    Foreach ($software in $ManualDownloadInstall.keys) {
+    Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
-                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
+                Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
                 $FilesDownloaded += $software
             }
             catch {}

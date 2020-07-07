@@ -61,7 +61,7 @@ $ChocoInstalls = @(
 
 #Install-ChocoPackages
     # Vuls
-$ManualDownloadInstall = @{
+$global:ManualDownloadInstall = @{
 
     'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
     'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
@@ -69,7 +69,7 @@ $ManualDownloadInstall = @{
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
-Get-DownloadManual "Analisis de Vulnerabilidades" $ManualDownloadInstall
+Get-DownloadManual "Analisis de Vulnerabilidades" 
   
 
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
