@@ -71,8 +71,12 @@ function Get-DownloadManual
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    echo "$UtilDownloadPath"
-    echo "$UtilBinPath"
+    If (-not (Test-Path $UtilDownloadPath)) {
+        mkdir $UtilDownloadPath -Force
+    }
+
+    Write-Output "$UtilDownloadPath"
+    Write-Output "$UtilBinPath"
     
     Push-Location $UtilDownloadPath
     # Store all the file we download for later processing
