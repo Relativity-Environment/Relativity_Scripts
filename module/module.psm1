@@ -52,21 +52,14 @@ function Add-Folders{
 
 function Get-DownloadManual
 {
-    $global:UtilDownloadPath   = "C:\tmp\vuls"
-    $global:UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
-
-    If (-not (Test-Path $global:UtilDownloadPath)) {
-        mkdir $global:UtilDownloadPath -Force
-    }
-
-    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+      [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     
-        Push-Location $global:UtilDownloadPath
+        Push-Location $UtilDownloadPath
         # Store all the file we download for later processing
         $FilesDownloaded = @()
 
-    Foreach ($software in $global:ManualDownloadInstall.keys) {
+    Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
@@ -80,27 +73,25 @@ function Get-DownloadManual
         }
     }
 
-    echo "$global:UtilDownloadPath"
-    echo "$global:UtilBinPath"
+    echo "$UtilDownloadPath"
+    echo "$UtilBinPath"
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $global:UtilBinPath -Force
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force -ErrorAction SilentlyContinue
     }
     
-    Add-EnvPath -Location 'User' -NewPath $global:UtilBinPath
+    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+
+    # Kick off msi installs
+    Write-Output 'Buscando archivos msi'
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
     
     
     # Kick off exe installs
-    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Start-Proc -Exe $_.FullName -waitforexit
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit
     }
     
-    # Kick off msi installs
-    Get-ChildItem -Path $global:UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Start-Proc -Exe $_.FullName -waitforexit
-    }
-
 }
 
 

@@ -72,51 +72,8 @@ $ManualDownloadInstall = @{
 
     $UtilDownloadPath   = "C:\tmp\vuls"
     $UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
-
-    If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
-    }
-
-    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-
-    
-        Push-Location $UtilDownloadPath
-        # Store all the file we download for later processing
-        $FilesDownloaded = @()
-
-    Foreach ($software in $ManualDownloadInstall.keys) {
-        Write-Output "Downloading $software"
-        if ( -not (Test-Path $software) ) {
-            try {
-                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
-                $FilesDownloaded += $software
-            }
-            catch {}
-        }
-        else {
-            Write-Warning "File is already downloaded, skipping: $software"
-        }
-    }
-
-    echo "$UtilDownloadPath"
-    echo "$UtilBinPath"
-    # Extracting self-contained binaries (zip files) to our bin folder
-    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force -ErrorAction SilentlyContinue
-    }
-    
-    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
-
-    # Kick off msi installs
-    Write-Output 'Buscando archivos msi'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
-    
-    
-    # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit
-    }
-    
+    Get-DownloadManual
+  
 
 
 
