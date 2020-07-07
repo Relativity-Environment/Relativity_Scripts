@@ -72,7 +72,7 @@ $ManualDownloadInstall = @{
 
     $UtilDownloadPath   = "C:\tmp\vuls"
     $UtilBinPath        = "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades"
-    Get-DownloadManual -UtilDownloadPath $UtilDownloadPath -ManualDownloadInstall $ManualDownloadInstall $UtilBinPath
+    Get-DownloadManual -UtilDownloadPath $UtilDownloadPath $UtilBinPath
   
 
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   

@@ -57,15 +57,14 @@ function Get-DownloadManual
     [String[]]
     $UtilDownloadPath,
 
-    [Parameter(Mandatory=$true,Position=2,
-    ParameterSetName="ManualDownloadInstall")]
-    [hashtable]
-    $ManualDownloadInstall,
-
+    
     [Parameter(Mandatory=$false,Position=3,
     ParameterSetName="UtilBinPath")]
     [String[]]
-    $UtilBinPath
+    $UtilBinPath,
+
+
+    [hashtable]$ManualDownloadInstall
 
 )
 
