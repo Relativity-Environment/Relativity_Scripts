@@ -89,7 +89,7 @@ refreshenv
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
 
     }
-    Get-DownloadManual "Recopilacion de Informacion" 
+    Install-Apps "Recopilacion de Informacion" 
 
 # Analisis de Vulnerabilidades
     
@@ -100,7 +100,7 @@ refreshenv
         #'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
         'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
     }
-    Get-DownloadManual "Analisis de Vulnerabilidades" 
+    Install-Apps "Analisis de Vulnerabilidades" 
 
 
 

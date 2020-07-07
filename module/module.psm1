@@ -48,7 +48,7 @@ function Add-Folders{
 
 
 
-function Get-DownloadManual($tool)
+function Install-Apps($tool)
 {   
 
     Switch (($tool) )
