@@ -54,10 +54,7 @@ function test-hash{
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
-    }
-
+    
     Write-Output "$UtilDownloadPath"
     Write-Output "$UtilBinPath"
     
