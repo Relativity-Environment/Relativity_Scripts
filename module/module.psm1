@@ -52,7 +52,7 @@ function Add-Folders{
 
 function test-hash{
 
-    $FilesDownloaded = @()
+    get-item $ManualDownloadInstall
 
     Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
