@@ -12,7 +12,7 @@ Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 Add-Folders
 
-$BypassDefenderPaths = @('C:\')
+$BypassDefenderPaths = @('C:\', 'C:\Program Files (x86)', 'C:\Program Files' )
 $ByPassDefenderPaths | Add-DefenderBypassPath
 Disable-UAC = $true
 
