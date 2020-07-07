@@ -96,7 +96,7 @@ function Get-DownloadManual($tool)
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath
     }
     
     # Extracting self-contained binaries (rar files) to our bin folder
@@ -105,7 +105,7 @@ function Get-DownloadManual($tool)
         
         $WinRar = "C:\Program Files\WinRAR\winrar.exe"
         &$Winrar x $_.FullName $UtilBinPath
-        Get-Process winrar | Wait-Process -Force
+        Get-Process winrar | Wait-Process 
     }
 
     Add-EnvPath -Location 'User' -NewPath $UtilBinPath
