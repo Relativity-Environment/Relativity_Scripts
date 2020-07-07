@@ -58,7 +58,7 @@ function Get-DownloadManual
     $UtilDownloadPath,
 
     
-    [Parameter(Mandatory=$false,Position=3,
+    [Parameter(Mandatory=$false,Position=2,
     ParameterSetName="UtilBinPath")]
     [String[]]
     $UtilBinPath,
