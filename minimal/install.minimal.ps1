@@ -58,20 +58,19 @@ $ChocoInstalls = @(
         'tor-browser'    
         
 )
+Install-ChocoPackages
+refreshenv
 
-#Install-ChocoPackages
-    # Vuls
+
+# Vuls
 $global:ManualDownloadInstall = @{
 
     'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
     'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
-    'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
+    #'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
     'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
 }
 
 Get-DownloadManual "Analisis de Vulnerabilidades" 
-  
 
-#Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
-#Install-Exe -UtilDownloadPath $UtilDownloadPath
-#Install-Msi -UtilDownloadPath $UtilDownloadPath
+
