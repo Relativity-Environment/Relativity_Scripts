@@ -70,7 +70,7 @@ $ManualDownloadInstall = @{
 }
 
 
-    Get-DownloadManual -tool "Analisis de Vulnerabilidades"
+    Get-DownloadManual "Analisis de Vulnerabilidades"
   
 
 #Install-Zip -UtilDownloadPath $UtilDownloadPath -UtilBinPath $UtilBinPath   
