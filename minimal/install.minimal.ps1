@@ -85,7 +85,7 @@ refreshenv
 
         
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
-        #'SpiderFoot-2.11-w32.zip'                   = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
+        'SpiderFoot-2.11-w32.zip'                   = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
 
     }

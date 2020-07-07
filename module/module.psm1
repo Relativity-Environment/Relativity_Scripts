@@ -95,11 +95,12 @@ function Get-DownloadManual($tool)
 
     # Extracting self-contained binaries (rar files) to our bin folder
     Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.rar'| Where {$FilesDownloaded -contains $_.FullName} | Foreach {
-            
-            $WinRar = "C:\Program Files\WinRAR\winrar.exe"
-            &$Winrar x $_.FullName $UtilBinPath
-            Get-Process winrar | Wait-Process 
+    $Rars = Get-ChildItem -filter "*.rar" -path "$UtilDownloadPath"-Recurse
+    $WinRar = "C:\Program Files\WinRAR\winrar.exe"
+    foreach ($rar in $Rars)
+    {   
+        &$Winrar x $rar.FullName $UtilBinPath
+        Get-Process winrar | Wait-Process
     }
     
 
