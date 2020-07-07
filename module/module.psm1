@@ -66,7 +66,7 @@ function Get-DownloadManual($tool)
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -Force
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
 
     Write-Output "$UtilDownloadPath"
