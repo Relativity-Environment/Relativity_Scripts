@@ -62,16 +62,16 @@ Add-Folders
 $global:ChocoInstalls = @(
         
 
-        'nuget.commandline',
-        'git',
-        'git-credential-manager-for-windows',
-        'git-credential-winstore',
-        'gitextensions',
+        #'nuget.commandline',
+        #'git',
+        #'git-credential-manager-for-windows',
+        #'git-credential-winstore',
+        #'gitextensions',
         '7zip',
         '7zip.commandline',
         'winrar',
-        'winpcap',
-        'javaruntime'
+        'winpcap'
+        #'javaruntime'
  
         
 )
