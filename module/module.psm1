@@ -49,15 +49,38 @@ function Add-Folders{
     }
 }
 
-
 function Get-DownloadManual
-{
-      [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+{   
+    Param(
+    [Parameter(Mandatory=$true,
+    ParameterSetName="UtilDownloadPath")]
+    [String[]]
+    $UtilDownloadPath,
 
+    [Parameter(Mandatory=$true,
+    ParameterSetName="ManualDownloadInstall")]
+    [String[]]
+    $ManualDownloadInstall,
+
+    [Parameter(Mandatory=$false,
+    ParameterSetName="UtilBinPath")]
+    [String[]]
+    $UtilBinPath,
+
+    [Parameter(Mandatory=$true, ParameterSetName="UtilDownloadPath")]
+    [Parameter(Mandatory=$false, ParameterSetName="UtilBinPath")]
+    [Switch]
+    $Summary
+)
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+
+    echo "$UtilDownloadPath"
+    echo "$UtilBinPath"
     
-        Push-Location $UtilDownloadPath
-        # Store all the file we download for later processing
-        $FilesDownloaded = @()
+    Push-Location $UtilDownloadPath
+    # Store all the file we download for later processing
+    $FilesDownloaded = @()
 
     Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
@@ -73,8 +96,6 @@ function Get-DownloadManual
         }
     }
 
-    echo "$UtilDownloadPath"
-    echo "$UtilBinPath"
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
@@ -89,11 +110,12 @@ function Get-DownloadManual
     
     
     # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit
-    }
-    
-}
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
 
+
+}
+    
+    
 
 
 
