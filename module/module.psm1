@@ -52,13 +52,13 @@ function Add-Folders{
 function Get-DownloadManual
 {   
     Param(
-    [Parameter(Mandatory=$true,Position=1,
+    [Parameter(Mandatory=$true,
     ParameterSetName="UtilDownloadPath")]
     [String[]]
     $UtilDownloadPath,
 
     
-    [Parameter(Mandatory=$false,Position=2,
+    [Parameter(Mandatory=$false,
     ParameterSetName="UtilBinPath")]
     [String[]]
     $UtilBinPath,
