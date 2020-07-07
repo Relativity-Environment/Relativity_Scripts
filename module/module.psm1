@@ -96,7 +96,9 @@ function Get-DownloadManual($tool)
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath += $_.Name
+        
+        $UtilBinPath = Join-Path $UntilBinPath $_.Name
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath
     }
     
     # Extracting self-contained binaries (rar files) to our bin folder
@@ -113,7 +115,7 @@ function Get-DownloadManual($tool)
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
     #Install-ChocolateyPackage -PackageName 'Nessus' -FileType 'msi' -File 'Nessus.msi' -SilentArgs '/qn'
     
     # Kick off exe installs
