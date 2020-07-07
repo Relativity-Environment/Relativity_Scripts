@@ -98,8 +98,8 @@ function Install-Apps($tool)
     {   
         &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process
-        Add-EnvPath -Location 'User' -NewPath "$UtilBinPath\$rar.FullName"
-    }
+        Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$rar.FullName
+   }
     
 
     # Extracting self-contained binaries (zip files) to our bin folder
@@ -121,6 +121,11 @@ function Install-Apps($tool)
     
     # Kick off exe installs
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
+
+    Get-ChildItem -Path $UtilBinPath -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-file -Append "$env:userprofile\Desktop\output.txt" 
+    Get-ChildItem -Path "C:\Program Files (x86)" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"
+    Get-ChildItem -Path "C:\Program Files" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"    
+
 
 
 }
