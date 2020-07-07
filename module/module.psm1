@@ -65,12 +65,8 @@ function Get-DownloadManual
     [Parameter(Mandatory=$false,
     ParameterSetName="UtilBinPath")]
     [String[]]
-    $UtilBinPath,
+    $UtilBinPath
 
-    [Parameter(Mandatory=$true, ParameterSetName="UtilDownloadPath")]
-    [Parameter(Mandatory=$false, ParameterSetName="UtilBinPath")]
-    [Switch]
-    $Summary
 )
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
@@ -81,6 +77,8 @@ function Get-DownloadManual
     Push-Location $UtilDownloadPath
     # Store all the file we download for later processing
     $FilesDownloaded = @()
+
+    Get-Item $ManualDownloadInstall
 
     Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
