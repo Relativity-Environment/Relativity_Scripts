@@ -250,7 +250,7 @@ function menu {
         }
        C{"Exit"; exit}
        
-      default {Write-Host -ForegroundColor red -BackgroundColor white "Opcion invalida, escoge otra opcion" menu;pause}
+      default {Write-Host -ForegroundColor red -BackgroundColor white "Opcion invalida, escoge otra opcion"; menu; pause}
       
         
     }
