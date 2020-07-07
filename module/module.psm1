@@ -102,8 +102,17 @@ function Get-DownloadManual($tool)
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath -Force -ErrorAction SilentlyContinue
     }
     
-    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+    # Extracting self-contained binaries (rar files) to our bin folder
+    Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.rar'| Where {$FilesDownloaded -contains $_.Name} | Foreach {
+        
+        $WinRar = "C:\Program Files\WinRAR\winrar.exe"
+        &$Winrar x $_.FullName $UtilBinPath
+        Get-Process winrar | Wait-Process -Force -ErrorAction SilentlyContinue
+    }
 
+    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+    
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
