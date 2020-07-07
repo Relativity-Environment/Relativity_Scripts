@@ -110,10 +110,10 @@ function Install-Apps($tool)
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
+        Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$($_.Basename)
     }
     
-    Add-EnvPath -Location 'User' -NewPath $UtilBinPath
-    
+        
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
