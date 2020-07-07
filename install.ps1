@@ -59,8 +59,10 @@ function Join-Initial
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force  
   [System.Net.ServicePointManager]::SecurityProtocol = $prevSecProtocol
   [System.Net.ServicePointManager]::CertificatePolicy = $prevCertPolicy
+  Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
   return $true
   Write-Host " Boxstarter Instalado!!" -ForegroundColor Green
+
   continue
  
   }else {

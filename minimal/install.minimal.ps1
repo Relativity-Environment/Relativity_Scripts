@@ -1,8 +1,6 @@
 ﻿
 <# Opcion 1 - Instalacion de opcion minimal #>
 
-Invoke-BoxStarter
-
 $BoxPackageName         =   "install.minimal"
 
 if (Test-PendingReboot) { Invoke-Reboot }   
