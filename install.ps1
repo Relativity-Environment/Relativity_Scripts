@@ -15,8 +15,10 @@ function Join-Initial
     
       try {
         
+        Set-MpPreference -DisableRealtimeMonitoring 1
         Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
-        Set-Itemproperty -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender'  -Name DisableAntiSpyware -value '1'
+        New-Item -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender'  -Name 'DisableAntiSpyware' -value '1'
+        Add-MpPreference -ExclusionProcess 'C:\ProgramData\Boxstarter\BoxstarterShell.ps1'
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force
         return $true
         Write-Host "Boxstarter Instalado!!" -ForegroundColor Green
@@ -61,8 +63,9 @@ function Join-Initial
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force  
   [System.Net.ServicePointManager]::SecurityProtocol = $prevSecProtocol
   [System.Net.ServicePointManager]::CertificatePolicy = $prevCertPolicy
+  Set-MpPreference -DisableRealtimeMonitoring 1
   Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
-  Set-Itemproperty -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender'  -Name DisableAntiSpyware -value '1'
+  New-Item -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender'  -Name 'DisableAntiSpyware' -value '1'
   return $true
   Write-Host " Boxstarter Instalado!!" -ForegroundColor Green
 
