@@ -52,15 +52,26 @@ function Add-Folders{
 
 function test-hash{
 
-    get-item $ManualDownloadInstall
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+
+    If (-not (Test-Path $UtilDownloadPath)) {
+        mkdir $UtilDownloadPath -Force
+    }
+
+    Write-Output "$UtilDownloadPath"
+    Write-Output "$UtilBinPath"
+    
+    Push-Location $UtilDownloadPath
+    # Store all the file we download for later processing
+    $FilesDownloaded = @()
 
     Foreach ($software in $ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
                 
-                #Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
-                #$FilesDownloaded += $software
+                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
+                $FilesDownloaded += $software
 
                 Write-Host "se puede acceder a $software "
 
