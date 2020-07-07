@@ -49,6 +49,32 @@ function Add-Folders{
     }
 }
 
+
+function test{
+
+    Foreach ($software in $ManualDownloadInstall.keys) {
+        Write-Output "Downloading $software"
+        if ( -not (Test-Path $software) ) {
+            try {
+                
+                #Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
+                #$FilesDownloaded += $software
+
+                Write-Host "se puede acceder a $software "
+
+            }
+            catch {}
+        }
+        else {
+            Write-Warning "File is already downloaded, skipping: $software"
+        }
+    }
+
+}
+
+
+
+
 function Get-DownloadManual($tool)
 {   
     
