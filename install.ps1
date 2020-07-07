@@ -15,7 +15,7 @@ function Join-Initial
     
       try {
         
-        Set-MpPreference -DisableRealtimeMonitoring 1
+        Set-MpPreference -DisableRealtimeMonitoring 1 | Out-Null
         Set-Itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name 'Start' -value '2'
         New-Item -path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender'  -Name 'DisableAntiSpyware' -value '1'
         Add-MpPreference -ExclusionProcess 'C:\ProgramData\Boxstarter\BoxstarterShell.ps1'
