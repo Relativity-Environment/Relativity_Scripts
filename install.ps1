@@ -213,7 +213,7 @@ function menu {
   Write-Host "|                                  20. Instalar Full Version    (20gb)                             |" -ForegroundColor Green
   Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "|__________________________________________________________________________________________________|" -ForegroundColor Green 
-  Write-Host "|       " -ForegroundColor Green -NoNewLine; Write-Host "CHKPOINT - Restaura el sistema al punto de restauracion" -ForegroundColor Red -NoNewLine; Write-Host "         |" -ForegroundColor Green
+  Write-Host "|       " -ForegroundColor Green -NoNewLine; Write-Host "       CHKPOINT - Restaura el sistema al punto de restauracion" -ForegroundColor Red -NoNewLine; Write-Host "                  |" -ForegroundColor Green
   Write-Host "|                                                                                                  |" -ForegroundColor Green
   Write-Host "|                                  [-] SALIR Ctrl + C                                              |" -ForegroundColor Green
   Write-Host "|                                                                                                  |" -ForegroundColor Green
@@ -248,7 +248,8 @@ function menu {
         }
        C{"Exit"; exit}
        
-      default {Write-Host -ForegroundColor red -BackgroundColor white "Opcion invalida. Escoge otra opcion";pause}
+      default {Write-Host -ForegroundColor red -BackgroundColor white "Opcion invalida, escoge otra opcion" menu;pause}
+      
         
     }
   
