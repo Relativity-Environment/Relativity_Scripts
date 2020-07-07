@@ -42,46 +42,12 @@ function Add-Folders{
             if ($paths.Count -gt 0) {
               
                 $paths | Foreach-Object {
-                echo "Creando path $_"
+                Write-Output "Creando path $_"
                 New-Item -ItemType "directory" "$RootPath\$_"
             }
         }     
     }
 }
-
-
-function test-hash{
-
-    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-
-    
-    Write-Output "$UtilDownloadPath"
-    Write-Output "$UtilBinPath"
-    
-    Push-Location $UtilDownloadPath
-    # Store all the file we download for later processing
-    $FilesDownloaded = @()
-
-    Foreach ($software in $ManualDownloadInstall.keys) {
-        Write-Output "Downloading $software"
-        if ( -not (Test-Path $software) ) {
-            try {
-                
-                Invoke-WebRequest $ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
-                $FilesDownloaded += $software
-
-                Write-Host "se puede acceder a $software "
-
-            }
-            catch {}
-        }
-        else {
-            Write-Warning "File is already downloaded, skipping: $software"
-        }
-    }
-
-}
-
 
 
 
@@ -141,7 +107,7 @@ function Get-DownloadManual($tool)
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Install-ChocolateyPackage -PackageName $_.FullName -FileType 'msi' -File $_.FullName -SilentArgs '/qn' -waitforexit}
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Install-ChocolateyPackage -PackageName $_.FullName -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
     #Install-ChocolateyPackage -PackageName 'Nessus' -FileType 'msi' -File 'Nessus.msi' -SilentArgs '/qn'
     
     # Kick off exe installs
