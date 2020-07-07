@@ -69,10 +69,7 @@ function Install-Apps($tool)
         mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
 
-    Write-Output "$UtilDownloadPath"
-    Write-Output "$UtilBinPath"
-
-    
+       
     Push-Location $UtilDownloadPath
     # Store all the file we download for later processing
     
@@ -101,7 +98,7 @@ function Install-Apps($tool)
     {   
         &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process
-        Add-EnvPath -Location 'User' -NewPath $UtilBinPath
+        Add-EnvPath -Location 'User' -NewPath "$UtilBinPath\$rar.FullName"
     }
     
 
@@ -111,6 +108,7 @@ function Install-Apps($tool)
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
+        echo $UtilBinPath\$($_.Basename)
         Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$($_.Basename)
     }
     
