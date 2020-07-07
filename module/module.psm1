@@ -88,13 +88,7 @@ function test-hash{
 function Get-DownloadManual($tool)
 {   
     
-    $ManualDownloadInstall = @{
-
-        'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
-        'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
-        'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
-        'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-    }
+  
 
     Switch (($tool) )
     {
@@ -116,6 +110,15 @@ function Get-DownloadManual($tool)
 
     Write-Output "$UtilDownloadPath"
     Write-Output "$UtilBinPath"
+
+    $ManualDownloadInstall = @{
+
+        'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
+        'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
+        'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
+        'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+    }
+
     
     Push-Location $UtilDownloadPath
     # Store all the file we download for later processing
