@@ -3,6 +3,9 @@
 
 $BoxPackageName         =   "install.minimal"
 
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+
 if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
@@ -14,7 +17,7 @@ Add-Folders
 
 $BypassDefenderPaths = @('C:\', 'C:\Program Files (x86)', 'C:\Program Files' )
 $ByPassDefenderPaths | Add-DefenderBypassPath
-Disable-UAC = $true
+
 
 
 
