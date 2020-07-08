@@ -81,8 +81,8 @@ $global:ChocoInstalls = @(
  
         
 )
-Install-ChocoPackages
-refreshenv
+#Install-ChocoPackages
+#refreshenv
 
 
 # Recopilacion de Informacion
@@ -95,7 +95,7 @@ refreshenv
 
 
     }
-    Install-Apps "Recopilacion de Informacion" 
+ #   Install-Apps "Recopilacion de Informacion" 
 
 # Analisis de Vulnerabilidades
     
@@ -105,7 +105,7 @@ refreshenv
         
 
     }
-    Install-Apps "Analisis de Vulnerabilidades" 
+ #   Install-Apps "Analisis de Vulnerabilidades" 
 
 
 
@@ -116,7 +116,7 @@ refreshenv
         
     
     }
-    Install-Apps "Analisis Bases de Datos" 
+#    Install-Apps "Analisis Bases de Datos" 
             
 # Ataques de Contraseña
 
@@ -125,7 +125,7 @@ refreshenv
             
         
     }
-    Install-Apps "Ataques de Contraseña" 
+#    Install-Apps "Ataques de Contraseña" 
             
 # Herramientas de Explotacion
 
@@ -134,7 +134,7 @@ refreshenv
                 
             
     }
-    Install-Apps " Herramientas de Explotacion" 
+#    Install-Apps " Herramientas de Explotacion" 
 
 
 # Herramientas para Sniffing/Spoofing
@@ -144,7 +144,7 @@ refreshenv
                 
             
     }
-    Install-Apps "Herramientas para Sniffing/Spoofing" 
+#    Install-Apps "Herramientas para Sniffing/Spoofing" 
 
 
 
@@ -155,7 +155,7 @@ refreshenv
                 
             
     }
-    Install-Apps " Herramientas para Ing. Social" 
+#    Install-Apps " Herramientas para Ing. Social" 
 
 
 
