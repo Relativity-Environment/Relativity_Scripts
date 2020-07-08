@@ -238,9 +238,7 @@ $target_file = Join-Path ${Env:WinDir} "explorer.exe"
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$target_file" 5386
-} catch {
-  FE-Write-Log "ERROR" "`tCould not pin $target_file to the taskbar"
-}
+} catch {}
 # CMD prompt
 $target_file = Join-Path ${Env:WinDir} "system32\cmd.exe"
 $target_dir = ${Env:UserProfile}
@@ -250,9 +248,7 @@ Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file 
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
-} catch {
-  FE-Write-Log "ERROR" "`tCould not pin $target_file to the taskbar"
-}
+} catch {}
 # Powershell
 $target_file = Join-Path (Join-Path ${Env:WinDir} "system32\WindowsPowerShell\v1.0") "powershell.exe"
 $target_dir = ${Env:UserProfile}
@@ -262,9 +258,7 @@ Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file 
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
-} catch {
-  FE-Write-Log "ERROR" "`tCould not pin $target_file to the taskbar"
-}
+} catch {}
 
 
 #### Rename the computer ####
