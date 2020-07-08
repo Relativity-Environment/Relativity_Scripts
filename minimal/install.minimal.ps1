@@ -101,8 +101,8 @@ refreshenv
     
     $global:ManualDownloadInstall = @{
         
-        'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-    
+        'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        
 
     }
     Install-Apps "Analisis de Vulnerabilidades" 
