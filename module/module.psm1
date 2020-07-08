@@ -150,7 +150,7 @@ function Install-Apps($tool)
     # Kick off exe installs
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
 
-    powershell Get-ChildItem -Path $UtilBinPath -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-file -Append "$env:userprofile\Desktop\output.txt" 
+    powershell Get-ChildItem -Path "C:\Relativity_Tools" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-file -Append "$env:userprofile\Desktop\output.txt" 
     powershell Get-ChildItem -Path "C:\Program Files (x86)" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"
     powershell Get-ChildItem -Path "C:\Program Files" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"    
 

