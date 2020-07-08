@@ -9,7 +9,7 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" 
 if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/modules/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
 Write-Host "import module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
@@ -73,8 +73,8 @@ $global:ChocoInstalls = @(
         #'git-credential-manager-for-windows',
         #'git-credential-winstore',
         #'gitextensions',
-        '7zip'
-        #'7zip.commandline'
+        '7zip',
+        '7zip.commandline'
         #'winrar',
         #'winpcap'
         #'javaruntime'
