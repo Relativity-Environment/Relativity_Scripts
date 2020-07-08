@@ -182,25 +182,6 @@ try {
     Write-Host "Could not remove desktop.ini files"
   }
 
-#### Add timestamp to PowerShell prompt ####
-$psprompt = @"
-function prompt
-{
-    Write-Host "RELATIVITY " -ForegroundColor Green -NoNewLine
-    Write-Host `$(get-date) -ForegroundColor Green
-    Write-Host  "PS" `$PWD ">" -nonewline -foregroundcolor White
-    return " "
-}
-"@
-New-Item -ItemType File -Path $profile -Force | Out-Null
-Set-Content -Path $profile -Value $psprompt
-# Add timestamp to cmd prompt
-# Note: The string below is base64-encoded due to issues properly escaping the '$' character in PowersShell
-#   Offending string: "Y21kIC9jICdzZXR4IFBST01QVCAgUkVMQVRJVklUWSRTJGQkcyR0JF8kcCQrJGcn"
-#   Resolves to: "cmd /c 'setx PROMPT RELATIVITY$S$d$s$t$_$p$+$g'"
-iex ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("Y21kIC9jICdzZXR4IFBST01QVCAgUkVMQVRJVklUWSRTJGQkcyR0JF8kcCQrJGcn"))) | Out-Null
-Write-Host "[+] Timestamps added to cmd prompt and PowerShell" -ForegroundColor Green
-
 
 
 # Fix PATH 
