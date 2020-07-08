@@ -72,7 +72,7 @@ $global:ChocoInstalls = @(
         #'gitextensions',
         '7zip',
         '7zip.commandline',
-        'winrar',
+        #'winrar',
         'winpcap'
         #'javaruntime'
  
