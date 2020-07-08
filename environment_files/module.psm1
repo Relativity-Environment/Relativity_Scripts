@@ -106,7 +106,7 @@ function Install-Apps($tool)
     }
 
        
-    Push-Location $UtilDownloadPath
+    Push-Location $UtilDownloadPath -ErrorAction SilentlyContinue
     # Store all the file we download for later processing
     
     $FilesDownloaded = @()
@@ -116,7 +116,7 @@ function Install-Apps($tool)
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
-                Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing
+                Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
             }
             catch {}
@@ -133,8 +133,8 @@ function Install-Apps($tool)
     foreach ($rar in $Rars)
     {   
         &$Winrar x $rar.FullName $UtilBinPath
-        Get-Process winrar | Wait-Process
-        Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$rar.FullName
+        Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        #Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$rar.FullName
    }
     
 
@@ -143,20 +143,20 @@ function Install-Apps($tool)
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         
         #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) -ErrorAction SilentlyContinue
         echo $UtilBinPath\$($_.Basename)
-        Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$($_.Basename)
+        #Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$($_.Basename)
     }
     
         
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
     #Install-ChocolateyPackage -PackageName 'Nessus' -FileType 'msi' -File 'Nessus.msi' -SilentArgs '/qn'
     
     # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit} -ErrorAction SilentlyContinue
 
     #Get-ChildItem -Path "C:\" -Recurse -exclude "C:\Windows" -File -Filter '*.exe'  | Where {$FilesDownloaded -contains $_.Name} | Out-file -Append "$env:userprofile\Desktop\output.txt" 
     #powershell Get-ChildItem -Path "C:\Program Files (x86)" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"
