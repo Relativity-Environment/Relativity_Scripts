@@ -3,8 +3,8 @@
 
 $BoxPackageName         =   "install.minimal"
 
-powershell Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-powershell Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 
 if (Test-PendingReboot) { Invoke-Reboot }   
 
@@ -19,7 +19,7 @@ $BypassDefenderPaths = @('C:\', 'C:\Program Files (x86)', 'C:\Program Files' )
 $ByPassDefenderPaths | Add-DefenderBypassPath
 
 
-
+# Utilidades
 
 <#$ChocoInstalls = @(
         
@@ -91,8 +91,8 @@ refreshenv
 
         
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
-        #'SpiderFoot-2.11-w32.zip'                   = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
-        #'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+        'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+
 
     }
     Install-Apps "Recopilacion de Informacion" 
@@ -100,24 +100,61 @@ refreshenv
 # Analisis de Vulnerabilidades
     
     $global:ManualDownloadInstall = @{
-
-        #'nikto.zip'             = 'https://github.com/sullo/nikto/archive/master.zip'
-        #'Vulnerator.zip'        = 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
-        #'VegaSetup64.exe'       = 'https://support.subgraph.com/downloads/VegaSetup64.exe'
+        
         'Nessus-8.10.1-x64.msi' = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+    
+
     }
     Install-Apps "Analisis de Vulnerabilidades" 
 
 
 
 # Analisis Bases de Datos
+
+    $global:ManualDownloadInstall = @{
+        
+        
+    
+    }
+    Install-Apps "Analisis Bases de Datos" 
             
 # Ataques de Contraseña
+
+    $global:ManualDownloadInstall = @{
+            
+            
+        
+    }
+    Install-Apps "Ataques de Contraseña" 
             
 # Herramientas de Explotacion
 
+    $global:ManualDownloadInstall = @{
+                
+                
+            
+    }
+    Install-Apps " Herramientas de Explotacion" 
+
+
 # Herramientas para Sniffing/Spoofing
 
-# Herramientas para Ing. Social
+    $global:ManualDownloadInstall = @{
+                
+                
+            
+    }
+    Install-Apps "Herramientas para Sniffing/Spoofing" 
 
-# Utilidades
+
+
+# Herramientas para Ing. Social
+  
+    $global:ManualDownloadInstall = @{
+                
+                
+            
+    }
+    Install-Apps " Herramientas para Ing. Social" 
+
+
