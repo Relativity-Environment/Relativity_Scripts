@@ -153,7 +153,10 @@ function Install-Module{
   
  
   $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/module/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/modules/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/modules/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/modules/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/modules/tweaks.txt" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.txt"
   Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
 
 } 
@@ -164,8 +167,9 @@ function Install-Module{
   Test-HostSupported;
   Test-PSProfile;
   Install-Module;
-  Disable-Defender;
-  Install-BoxStarter
+  Install-BoxStarter;
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
+
  
 
 } #<<<<<<< Final funcion InitialSetup

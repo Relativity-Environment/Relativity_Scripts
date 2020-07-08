@@ -73,10 +73,10 @@ $global:ChocoInstalls = @(
         #'git-credential-manager-for-windows',
         #'git-credential-winstore',
         #'gitextensions',
-        '7zip',
-        '7zip.commandline',
+        '7zip'
+        #'7zip.commandline'
         #'winrar',
-        'winpcap'
+        #'winpcap'
         #'javaruntime'
  
         
@@ -90,8 +90,8 @@ refreshenv
     $global:ManualDownloadInstall = @{
 
         
-        'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
-        'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+        #'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
+        #'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
 
 
     }
