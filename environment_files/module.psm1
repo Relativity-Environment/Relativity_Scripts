@@ -102,11 +102,12 @@ function Install-Apps($tool)
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
     If (-not (Test-Path $UtilDownloadPath)) {
-        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+
+        mkdir $UtilDownloadPath
     }
 
        
-    Push-Location $UtilDownloadPath -ErrorAction SilentlyContinue
+    Push-Location $UtilDownloadPath 
     # Store all the file we download for later processing
     
     $FilesDownloaded = @()
@@ -143,20 +144,17 @@ function Install-Apps($tool)
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
         
         #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) -ErrorAction SilentlyContinue
-        echo $UtilBinPath\$($_.Basename)
-        #Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$($_.Basename)
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
+        
     }
     
         
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
-    #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
-    #Install-ChocolateyPackage -PackageName 'Nessus' -FileType 'msi' -File 'Nessus.msi' -SilentArgs '/qn'
-    
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
+        
     # Kick off exe installs
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit} -ErrorAction SilentlyContinue
+    #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
 
 }
 
@@ -169,19 +167,14 @@ function Install-ChocoPackages
     Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
     Invoke-Expression "choco feature enable -n allowEmptyChecksums"
 
-       
-
-    # Create the cache directory
-    New-Item -Path $cache -ItemType directory -Force
-
     Write-Output "Installing software via chocolatey" 
 
     if ($global:ChocoInstalls.Count -gt 0) {
         # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
-        $ChocoInstalls | Foreach-Object {
+        $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst -y $_
+                cinst $_
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
@@ -193,83 +186,4 @@ function Install-ChocoPackages
             }
 
 
-}
-
-
-
-function CleanUp
-{
-  # clean up the cache directory
-  Remove-Item $cache -Recurse
-
-}
-
-
-
-
-
-Function Get-SpecialPaths {
-    $SpecialFolders = @{}
-
-    $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
-
-    foreach($name in $names) {
-        $SpecialFolders[$name] = [Environment]::GetFolderPath($name)
-    }
-
-    $SpecialFolders
-}
-
-$SpecialPaths = Get-SpecialPaths
-$packages = Get-Package
-
-Pop-Location
-
-$ClearDesktopShortcuts = $true
-
-function Get-DesktopShortcuts{
-
-        
-        Write-Output "Moving .lnk files from $($SpecialPaths['CommonDesktopDirectory']) to the Shortcuts folder"
-        Get-ChildItem -Path  $SpecialPaths['CommonDesktopDirectory'] -Filter '*.lnk' | ForEach-Object {
-            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
-        }
-    
-        Write-Output "Moving .lnk files from $Desktop to the Shortcuts folder"
-        Get-ChildItem -Path $Desktop -Filter '*.lnk' | ForEach-Object {
-            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
-        }
-}
-   
-
-
-
-function Make-InstallerPackage($PackageName, $TemplateDir, $packages) {
-	<#
-	.SYNOPSIS
-	Make a new installer package
-	.DESCRIPTION
-	Make a new installer package named installer. This package uses the custom packages.json file specified by the user.
-	User can then call "Install-BoxStarterPackage installer" using the local repo.
-	#>
-
-	$PackageDir = Join-Path $BoxStarter.LocalRepo $PackageName
-	if (Test-Path $PackageDir) {
-		Remove-Item -Recurse -Force $PackageDir
-	}
-
-	$Tmp = [System.IO.Path]::GetTempFileName()
-	Write-Host -ForegroundColor Green "packages file is" + $tmp
-	ConvertTo-Json @{"packages" = $packages} | Out-File -FilePath $Tmp
-	
-  if ([System.IO.Path]::IsPathRooted($TemplateDir)) {
-    $ToolsDir = Join-Path $TemplateDir "tools"
-  } else {
-	  $Here = Get-Location
-	  $ToolsDir = Join-Path (Join-Path $Here $TemplateDir) "tools"
-  }
-  $Dest = Join-Path $ToolsDir "packages.json"
-
-	Move-Item -Force -Path $Tmp -Destination $Dest
-	New-BoxstarterPackage -Name $PackageName -Description "My Own Instalelr" -Path $ToolsDir
 }

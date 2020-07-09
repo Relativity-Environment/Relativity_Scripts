@@ -309,5 +309,3 @@ foreach ($item in "0", "1", "2") {
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
-
-CleanUp
