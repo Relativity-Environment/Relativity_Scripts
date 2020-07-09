@@ -106,8 +106,8 @@ $global:ChocoInstalls = @(
  
         
 )
-#Install-ChocoPackages
-#refreshenv
+Install-ChocoPackages
+refreshenv
 
 
 # Recopilacion de Informacion
@@ -115,22 +115,22 @@ $global:ChocoInstalls = @(
     $global:ManualDownloadInstall = @{
 
         
-        #'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
-        #'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+        'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
+        'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
 
 
     }
- #   Install-Apps "Recopilacion de Informacion" 
+    Install-Apps "Recopilacion de Informacion" 
 
 # Analisis de Vulnerabilidades
     
     $global:ManualDownloadInstall = @{
         
-        #'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
         
 
     }
- #   Install-Apps "Analisis de Vulnerabilidades" 
+   Install-Apps "Analisis de Vulnerabilidades" 
 
 
 
