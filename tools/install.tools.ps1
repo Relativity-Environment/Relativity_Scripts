@@ -18,7 +18,8 @@ $BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files
 $ByPassDefenderPaths | Add-DefenderBypassPath
 
 
-# Utilidades
+# CINST Install
+
 $global:ChocoInstalls = @(
         
         'syspin',
@@ -66,27 +67,11 @@ $global:ChocoInstalls = @(
         'tor-browser'    
         
 )
-
-<#$global:ChocoInstalls = @(
-        
-
-        'nuget.commandline',
-        'git',
-        'git-credential-manager-for-windows',
-        'git-credential-winstore',
-        'gitextensions',
-        '7zip',
-        '7zip.commandline'
-        'winrar',
-        'winpcap'
-        'javaruntime'
- 
-        
-)#>
 Install-ChocoPackages
 refreshenv
 
 
+# Manual Install
   
     $global:ManualDownloadInstall = @{
 
@@ -150,45 +135,15 @@ try {
   }
 
 
-
-# Fix PATH 
-$paths = @(
-    "${Env:HomeDrive}\\Python37\\Scripts",
-    "${Env:HomeDrive}\\Python37",
-    "${Env:HomeDrive}\\Python27\\Scripts",
-    "${Env:HomeDrive}\\Python27"
-)
-
-$env_path = cmd /c echo %PATH%
-if ($env_path[-1] -ne ';') {
-    $env_path += ';'
-}
-$old_path = $env_path
-foreach ($p in $paths) {
-    if ($env_path -match "$p[\\]{0,1};") {
-        $env_path = $env_path -replace "$p[\\]{0,1};",""
-        $env_path += $p.Replace("\\","\") + ";"
-    }
-}
-
-if ($env_path -ne $old_path) {
-    try {
-      setx /M PATH $env_path
-      refreshenv
-    } catch {
-      Write-Host "Could not set PATH properly, please submit GitHub issue." -ForegroundColor Red
-    }
-}
-
-
-
 #### Fix shift+space in powershell
+
 # https://superuser.com/questions/1365875/shiftspace-not-working-in-powershell
 Set-PSReadLineKeyHandler -Chord Shift+Spacebar -Function SelfInsert
 Write-Host "[+] Fixed shift+space keybinding in PowerShell" -ForegroundColor Green
 
 
 #### Pin Items to Taskbar ####
+
 Write-Host "[-] Pinning items to Taskbar" -ForegroundColor Green
 # Explorer
 $target_file = Join-Path ${Env:WinDir} "explorer.exe"
@@ -255,6 +210,7 @@ foreach ($item in "0", "1", "2") {
 
 
 # Use AutoHotKey to modify various settings
+
 $scripts = @(
   "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
   "EnableWinRM.ahk"                 # Enable WinRM
@@ -266,7 +222,38 @@ ForEach ($name in $scripts) {
 }
 
 
+# Add PATH 'Tool' to env variables
 
 $toolListDirShortcut = "$env:systemdrive\Tools"
 [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
+
+
+# Fix PATH 
+$paths = @(
+    "${Env:HomeDrive}\\Python37\\Scripts",
+    "${Env:HomeDrive}\\Python37",
+    "${Env:HomeDrive}\\Python27\\Scripts",
+    "${Env:HomeDrive}\\Python27"
+)
+
+$env_path = cmd /c echo %PATH%
+if ($env_path[-1] -ne ';') {
+    $env_path += ';'
+}
+$old_path = $env_path
+foreach ($p in $paths) {
+    if ($env_path -match "$p[\\]{0,1};") {
+        $env_path = $env_path -replace "$p[\\]{0,1};",""
+        $env_path += $p.Replace("\\","\") + ";"
+    }
+}
+
+if ($env_path -ne $old_path) {
+    try {
+      setx /M PATH $env_path
+      refreshenv
+    } catch {
+      Write-Host "Could not set PATH properly, please submit GitHub issue." -ForegroundColor Red
+    }
+}
 

@@ -1,13 +1,5 @@
 ﻿
 
-function Disable-Defender{
-
-    Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-    Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
-  
-}
-
-
 function Add-DefenderBypassPath {
     [CmdletBinding()]
     param(
@@ -34,6 +26,7 @@ function Add-DefenderBypassPath {
 #$BypassDefenderPaths = @('C:\')
 #$ByPassDefenderPaths | Add-DefenderBypassPath
 
+##
 Function Add-EnvPath {
     # Adds a path to the $ENV:Path list for a user or system if it does not already exist (in both the system and user Path variables)
     param (
@@ -52,24 +45,13 @@ Function Add-EnvPath {
 }
 
 
-function Install-Apps($tool)
+function Install-Apps()
 {   
-
-    Switch (($tool) )
-    {
-        'Recopilacion de Informacion'{$UtilDownloadPath         = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Analisis Bases de Datos'{$UtilDownloadPath             = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Ataques de Contraseña'{$UtilDownloadPath               = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Herramientas de Explotacion'{$UtilDownloadPath         = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Herramientas para Sniffing-Spoofing'{$UtilDownloadPath = "$env:systemdrive\cache"    ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Herramientas para Ing. Social'{$UtilDownloadPath       = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
-                  
-    }
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-
+    $UtilDownloadPath   = "$env:systemdrive\cache"
+    $UtilBinPath        = "$env:systemdrive\Tools\"
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
@@ -168,9 +150,7 @@ function Add-Folders{
        
 }
 
-
-
-# Create README
+### Create README ##
 function Add-README{
 
     $toolsPath      = "$env:systemdrive\Tools"
