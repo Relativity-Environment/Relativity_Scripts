@@ -105,7 +105,7 @@ refreshenv
         #>
 
     }
-    Install-Apps "Recopilacion de Informacion" 
+    Install-Apps
 
         
  
