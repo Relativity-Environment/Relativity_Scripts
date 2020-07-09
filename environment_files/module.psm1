@@ -53,7 +53,7 @@ Function Add-EnvPath {
 
 function Add-Folders{
 
-    $RootPath = "$env:systemdrive\Relativity_Tools"
+    $RootPath = "$env:systemdrive\Tools"
     if(-not(Test-Path $RootPath)){
         
         New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue 
@@ -89,13 +89,13 @@ function Install-Apps($tool)
 
     Switch (($tool) )
     {
-        'Recopilacion de Informacion'{$UtilDownloadPath         = "C:\tmp\info"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Recopilacion de Informacion" }
-        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "C:\tmp\vuls"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Analisis de Vulnerabilidades" }
-        'Analisis Bases de Datos'{$UtilDownloadPath             = "C:\tmp\bbdd"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Analisis Bases de Datos" }
-        'Ataques de Contraseña'{$UtilDownloadPath               = "C:\tmp\passwd"   ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Ataques de Contraseña" }
-        'Herramientas de Explotacion'{$UtilDownloadPath         = "C:\tmp\expl"     ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas de Explotacion" }
-        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "C:\tmp\spoof"    ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas para Sniffing/Spoofing" }
-        'Herramientas para Ing. Social'{$UtilDownloadPath       = "C:\tmp\social"   ; $UtilBinPath= "$env:systemdrive\Relativity_Tools\Herramientas para Ing. Social" }
+        'Recopilacion de Informacion'{$UtilDownloadPath         = "C:\tmp\info"     ; $UtilBinPath= "$env:systemdrive\Tools\Recopilacion de Informacion" }
+        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "C:\tmp\vuls"     ; $UtilBinPath= "$env:systemdrive\Tools\Analisis de Vulnerabilidades" }
+        'Analisis Bases de Datos'{$UtilDownloadPath             = "C:\tmp\bbdd"     ; $UtilBinPath= "$env:systemdrive\Tools\Analisis Bases de Datos" }
+        'Ataques de Contraseña'{$UtilDownloadPath               = "C:\tmp\passwd"   ; $UtilBinPath= "$env:systemdrive\Tools\Ataques de Contraseña" }
+        'Herramientas de Explotacion'{$UtilDownloadPath         = "C:\tmp\expl"     ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas de Explotacion" }
+        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "C:\tmp\spoof"    ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas para Sniffing/Spoofing" }
+        'Herramientas para Ing. Social'{$UtilDownloadPath       = "C:\tmp\social"   ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas para Ing. Social" }
                   
     }
 
@@ -158,18 +158,22 @@ function Install-Apps($tool)
     # Kick off exe installs
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit} -ErrorAction SilentlyContinue
 
-    #Get-ChildItem -Path "C:\" -Recurse -exclude "C:\Windows" -File -Filter '*.exe'  | Where {$FilesDownloaded -contains $_.Name} | Out-file -Append "$env:userprofile\Desktop\output.txt" 
-    #powershell Get-ChildItem -Path "C:\Program Files (x86)" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"
-    #powershell Get-ChildItem -Path "C:\Program Files" -Recurse -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Out-File -Append "$env:userprofile\Desktop\output.txt"    
-
-
-
 }
 
 
 function Install-ChocoPackages
 {
 
+     # Chocolatey setup
+    Write-Host "Initializing chocolatey"
+    Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
+    Invoke-Expression "choco feature enable -n allowEmptyChecksums"
+
+    $cache                  = "$env:userprofile\AppData\Local\ChocoCache"
+    $globalCinstArgs        = "--cacheLocation $cache -y"
+
+    # Create the cache directory
+    New-Item -Path $cache -ItemType directory -Force
 
     Write-Output "Installing software via chocolatey" 
 
@@ -178,7 +182,7 @@ function Install-ChocoPackages
         $ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst -y $_
+                cinst $globalCinstArgs  $_
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
@@ -194,35 +198,14 @@ function Install-ChocoPackages
 
 
 
-function Start-Proc {
-    param([string]$Exe = $(Throw "An executable must be specified"),
-          [string]$Arguments,
-          [switch]$Hidden,
-          [switch]$waitforexit)
+function CleanUp
+{
+  # clean up the cache directory
+  Remove-Item $cache -Recurse
 
-    $startinfo = New-Object System.Diagnostics.ProcessStartInfo
-    $startinfo.FileName = $Exe
-    $startinfo.Arguments = $Arguments
-    if ($Hidden) {
-        $startinfo.WindowStyle = 'Hidden'
-        $startinfo.CreateNoWindow = $True
-    }
-    $process = [System.Diagnostics.Process]::Start($startinfo)
-    if ($waitforexit) { $process.WaitForExit() }
 }
 
 
-Function Get-SpecialPaths {
-    $SpecialFolders = @{}
-
-    $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
-
-    foreach($name in $names) {
-        $SpecialFolders[$name] = [Environment]::GetFolderPath($name)
-    }
-
-    $SpecialFolders
-}
 
 
 
@@ -259,3 +242,35 @@ function Get-DesktopShortcuts{
         }
 }
    
+
+
+
+function Make-InstallerPackage($PackageName, $TemplateDir, $packages) {
+	<#
+	.SYNOPSIS
+	Make a new installer package
+	.DESCRIPTION
+	Make a new installer package named installer. This package uses the custom packages.json file specified by the user.
+	User can then call "Install-BoxStarterPackage installer" using the local repo.
+	#>
+
+	$PackageDir = Join-Path $BoxStarter.LocalRepo $PackageName
+	if (Test-Path $PackageDir) {
+		Remove-Item -Recurse -Force $PackageDir
+	}
+
+	$Tmp = [System.IO.Path]::GetTempFileName()
+	Write-Host -ForegroundColor Green "packages file is" + $tmp
+	ConvertTo-Json @{"packages" = $packages} | Out-File -FilePath $Tmp
+	
+  if ([System.IO.Path]::IsPathRooted($TemplateDir)) {
+    $ToolsDir = Join-Path $TemplateDir "tools"
+  } else {
+	  $Here = Get-Location
+	  $ToolsDir = Join-Path (Join-Path $Here $TemplateDir) "tools"
+  }
+  $Dest = Join-Path $ToolsDir "packages.json"
+
+	Move-Item -Force -Path $Tmp -Destination $Dest
+	New-BoxstarterPackage -Name $PackageName -Description "My Own Instalelr" -Path $ToolsDir
+}

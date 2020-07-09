@@ -177,7 +177,27 @@ function Install-EnvFiles {
 
 
 }
+
+
+$EnvVars = @(
   
+  "TOOL_LIST_DIR",
+  "TOOL_LIST_SHORTCUT",
+  "RAW_TOOLS_DIR",
+  "ChocolateyToolsLocation"
+
+  )
+
+  foreach ($envVar in $EnvVars) {
+    try {
+          $value = [Environment]::ExpandEnvironmentVariables($profile.env.($envVar))
+          if (-Not (Set-EnvironmentVariableWrap $envVar $value)) {
+              Write-Warning "[ - ] Failed to set environment variable $envVar"
+          }
+    } catch {}
+  }
+
+
 
 
 

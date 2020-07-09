@@ -1,18 +1,42 @@
 ﻿
 <# Opcion 1 - Instalacion de opcion minimal #>
 
-$BoxPackageName         =   "install.minimal"
+$BoxPackageName         = "install.minimal"
 
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 
-if (Test-PendingReboot) { Invoke-Reboot }   
+
+
+
+$ChocolateyToolsLocation    = "$env:systemdrive\Tools"
+$RAW_TOOLS_DIR 		        = "$env:systemdrive\Tools"
+$toolListDirShortcut         = "$env:userprofile\Desktop\Tools.lnk"
+$TOOL_LIST_DIR 		        = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools"
+
+ # Update old env var if it points to a directory vs a file (.lnk)
+ $toolListDirShortcut = [Environment]::GetEnvironmentVariable("TOOL_LIST_SHORTCUT", 2)
+ if (-Not ($toolListDirShortcut -eq $null) -And ((Get-Item $toolListDirShortcut) -is [System.IO.Directory])) {
+   try {
+     $toolListDirShortcut = Join-Path ${Env:UserProfile} "Desktop\Tools.lnk"
+     [Environment]::SetEnvironmentVariable("TOOL_LIST_SHORTCUT", $toolListDirShortcut, 2)
+     [Environment]::SetEnvironmentVariable("RAW_TOOLS_DIR", $RAW_TOOLS_DIR , 2)
+     [Environment]::SetEnvironmentVariable("ChocolateyToolsLocation", $ChocolateyToolsLocation, 1)
+     [Environment]::SetEnvironmentVariable("TOOL_LIST_DIR", $TOOL_LIST_DIR, 1)
+
+   } catch {}
+}
+
+
+
+
+ if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/environment_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
 Write-Host "import module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+# BoxStarter setup
+Set-BoxstarterConfig -NugetSources "https://chocolatey.org/api/v2"
 Add-Folders
 
 $BypassDefenderPaths = @('C:\', 'C:\Program Files (x86)', 'C:\Program Files' )
@@ -69,16 +93,16 @@ $ByPassDefenderPaths | Add-DefenderBypassPath
 $global:ChocoInstalls = @(
         
 
-        #'nuget.commandline',
-        #'git',
+        'nuget.commandline',
+        'git',
         #'git-credential-manager-for-windows',
         #'git-credential-winstore',
         #'gitextensions',
-        #'7zip',
+        '7zip',
         #'7zip.commandline'
         #'winrar',
         #'winpcap'
-        #'javaruntime'
+        'javaruntime'
  
         
 )
@@ -284,3 +308,6 @@ foreach ($item in "0", "1", "2") {
   Sleep -seconds 3
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
+
+
+CleanUp
