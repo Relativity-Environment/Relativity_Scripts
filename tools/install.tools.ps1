@@ -11,9 +11,6 @@ Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
-$BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files' )
-$ByPassDefenderPaths | Add-DefenderBypassPath
-
 
 # CINST Install
 
@@ -170,39 +167,7 @@ try {
 } catch {}
 
 
-#### Rename the computer ####
-Write-Host "[+] Renaming host to 'relativity_tools'" -ForegroundColor Green
-(Get-WmiObject win32_computersystem).rename("relativity_tools") | Out-Null
-Write-Host "`t[-] Change will take effect after a restart" -ForegroundColor Yellow
 
-
-#### Update background ####
-Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
-# Set desktop background to black
-Set-ItemProperty -Path 'HKCU:\Control Panel\Colors' -Name Background -Value "0 0 0" -Force | Out-Null
-# Set desktop wallpaper using WallpaperChanger utility
-$wallpaperName = 'wallpaper.jpg'
-$fileBackground = Join-Path "$env:LOCALAPPDATA\module_relativity\" $wallpaperName
-$publicWallpaper = Join-Path ${env:public} $wallpaperName
-$WallpaperChanger = Join-Path "$env:LOCALAPPDATA\module_relativity\" 'WallpaperChanger.exe'
-Invoke-Expression "$WallpaperChanger $fileBackground 3"
-# Copy background images
-$background = 'wallpaper.jpg'
-$backgrounds = Join-Path "$env:LOCALAPPDATA\module_relativity\"  $background
-Invoke-Expression "copy $backgrounds ${Env:USERPROFILE}\Pictures"
-
-foreach ($item in "0", "1", "2") {
-  # Try to set it multiple times! Windows 10 is not consistent
-  if ((Test-Path $publicWallpaper) -eq $false)
-  {
-    Copy-Item -Path $fileBackground -Destination $publicWallpaper -Force 
-  }
-  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
-  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
-  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
-  Sleep -seconds 3
-  rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
-}
 
 
 
@@ -255,3 +220,43 @@ if ($env_path -ne $old_path) {
     }
 }
 
+
+
+
+#### Rename the computer ####
+Write-Host "[+] Renaming host to 'relativity_tools'" -ForegroundColor Green
+(Get-WmiObject win32_computersystem).rename("relativity_tools") | Out-Null
+Write-Host "`t[-] Change will take effect after a restart" -ForegroundColor Yellow
+
+
+#### Update background ####
+Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
+# Set desktop background to black
+Set-ItemProperty -Path 'HKCU:\Control Panel\Colors' -Name Background -Value "0 0 0" -Force | Out-Null
+# Set desktop wallpaper using WallpaperChanger utility
+$wallpaperName = 'wallpaper.jpg'
+$fileBackground = Join-Path "$env:LOCALAPPDATA\module_relativity\" $wallpaperName
+$publicWallpaper = Join-Path ${env:public} $wallpaperName
+$WallpaperChanger = Join-Path "$env:LOCALAPPDATA\module_relativity\" 'WallpaperChanger.exe'
+Invoke-Expression "$WallpaperChanger $fileBackground 3"
+# Copy background images
+$background = 'wallpaper.jpg'
+$backgrounds = Join-Path "$env:LOCALAPPDATA\module_relativity\"  $background
+Invoke-Expression "copy $backgrounds ${Env:USERPROFILE}\Pictures"
+
+foreach ($item in "0", "1", "2") {
+  # Try to set it multiple times! Windows 10 is not consistent
+  if ((Test-Path $publicWallpaper) -eq $false)
+  {
+    Copy-Item -Path $fileBackground -Destination $publicWallpaper -Force 
+  }
+  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
+  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
+  Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
+  Sleep -seconds 3
+  rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
+}
+
+
+$BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files' )
+$ByPassDefenderPaths | Add-DefenderBypassPath
