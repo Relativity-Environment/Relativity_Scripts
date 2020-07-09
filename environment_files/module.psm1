@@ -228,6 +228,8 @@ $content = @"
 
  - DOCUMENTATION:
     
+    The official distribution of the vulnerability parsing utility.
+
     https://github.com/Vulnerator/Vulnerator
 
  - EXAMPLES:
@@ -238,19 +240,23 @@ $content = @"
 "@
 Add-Content -PassThru "$toolsPath\Vulnerator_v6-1-9\README" -Value $content
 
-# > 
+# > Wapiti
 $content = @" 
 
  - DOCUMENTATION:
     
+    https://sourceforge.net/p/wapiti/wiki/Installation/
    
 
  - EXAMPLES:
 
+    Installation: python setup.py install
+
+    Use: wapiti -h 
  
 
 "@
-Add-Content -PassThru "$toolsPath\    \README" -Value $content
+Add-Content -PassThru "$toolsPath\wapiti3-3.0.3\README" -Value $content
 
 # > 
 $content = @" 
