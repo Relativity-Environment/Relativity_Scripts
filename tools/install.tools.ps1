@@ -87,79 +87,37 @@ Install-ChocoPackages
 refreshenv
 
 
-# Recopilacion de Informacion
-    
+  
     $global:ManualDownloadInstall = @{
 
-        
+        # compress
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+        'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
+        'SpiderFoot-2.11-w32.zip'               	  = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
+        'sqlmap-zip' 								                = 'https://github.com/sqlmapproject/sqlmap/zipball/master'
+        'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
+        'nikto'									                  	= 'https://github.com/sullo/nikto/archive/master.zip'  
+        
+        # PE
         'ipscan-3.7.2-setup.exe'			              = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-3.7.2-setup.exe'
+
+        # JAR
+        'webgoat-server-8.0.0.M21.jar'              = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webgoat-server-8.0.0.M21.jar'
+        'webwolf-8.0.0.M21.jar'                     = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
+
+        # MSI
+        'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
+
+        'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
+        
 
     }
     Install-Apps "Recopilacion de Informacion" 
 
-# Analisis de Vulnerabilidades
-    
-    $global:ManualDownloadInstall = @{
         
-        'Nessus-8.10.1-x64.msi'               = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-        'ZAP_2_9_0_windows.exe' 					    = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
-        'metasploitframework-latest.msi' 			= 'https://windows.metasploit.com/metasploitframework-latest.msi'
-        
-
-    }
-   Install-Apps "Analisis de Vulnerabilidades" 
-
-
-
-# Analisis Bases de Datos
-
-    $global:ManualDownloadInstall = @{
-        
-        
-    
-    }
-#    Install-Apps "Analisis Bases de Datos" 
-            
-# Ataques de Contraseña
-
-    $global:ManualDownloadInstall = @{
-            
-            
-        
-    }
-#    Install-Apps "Ataques de Contraseña" 
-            
-# Herramientas de Explotacion
-
-    $global:ManualDownloadInstall = @{
-                
-                
-            
-    }
-#    Install-Apps " Herramientas de Explotacion" 
-
-
-# Herramientas para Sniffing/Spoofing
-
-    $global:ManualDownloadInstall = @{
-                
-                
-            
-    }
-Install-Apps "Herramientas para Sniffing-Spoofing" 
-
-
-
-# Herramientas para Ing. Social
-  
-    $global:ManualDownloadInstall = @{
-                
-                
-            
-    }
-#    Install-Apps " Herramientas para Ing. Social" 
+ 
 
 
 
@@ -300,4 +258,9 @@ ForEach ($name in $scripts) {
   Write-Host "[+] Executing $script" -ForegroundColor Green
   AutoHotKey $script
 }
+
+
+
+$toolListDirShortcut = "$env:systemdrive\Tools"
+[Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 

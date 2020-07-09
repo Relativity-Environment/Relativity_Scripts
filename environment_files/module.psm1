@@ -170,8 +170,6 @@ function Add-Folders{
 
 
 
-
-
 # Create README
 function Add-README{
 
@@ -181,16 +179,719 @@ function Add-README{
 # > arpspoof.exe
 $content = @" 
 
-    >> arpspoof.exe --list | [-i iface] [--oneway] victim-ip [target-ip]
+ - EXAMPLES:
+
+    $ arpspoof.exe --list | [-i iface] [--oneway] victim-ip [target-ip]
 
 "@
 Add-Content -PassThru "$toolsPath\arpspoof\README" -Value $content
 
 
-# >
+# > webgoat-server
+$content = @" 
+
+ - DOCUMENTATION:
+    
+    https://github.com/WebGoat/WebGoat
+
+ - EXAMPLES:
+
+  $ java -jar webgoat-server-8.1.0.jar [--server.port=8080] [--server.address=localhost]
+  $ java -jar webwolf-8.1.0.jar [--server.port=9090] [--server.address=localhost]
+
+  http://127.0.0.1:8080/WebGoat WebWolf will be located at: http://127.0.0.1:9090/WebWolf
+
+"@
+Add-Content -PassThru "$toolsPath\webgoat-server\README" -Value $content
 
 
+# > PITT
+$content = @" 
 
-        
+ - DOCUMENTATION:
+    
+    https://sourceforge.net/projects/publicintelligencetool/
+
+    https://github.com/TheCyberViking/PublicIntelligenceTool
+
+
+ - EXAMPLES:
+
+   Portable Executable - Run as Administrator
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\PITT - Public Intellegence Tool V2.5.1\README" -Value $content
+
+# > Vulenrator
+$content = @" 
+
+ - DOCUMENTATION:
+    
+    https://github.com/Vulnerator/Vulnerator
+
+ - EXAMPLES:
+
+    Portable Executable - Run as Administrator
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\Vulnerator_v6-1-9\README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+# > 
+$content = @" 
+
+ - DOCUMENTATION:
+    
+   
+
+ - EXAMPLES:
+
+ 
+
+"@
+Add-Content -PassThru "$toolsPath\    \README" -Value $content
+
+
 
 } #< end Add-Toolslnk
