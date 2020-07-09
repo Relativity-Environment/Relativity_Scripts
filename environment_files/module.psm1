@@ -190,3 +190,12 @@ function Install-ChocoPackages($UtilBinPath)
 
 }
 
+
+# Create .lnk
+
+function Add-lnk{
+
+
+        
+
+}

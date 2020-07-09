@@ -23,6 +23,7 @@ $ChocoInstalls = @(
         
         'syspin',
         'ruby',
+        'javaruntime',
         'nuget.commandline',
         'git',
         'git-credential-manager-for-windows',
@@ -40,8 +41,6 @@ $ChocoInstalls = @(
         'keypirinha',
         'nano',
         'vim',
-        'openssl',
-        'mitmproxy',
         'phantomjs',
         'ffmpeg',
         'nmap',
@@ -60,9 +59,10 @@ $ChocoInstalls = @(
         '7zip.commandline',
         'winrar',
         'winpcap',
-        'javaruntime',
         'nmap',
         'wireshark',
+        'mitmproxy',
+        'openssl',
         'tor-browser'    
         
 )
