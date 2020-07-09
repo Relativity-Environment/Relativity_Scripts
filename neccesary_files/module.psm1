@@ -111,6 +111,20 @@ function Install-Apps()
 }
 
 
+
+function Get-ChocoPackages {
+    if (get-command clist -ErrorAction:SilentlyContinue) {
+        clist -lo -r -all | Foreach {
+            $Name,$Version = $_ -split '\|'
+            New-Object -TypeName psobject -Property @{
+                'Name' = $Name
+                'Version' = $Version
+            }
+        }
+    }
+}
+
+
 function Install-ChocoPackages
 {
 
@@ -120,13 +134,15 @@ function Install-ChocoPackages
     Invoke-Expression "choco feature enable -n allowEmptyChecksums"
 
     Write-Output "Installing software via chocolatey" 
+    $InstalledChocoPackages = (Get-ChocoPackages).Name
+    $global:ChocoInstalls = $global:ChocoInstalls | Where { $InstalledChocoPackages -notcontains $_ }
 
     if ($global:ChocoInstalls.Count -gt 0) {
         # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst $_ -y
+                cinst $_ --force
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
