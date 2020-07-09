@@ -168,8 +168,6 @@ function Install-EnvFiles {
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.txt" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.txt"
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/EnableWinRM.ahk" -Outfile "$env:LOCALAPPDATA\module_relativity\EnableWinRM.ahk"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/UNCPathSoftening.ahk" -Outfile "$env:LOCALAPPDATA\module_relativity\UNCPathSoftening.ahk"
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
 
   

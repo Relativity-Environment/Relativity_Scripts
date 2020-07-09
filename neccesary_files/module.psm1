@@ -106,7 +106,7 @@ function Install-Apps()
     
     
     
-    Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
+    
 
 }
 

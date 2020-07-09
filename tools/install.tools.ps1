@@ -99,12 +99,8 @@ refreshenv
         #>
 
     }
-    Install-Apps
-
-        
- 
-
-
+    Install-Apps | Wait-Process
+    
 
 
 #### Remove Desktop Shortcuts ####
@@ -168,10 +164,7 @@ try {
 
 
 
-
-
-
-# Use AutoHotKey to modify various settings
+<# Use AutoHotKey to modify various settings
 
 $scripts = @(
   "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
@@ -183,7 +176,7 @@ ForEach ($name in $scripts) {
   Write-Host "[+] Executing $script" -ForegroundColor Green
   AutoHotKey $script
 }
-
+#>
 
 # Add PATH 'Tool' to env variables
 
@@ -258,5 +251,4 @@ foreach ($item in "0", "1", "2") {
 }
 
 
-$BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files' )
-$ByPassDefenderPaths | Add-DefenderBypassPath
+Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
