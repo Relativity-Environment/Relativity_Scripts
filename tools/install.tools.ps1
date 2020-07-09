@@ -94,7 +94,7 @@ refreshenv
         
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
-        'ipscan-3.7.2-setup.exe'			        = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-3.7.2-setup.exe'
+        'ipscan-3.7.2-setup.exe'			              = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-3.7.2-setup.exe'
 
     }
     Install-Apps "Recopilacion de Informacion" 
@@ -103,8 +103,8 @@ refreshenv
     
     $global:ManualDownloadInstall = @{
         
-        'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-        'ZAP_2_9_0_windows.exe' 					= 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
+        'Nessus-8.10.1-x64.msi'               = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'ZAP_2_9_0_windows.exe' 					    = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
         'metasploitframework-latest.msi' 			= 'https://windows.metasploit.com/metasploitframework-latest.msi'
         
 
