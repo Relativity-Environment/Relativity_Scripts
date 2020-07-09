@@ -200,8 +200,8 @@ function Install-EnvFiles {
 
 ## Funciones de instalacion
 
-$minimal     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/minimal/install.minimal.ps1"
-$full        =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/full/install.full.ps1" 
+$tools     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/tools/install.tools.ps1"
+$extra       =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/extra/install.extra.ps1" 
 
 
 
@@ -211,7 +211,7 @@ function Install-Minimal{
     Join-Initial
     #Test-DiskSpace "Install-Minimal"
     Write-Host "[+] Instalando Minimal Version...." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $minimal
+    Install-BoxstarterPackage -PackageName $tools
 }
 
 
@@ -220,7 +220,7 @@ function Install-Full{
     Join-Initial
     #Test-DiskSpace "Install-Full"
     Write-Host "[+] Instalando Full Version...." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $minimal,$full
+    Install-BoxstarterPackage -PackageName $tools,$extra
 }
 
 
