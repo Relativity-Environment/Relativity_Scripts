@@ -180,7 +180,7 @@ function Install-EnvFiles {
 
 
 $EnvVars = @(
-  
+
   "TOOL_LIST_DIR",
   "TOOL_LIST_SHORTCUT",
   "RAW_TOOLS_DIR",
@@ -207,6 +207,7 @@ $EnvVars = @(
   Test-PSProfile;
   Install-Module;
   Install-BoxStarter;
+  Install-EnvFiles
   
 
  
