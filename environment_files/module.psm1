@@ -62,7 +62,7 @@ function Install-Apps($tool)
         'Analisis Bases de Datos'{$UtilDownloadPath             = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
         'Ataques de Contraseña'{$UtilDownloadPath               = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
         'Herramientas de Explotacion'{$UtilDownloadPath         = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
-        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "$env:systemdrive\cache"    ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Herramientas para Sniffing-Spoofing'{$UtilDownloadPath = "$env:systemdrive\cache"    ; $UtilBinPath= "$env:systemdrive\Tools\" }
         'Herramientas para Ing. Social'{$UtilDownloadPath       = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
                   
     }
@@ -162,48 +162,35 @@ function Install-ChocoPackages($UtilBinPath)
 
 function Add-Folders{
 
-    $RootPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools"
-    if(-not(Test-Path $RootPath)){
-        
-        New-Item -ItemType "directory" $RootPath -ErrorAction SilentlyContinue 
+    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
+    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
 
-        $paths  = @(
-
-            'Recopilacion de Informacion',
-            'Analisis de Vulnerabilidades',
-            'Analisis Bases de Datos',
-            'Ataques de Contraseña',
-            'Herramientas de Explotacion',
-            'Herramientas para Sniffing/Spoofing',
-            'Herramientas para Ing. Social',
-            'Utilidades'
-
-
-        )
-
-            if ($paths.Count -gt 0) {
-              
-                $paths | Foreach-Object {
-                Write-Output "Creando path $_"
-                New-Item -ItemType "directory" "$RootPath\$_" -ErrorAction SilentlyContinue
-            }
-        }     
-    }
+       
 }
 
 
 
 
 
-# Create .lnk
-function Add-Toolslnk{
+# Create README
+function Add-README{
 
-
+    $toolsPath      = "$env:systemdrive\Tools"
     Add-Folders
 
-    #arpspoof.exe
-    
+# > arpspoof.exe
+$content = @" 
+
+    >> arpspoof.exe --list | [-i iface] [--oneway] victim-ip [target-ip]
+
+"@
+Add-Content -PassThru "$toolsPath\arpspoof\README" -Value $content
+
+
+# >
+
+
 
         
 
-}
+} #< end Add-Toolslnk
