@@ -169,8 +169,7 @@ function Install-ChocoPackages
     Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
     Invoke-Expression "choco feature enable -n allowEmptyChecksums"
 
-    $cache                  = "$env:userprofile\AppData\Local\ChocoCache"
-    $globalCinstArgs        = "--cacheLocation $cache -y"
+       
 
     # Create the cache directory
     New-Item -Path $cache -ItemType directory -Force
@@ -182,7 +181,7 @@ function Install-ChocoPackages
         $ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst $globalCinstArgs  $_
+                cinst -y $_
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
