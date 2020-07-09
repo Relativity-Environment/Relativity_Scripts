@@ -89,24 +89,26 @@ function Install-Apps($tool)
 
     Switch (($tool) )
     {
-        'Recopilacion de Informacion'{$UtilDownloadPath         = "C:\tmp\info"     ; $UtilBinPath= "$env:systemdrive\Tools\Recopilacion de Informacion" }
-        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "C:\tmp\vuls"     ; $UtilBinPath= "$env:systemdrive\Tools\Analisis de Vulnerabilidades" }
-        'Analisis Bases de Datos'{$UtilDownloadPath             = "C:\tmp\bbdd"     ; $UtilBinPath= "$env:systemdrive\Tools\Analisis Bases de Datos" }
-        'Ataques de Contraseña'{$UtilDownloadPath               = "C:\tmp\passwd"   ; $UtilBinPath= "$env:systemdrive\Tools\Ataques de Contraseña" }
-        'Herramientas de Explotacion'{$UtilDownloadPath         = "C:\tmp\expl"     ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas de Explotacion" }
-        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "C:\tmp\spoof"    ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas para Sniffing/Spoofing" }
-        'Herramientas para Ing. Social'{$UtilDownloadPath       = "C:\tmp\social"   ; $UtilBinPath= "$env:systemdrive\Tools\Herramientas para Ing. Social" }
+        'Recopilacion de Informacion'{$UtilDownloadPath         = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Analisis de Vulnerabilidades'{$UtilDownloadPath        = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Analisis Bases de Datos'{$UtilDownloadPath             = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Ataques de Contraseña'{$UtilDownloadPath               = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Herramientas de Explotacion'{$UtilDownloadPath         = "$env:systemdrive\cache"     ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Herramientas para Sniffing/Spoofing'{$UtilDownloadPath = "$env:systemdrive\cache"    ; $UtilBinPath= "$env:systemdrive\Tools\" }
+        'Herramientas para Ing. Social'{$UtilDownloadPath       = "$env:systemdrive\cache"   ; $UtilBinPath= "$env:systemdrive\Tools\" }
                   
     }
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
+
+
     If (-not (Test-Path $UtilDownloadPath)) {
 
         mkdir $UtilDownloadPath
     }
+      
 
-       
     Push-Location $UtilDownloadPath 
     # Store all the file we download for later processing
     
@@ -147,14 +149,14 @@ function Install-Apps($tool)
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
         
     }
-    
-        
+            
     # Kick off msi installs
     Write-Output 'Buscando archivos msi'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
-        
-    # Kick off exe installs
-    #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | Where {$FilesDownloaded -contains $_.Name} | Foreach {Start-Proc -Exe $_.FullName -waitforexit}
+    
+    
+    
+    Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
 
 }
 
