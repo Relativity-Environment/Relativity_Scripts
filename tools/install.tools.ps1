@@ -11,9 +11,6 @@ Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
-# BoxStarter setup
-Set-BoxstarterConfig -NugetSources "https://chocolatey.org/api/v2"
-
 $BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files' )
 $ByPassDefenderPaths | Add-DefenderBypassPath
 
