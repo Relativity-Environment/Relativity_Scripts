@@ -7,7 +7,7 @@ if (Test-PendingReboot) { Invoke-Reboot }
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/environment_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
-Write-Host "import module" -ForegroundColor red
+Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
@@ -19,7 +19,7 @@ $ByPassDefenderPaths | Add-DefenderBypassPath
 
 
 # Utilidades
-$ChocoInstalls = @(
+$global:ChocoInstalls = @(
         
         'syspin',
         'ruby',

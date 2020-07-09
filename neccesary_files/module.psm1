@@ -129,7 +129,7 @@ function Install-Apps($tool)
 }
 
 
-function Install-ChocoPackages($UtilBinPath)
+function Install-ChocoPackages
 {
 
      # Chocolatey setup
