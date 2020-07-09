@@ -176,8 +176,7 @@ function Install-ChocoPackages($UtilBinPath)
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst $_
-                Add-Shortcut $_ $UtilBinPath
+                cinst $_ -y
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
@@ -191,22 +190,3 @@ function Install-ChocoPackages($UtilBinPath)
 
 }
 
-
-function Add-Shortcut([string]$name,[string]$UtilBinPath){
-        
-        
-    $fileToCheck = "C:\ProgramData\chocolatey\bin\$name.exe"
-
-    if(Test-Path $fileToCheck -PathType leaf )
-    {
-        
-         New-Item -ItemType SymbolicLink -Path "$env:SystemDrive\Tools\$UtilBinPath" -Name "$name.lnk" -Value $fileToCheck -ErrorAction SilentlyContinue
-        
-      
-
-    }else{
-
-        Write-Output "PASS"
-    }
-    
-}

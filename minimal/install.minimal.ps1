@@ -3,49 +3,23 @@
 
 $BoxPackageName         = "install.minimal"
 
-
-
-
-
-$ChocolateyToolsLocation    = "$env:systemdrive\Tools"
-$RAW_TOOLS_DIR 		        = "$env:systemdrive\Tools"
-$toolListDirShortcut         = "$env:userprofile\Desktop\Tools.lnk"
-$TOOL_LIST_DIR 		        = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools"
-
- # Update old env var if it points to a directory vs a file (.lnk)
- $toolListDirShortcut = [Environment]::GetEnvironmentVariable("TOOL_LIST_SHORTCUT", 2)
- if (-Not ($toolListDirShortcut -eq $null) -And ((Get-Item $toolListDirShortcut) -is [System.IO.Directory])) {
-   try {
-     $toolListDirShortcut = Join-Path ${Env:UserProfile} "Desktop\Tools.lnk"
-     [Environment]::SetEnvironmentVariable("TOOL_LIST_SHORTCUT", $toolListDirShortcut, 2)
-     [Environment]::SetEnvironmentVariable("RAW_TOOLS_DIR", $RAW_TOOLS_DIR , 2)
-     [Environment]::SetEnvironmentVariable("ChocolateyToolsLocation", $ChocolateyToolsLocation, 1)
-     [Environment]::SetEnvironmentVariable("TOOL_LIST_DIR", $TOOL_LIST_DIR, 1)
-
-   } catch {}
-}
-
-
-
-
- if (Test-PendingReboot) { Invoke-Reboot }   
+if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/environment_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
 Write-Host "import module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+
 # BoxStarter setup
 Set-BoxstarterConfig -NugetSources "https://chocolatey.org/api/v2"
-Add-Folders
 
-$BypassDefenderPaths = @('C:\', 'C:\Program Files (x86)', 'C:\Program Files' )
+$BypassDefenderPaths = @('C:\Tools', 'C:\Program Files (x86)', 'C:\Program Files' )
 $ByPassDefenderPaths | Add-DefenderBypassPath
 
 
 # Utilidades
-
-<#$ChocoInstalls = @(
+$ChocoInstalls = @(
         
         'syspin',
         'ruby',
@@ -54,6 +28,7 @@ $ByPassDefenderPaths | Add-DefenderBypassPath
         'git-credential-manager-for-windows',
         'git-credential-winstore',
         'gitextensions',
+        'dotnet4.7.2',
         'python2',
         'python3',
         'golang',
@@ -86,11 +61,13 @@ $ByPassDefenderPaths | Add-DefenderBypassPath
         'winrar',
         'winpcap',
         'javaruntime',
+        'nmap',
+        'wireshark',
         'tor-browser'    
         
-)#>
+)
 
-$global:ChocoInstalls = @(
+<#$global:ChocoInstalls = @(
         
 
         'nuget.commandline',
@@ -105,8 +82,8 @@ $global:ChocoInstalls = @(
         'javaruntime'
  
         
-)
-Install-ChocoPackages "$env:systemdrive\Tools\Utilidades"
+)#>
+Install-ChocoPackages
 refreshenv
 
 
@@ -117,7 +94,7 @@ refreshenv
         
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
-
+        'ipscan-3.7.2-setup.exe'			        = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-3.7.2-setup.exe'
 
     }
     Install-Apps "Recopilacion de Informacion" 
@@ -127,6 +104,8 @@ refreshenv
     $global:ManualDownloadInstall = @{
         
         'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'ZAP_2_9_0_windows.exe' 					= 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
+        'metasploitframework-latest.msi' 			= 'https://windows.metasploit.com/metasploitframework-latest.msi'
         
 
     }
