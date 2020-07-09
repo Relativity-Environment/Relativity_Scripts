@@ -6,7 +6,7 @@ $BoxPackageName         = "install.minimal"
 if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/environment_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
 Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
@@ -215,8 +215,9 @@ $scripts = @(
   "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
   "EnableWinRM.ahk"                 # Enable WinRM
 )
+$filesDir = "$env:LOCALAPPDATA\module_relativity\"
 ForEach ($name in $scripts) {
-  $script = Join-Path $toolsDir $name
+  $script = Join-Path $filesDir $name
   Write-Host "[+] Executing $script" -ForegroundColor Green
   AutoHotKey $script
 }
