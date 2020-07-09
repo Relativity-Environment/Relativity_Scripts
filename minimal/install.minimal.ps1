@@ -95,18 +95,18 @@ $global:ChocoInstalls = @(
 
         'nuget.commandline',
         'git',
-        #'git-credential-manager-for-windows',
-        #'git-credential-winstore',
-        #'gitextensions',
+        'git-credential-manager-for-windows',
+        'git-credential-winstore',
+        'gitextensions',
         '7zip',
-        #'7zip.commandline'
-        #'winrar',
-        #'winpcap'
+        '7zip.commandline'
+        'winrar',
+        'winpcap'
         'javaruntime'
  
         
 )
-Install-ChocoPackages
+Install-ChocoPackages "$env:systemdrive\Tools\Utilidades"
 refreshenv
 
 
