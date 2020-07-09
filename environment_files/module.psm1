@@ -246,7 +246,11 @@ $content = @"
  - DOCUMENTATION:
     
     https://sourceforge.net/p/wapiti/wiki/Installation/
-   
+
+    Read:
+
+        - INSTALL.md
+        - README.md
 
  - EXAMPLES:
 
@@ -262,15 +266,38 @@ Add-Content -PassThru "$toolsPath\wapiti3-3.0.3\README" -Value $content
 $content = @" 
 
  - DOCUMENTATION:
-    
+
+        Modules that require an API key:
+        --------------------------------
+        Documentation to setup API keys can be found at - https://github.com/laramies/theHarvester/wiki/Installation#api-keys
+        
+        * bing
+        * github
+        * hunter
+        * intelx
+        * pentesttools
+        * securityTrails
+        * shodan
+        * spyse
+ 
+ 
+        Install and dependencies:
+        -------------------------
+        * Python 3.7+
+        * python3 -m pip install pipenv
+        * https://github.com/laramies/theHarvester/wiki/Installation 
    
 
  - EXAMPLES:
 
+        !! before use require installation
+
+        python theHarvester.py -h
+
  
 
 "@
-Add-Content -PassThru "$toolsPath\    \README" -Value $content
+Add-Content -PassThru "$toolsPath\theHarvester-master\README" -Value $content
 
 # > 
 $content = @" 
