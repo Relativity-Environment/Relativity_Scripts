@@ -288,3 +288,16 @@ foreach ($item in "0", "1", "2") {
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
+
+
+# Use AutoHotKey to modify various settings
+$scripts = @(
+  "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
+  "EnableWinRM.ahk"                 # Enable WinRM
+)
+ForEach ($name in $scripts) {
+  $script = Join-Path $toolsDir $name
+  Write-Host "[+] Executing $script" -ForegroundColor Green
+  AutoHotKey $script
+}
+
