@@ -101,16 +101,20 @@ refreshenv
        'webwolf-8.0.0.M21.jar'                    = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
 
     }
-    Get-PE 
+   # Get-PE 
+
+
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
 
 # Use AutoHotKey to modify various settings
 $scripts = @(
 
   "install-metasploit.ahk",         
   "install-zap.ahk"        
-         
+
 )
-$filesDir = "$env:LOCALAPPDATA\module_relativity\"
+$filesDir = "$env:systemdrive\cache"
 ForEach ($name in $scripts) {
   $script = Join-Path $filesDir $name
   Write-Host "[+] Executing $script" -ForegroundColor Green
