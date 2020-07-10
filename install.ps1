@@ -170,8 +170,8 @@ function Install-EnvFiles {
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
 
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:LOCALAPPDATA\module_relativity\install-metasploit.ahk"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:LOCALAPPDATA\module_relativity\install-zap"
 
   
   
