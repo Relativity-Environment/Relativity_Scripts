@@ -128,11 +128,11 @@ function Get-PE
     $FilesDownloaded = @()
 
     
-    Foreach ($software in $global:ManualDownloadInstall.keys) {
+    Foreach ($software in $global:PEAPPS.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
-                Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
             }
             catch {}
@@ -157,8 +157,26 @@ function Get-PE
 
 
 ### Install Git ##
+function Get-Git
+{
 
+    if ($global:ChocoInstalls.Count -gt 0) {
+        # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
+        $global:ChocoInstalls | Foreach-Object {
+            try {
+                
+                cinst $_ --force
+            }
+            catch {
+                Write-Warning "Unable to install software package with Chocolatey: $($_)"
+        }
+    }
+}
+            else {
+                Write-Output 'There were no packages to install!'
+            }
 
+}
 
 
 
