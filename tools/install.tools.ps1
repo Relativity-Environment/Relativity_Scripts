@@ -256,7 +256,7 @@ foreach ($item in "0", "1", "2") {
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
   Sleep -seconds 3
-  rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
+  #rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
 
