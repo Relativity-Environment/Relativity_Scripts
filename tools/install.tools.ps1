@@ -90,7 +90,7 @@ refreshenv
         #>
 
     }
-    Install-Apps | Wait-Process
+    Install-Apps
 
 ## Get PE Files
     $global:PEAPPS = @{
@@ -104,7 +104,7 @@ refreshenv
        'webwolf-8.0.0.M21.jar'                    = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
 
     }
-    Get-PE | Wait-Process
+    Get-PE 
 
 
 
@@ -114,7 +114,7 @@ refreshenv
 $toolListDirShortcut = "$env:systemdrive\Tools"
 [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 
-
+Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
 
 #### Remove Desktop Shortcuts ####
 Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
@@ -256,8 +256,7 @@ foreach ($item in "0", "1", "2") {
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
   Sleep -seconds 3
-  #rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
+  rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
 
-Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
