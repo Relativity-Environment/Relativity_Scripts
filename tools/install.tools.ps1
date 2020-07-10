@@ -1,7 +1,5 @@
 ﻿
-<# Opcion 1 - Instalacion de opcion minimal #>
-
-$BoxPackageName         = "install.minimal"
+<# Opcion 1 #>
 
 if (Test-PendingReboot) { Invoke-Reboot }   
 
@@ -24,7 +22,7 @@ $global:ChocoInstalls = @(
         'git-credential-manager-for-windows',
         'git-credential-winstore',
         'gitextensions',
-        'dotnet4.7.2',
+        'dotnet3.5',
         'python2',
         'python3',
         'golang',
@@ -114,7 +112,7 @@ refreshenv
 $toolListDirShortcut = "$env:systemdrive\Tools"
 [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 
-Remove-Item -Recurse "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
+Remove-Item -Recurse -path "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
 
 #### Remove Desktop Shortcuts ####
 Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
@@ -223,8 +221,6 @@ if ($env_path -ne $old_path) {
 }
 
 
-
-
 #### Rename the computer ####
 Write-Host "[+] Renaming host to 'relativity_tools'" -ForegroundColor Green
 (Get-WmiObject win32_computersystem).rename("relativity_tools") | Out-Null
@@ -255,8 +251,9 @@ foreach ($item in "0", "1", "2") {
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
   Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
-  Sleep -seconds 3
+  Start-Sleep -seconds 3
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
 
+if (Test-PendingReboot) { Invoke-Reboot }   
