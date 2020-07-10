@@ -44,7 +44,7 @@ Function Add-EnvPath {
     }
 }
 
-
+### Manual Install ##
 function Install-Apps
 {   
 
@@ -55,7 +55,7 @@ function Install-Apps
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
-        mkdir $UtilDownloadPath
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
       
 
@@ -107,7 +107,7 @@ function Install-Apps
 
 }
 
-
+### Install PE ##
 function Get-PE
 {   
 
@@ -156,6 +156,15 @@ function Get-PE
 }
 
 
+### Install Git ##
+
+
+
+
+
+
+### Install Choco ##
+
 function Get-ChocoPackages {
     if (get-command clist -ErrorAction:SilentlyContinue) {
         clist -lo -r -all | Foreach {
@@ -197,8 +206,8 @@ function Install-ChocoPackages
                 Write-Output 'There were no packages to install!'
             }
 
-
 }
+
 
 
 
