@@ -67,7 +67,7 @@ refreshenv
   
     $global:ManualDownloadInstall = @{
 
-        # compress
+        <# compress
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
@@ -78,12 +78,11 @@ refreshenv
         'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
         'nikto-master.zip'			                  	= 'https://github.com/sullo/nikto/archive/master.zip'
         'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'  
-       
+       #>
         
-        <# MSI
+        # MSI
         'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
         'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
-
         'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
         #>
 
@@ -104,7 +103,20 @@ refreshenv
     }
     Get-PE 
 
+# Use AutoHotKey to modify various settings
+$scripts = @(
 
+  "install-metasploit.ahk",         
+  "install-zap.ahk"        
+         
+)
+$filesDir = "$env:LOCALAPPDATA\module_relativity\"
+ForEach ($name in $scripts) {
+  $script = Join-Path $filesDir $name
+  Write-Host "[+] Executing $script" -ForegroundColor Green
+  AutoHotKey $script
+
+}
 
 
 # Add PATH 'Tool' to env variables
@@ -175,7 +187,7 @@ try {
 
 
 
-<# Use AutoHotKey to modify various settings
+# Use AutoHotKey to modify various settings
 
 $scripts = @(
   "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
@@ -187,7 +199,7 @@ ForEach ($name in $scripts) {
   Write-Host "[+] Executing $script" -ForegroundColor Green
   AutoHotKey $script
 }
-#>
+
 
 
 

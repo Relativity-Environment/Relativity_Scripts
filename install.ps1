@@ -170,6 +170,9 @@ function Install-EnvFiles {
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
 
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe"
+
   
   
   powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
