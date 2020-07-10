@@ -65,11 +65,11 @@ Install-ChocoPackages
 refreshenv
 
 
-# Manual Install
+## Manual Install
   
     $global:ManualDownloadInstall = @{
 
-        <# compress
+        # compress
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
@@ -80,16 +80,7 @@ refreshenv
         'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
         'nikto.zip'							                  	= 'https://github.com/sullo/nikto/archive/master.zip'
         'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'  
-        #>
-        # PE
        
-        'ipscan-3.7.2-setup.exe'					          = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-win64-3.7.2.exe'
-        'arpspoof.exe' 							              	= 'https://github.com/alandau/arpspoof/releases/download/v0.1/arpspoof.exe'
-        
-        # JAR
-        'webgoat-server-8.0.0.M21.jar'              = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webgoat-server-8.0.0.M21.jar'
-        'webwolf-8.0.0.M21.jar'                     = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
-
         
         <# MSI
         'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
@@ -100,7 +91,23 @@ refreshenv
 
     }
     Install-Apps | Wait-Process
-    
+
+## Get PE Files
+    $global:ManualDownloadInstall = @{
+  
+       # EXE
+       'ipscan-3.7.2-setup.exe'					          = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-win64-3.7.2.exe'
+       'arpspoof.exe' 							              	= 'https://github.com/alandau/arpspoof/releases/download/v0.1/arpspoof.exe'
+       
+       # JAR
+       'webgoat-server-8.0.0.M21.jar'              = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webgoat-server-8.0.0.M21.jar'
+       'webwolf-8.0.0.M21.jar'                     = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
+
+    }
+    Get-PE | Wait-Process
+
+
+
 
 
 #### Remove Desktop Shortcuts ####

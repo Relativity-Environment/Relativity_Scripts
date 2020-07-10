@@ -45,11 +45,11 @@ Function Add-EnvPath {
 }
 
 
-function Install-Apps()
+function Install-Apps
 {   
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-
+  
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\Tools\"
 
@@ -101,15 +101,59 @@ function Install-Apps()
     }
             
     # Kick off msi installs
-    Write-Output 'Buscando archivos msi'
+    Write-Output 'Search msi files'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
-    
-    
-    
-    
+   
 
 }
 
+
+function Get-PE
+{   
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+  
+    $UtilDownloadPath   = "$env:systemdrive\cache\pe"
+    $UtilBinPath        = "$env:systemdrive\Tools\"
+
+    If (-not (Test-Path $UtilDownloadPath)) {
+
+        mkdir $UtilDownloadPath
+    }
+      
+
+    Push-Location $UtilDownloadPath 
+    # Store all the file we download for later processing
+    
+    $FilesDownloaded = @()
+
+    
+    Foreach ($software in $global:ManualDownloadInstall.keys) {
+        Write-Output "Downloading $software"
+        if ( -not (Test-Path $software) ) {
+            try {
+                Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                $FilesDownloaded += $software
+            }
+            catch {}
+        }
+        else {
+            Write-Warning "File is already downloaded, skipping: $software"
+        }
+    }
+
+        # Kick off PE files
+        Write-Output 'Search PE files'
+        $Files = Get-ChildItem -Path $UtilDownloadPath
+        $Files | ForEach-Object {
+        $FileFullName = $_.FullName
+        $foldername = $_.BaseName 
+        $destinationFolder = "$UtilBinPath\$foldername"
+        New-Item -Path "$UtilBinPath\$foldername" -ItemType Directory
+        Move-Item $FileFullName $destinationFolder
+       }
+
+}
 
 
 function Get-ChocoPackages {
