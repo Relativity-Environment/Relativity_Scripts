@@ -109,6 +109,12 @@ refreshenv
 
 
 
+# Add PATH 'Tool' to env variables
+
+$toolListDirShortcut = "$env:systemdrive\Tools"
+[Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
+
+
 
 #### Remove Desktop Shortcuts ####
 Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
@@ -185,10 +191,6 @@ ForEach ($name in $scripts) {
 }
 #>
 
-# Add PATH 'Tool' to env variables
-
-$toolListDirShortcut = "$env:systemdrive\Tools"
-[Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 
 
 # Fix PATH 

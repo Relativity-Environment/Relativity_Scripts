@@ -57,6 +57,13 @@ function Install-Apps
 
         mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
+
+
+    If (-not (Test-Path $UtilBinPath)) {
+
+        mkdir $UtilBinPath -ErrorAction SilentlyContinue
+    }
+      
       
 
     Push-Location $UtilDownloadPath 
@@ -118,14 +125,20 @@ function Get-PE
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
-        mkdir $UtilDownloadPath
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+    }
+
+
+    If (-not (Test-Path $UtilBinPath)) {
+
+        mkdir $UtilBinPath -ErrorAction SilentlyContinue
     }
       
 
     Push-Location $UtilDownloadPath 
     # Store all the file we download for later processing
     
-    $FilesDownloaded = @()
+    #$FilesDownloaded = @()
 
     
     Foreach ($software in $global:PEAPPS.keys) {
@@ -133,7 +146,7 @@ function Get-PE
         if ( -not (Test-Path $software) ) {
             try {
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                $FilesDownloaded += $software
+                #$FilesDownloaded += $software
             }
             catch {}
         }
