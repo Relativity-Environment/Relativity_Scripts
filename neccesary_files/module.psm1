@@ -26,6 +26,56 @@ function Add-Folders{
 }
 
 
+funtion Get-AppAccess
+{
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/ZIP/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
+
+}
+
+
+Function Get-SpecialPaths {
+    $SpecialFolders = @{}
+
+    $names = [Environment+SpecialFolder]::GetNames([Environment+SpecialFolder])
+
+    foreach($name in $names) {
+        $SpecialFolders[$name] = [Environment]::GetFolderPath($name)
+    }
+
+    $SpecialFolders
+}
+
+
+function Clear-Desktop
+{
+    $ClearDesktopShortcuts = $True
+    $SpecialPaths = Get-SpecialPaths
+
+    if ($ClearDesktopShortcuts) {
+        $Desktop = $SpecialPaths['DesktopDirectory']
+        $DesktopShortcuts = Join-Path $Desktop 'ShortcutsFolder'
+        if (-not (Test-Path $DesktopShortcuts)) {
+            Write-Host -ForegroundColor:Cyan "Creating a new shortcuts folder on your desktop and moving all .lnk files to it: $DesktopShortcuts"
+            $null = mkdir $DesktopShortcuts
+        }
+    
+        Write-Output "Moving .lnk files from $($SpecialPaths['CommonDesktopDirectory']) to the Shortcuts folder"
+        Get-ChildItem -Path  $SpecialPaths['CommonDesktopDirectory'] -Filter '*.lnk' | Foreach {
+            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
+        }
+    
+        Write-Output "Moving .lnk files from $Desktop to the Shortcuts folder"
+        Get-ChildItem -Path $Desktop -Filter '*.lnk' | Foreach {
+            Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
+        }
+    }
+    
+
+}
+
+
 # Add PATH to env variables
 Function Add-EnvVariables{
 
@@ -40,6 +90,7 @@ function Get-NeccesaryFiles {
   
     if(-not(Test-Path "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" )){
   
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
       
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
@@ -126,19 +177,24 @@ function Install-Apps
     
     Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
-        Write-Output "Descargando $software" >> $log_install
+        Write-Output "$software - Ok" >> $ChangeLog
 
         if ( -not (Test-Path $software) ) {
             try {
                 
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Add
                 $FilesDownloaded += $software
+
             }
-            catch {}
+            catch {
+
+                Write-Output "$software - Fallo" >> $ChangeLog  -ErrorAction "SilentlyContinue"
+
+            }
         }
         else {
             Write-Warning "File is already downloaded, skipping: $software"
+            Write-Output "$software - Existe" >> $ChangeLog
         }
     }
 
@@ -185,29 +241,29 @@ function Get-PE
     }
 
 
-    If (-not (Test-Path $UtilBinPath)) {
-
-        mkdir $UtilBinPath -ErrorAction SilentlyContinue
-    }
-      
-
     Push-Location $UtilDownloadPath 
     # Store all the file we download for later processing
     
-    #$FilesDownloaded = @()
-
+    $FilesDownloaded = @()
+    Write-Output "Downloading $software"
+    Write-Output "$software - Ok" >> $ChangeLog
     
     Foreach ($software in $global:PEAPPS.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                #$FilesDownloaded += $software
+                $FilesDownloaded += $software
             }
-            catch {}
+            catch {
+
+                Write-Output "$software - Fallo" >> $ChangeLog  -ErrorAction SilentlyContinue
+
+            }
         }
         else {
             Write-Warning "File is already downloaded, skipping: $software"
+            Write-Output "$software - Existe" >> $ChangeLog
         }
     }
 
@@ -288,14 +344,17 @@ function Install-ChocoPackages
             try {
                 
                 cinst $_ --force
+                Write-Output "$software - Ok" >> $ChangeLog  -ErrorAction SilentlyContinue
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
+                Write-Output "$_ - Fallo" >> $ChangeLog  -ErrorAction SilentlyContinue
         }
     }
 }
             else {
                 Write-Output 'There were no packages to install!'
+                Write-Output "$_ - Existe" >> $ChangeLog
             }
 
 }
