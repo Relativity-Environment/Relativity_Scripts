@@ -157,7 +157,7 @@ refreshenv
        'arpspoof.exe' 							              = 'https://github.com/alandau/arpspoof/releases/download/v0.1/arpspoof.exe'
        'MicEnum.exe'					                  	= 'https://www.elevenpaths.com/downloads/MicEnum.exe'
        'crunch_win.exe'                           = 'https://github.com/shadwork/Windows-Crunch/releases/download/v1.1/crunch_win.exe'
-       'HashIdentifier.exe'                       = 'http://52.210.171.72/gravity/Hash Identifier.exe'
+       'HashIdentifier.exe'                       = 'http://52.210.171.72/gravity/HashIdentifier.exe'
        'tcprelay.exe'                             = 'http://52.210.171.72/gravity/tcprelay.exe'
        
        
