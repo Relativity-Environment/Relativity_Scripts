@@ -183,14 +183,13 @@ function Install-Apps
     
     Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
-        Write-Output "[-] Descargando Apps" >> $global:chageLog 
-       
+              
 
         if ( -not (Test-Path $software) ) {
             try {
                 
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Write-Output "$software - Ok" >> $global:chageLog 
+                Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
                
 
@@ -269,8 +268,7 @@ function Get-PE
         if ( -not (Test-Path $software) ) {
             try {
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Write-Output "Downloading PE $software" >> $global:chageLog 
-                Write-Output "$software - Ok" >> $global:chageLog 
+                Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
             }
             catch {
@@ -311,7 +309,7 @@ function Get-GITPackages
              try {
                     
                     Write-Output "Descargando de GITHUB $_"
-                    Write-Output "Descargando de GITHUB $_" >> $global:chageLog 
+                    Write-Output "$_" >> $global:chageLog 
     
                     git clone $_ -q
                 }
@@ -356,8 +354,7 @@ function Install-ChocoPackages
     Write-Host "Initializing chocolatey"
     Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
     Invoke-Expression "choco feature enable -n allowEmptyChecksums"
-
-    Write-Output "Installing software via chocolatey" >> $global:chageLog 
+    Write-Output "Installing software via chocolatey" 
     
     $InstalledChocoPackages = (Get-ChocoPackages).Name
     $global:ChocoInstalls = $global:ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
