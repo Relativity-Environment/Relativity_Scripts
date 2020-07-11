@@ -204,7 +204,7 @@ function Install-Apps
         }
     }
 
-    # Extracting self-contained binaries (rar files) to our bin folder
+    # Extracting self-contained binaries (rar% 7z files) to our bin folder
     Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
     $Rars = Get-ChildItem -filter "*.rar" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
@@ -212,8 +212,15 @@ function Install-Apps
     {   
         &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
-        #Add-EnvPath -Location 'User' -NewPath $UtilBinPath\$rar.FullName
-   }
+       }
+
+   $7zs = Get-ChildItem -filter "*.7z" -path "$UtilDownloadPath"-Recurse
+    $WinRar = "C:\Program Files\WinRAR\winrar.exe"
+    foreach ($7z in $7zs)
+    {   
+        &$Winrar x $7z.FullName $UtilBinPath
+        Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+     }
     
 
     # Extracting self-contained binaries (zip files) to our bin folder
@@ -225,14 +232,7 @@ function Install-Apps
         
     }
 
-    Write-Output 'Extracting self-contained binaries (7z files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.7z' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
-        
-        #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
-        
-    }
-            
+               
     # Kick off msi installs
     Write-Output 'Search msi files'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
