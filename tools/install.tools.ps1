@@ -279,30 +279,21 @@ try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
 } catch {}
+# Babun
+$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
 # PITT
 $target_file = "$env:TOOLS\PITT - Public Intellegence Tool V2.5.1\Public Intellegence Tool Portable.exe"
 $target_dir = ${Env:UserProfile}
 $target_args = '-NoExit -Command "cd ' + "${Env:UserProfile}" + '"'
 $shortcut = Join-Path ${Env:UserProfile} "temp\Public Intellegence Tool Portable.lnk"
 Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -Arguments $target_args -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
-try {
-  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
-  syspin.exe "$shortcut" 5386
-} catch {}
-# Babun
-$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe -"
-$target_dir = ${Env:UserProfile}
-$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
-Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
-try {
-  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
-  syspin.exe "$shortcut" 5386
-} catch {}
-# Babun
-$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe -"
-$target_dir = ${Env:UserProfile}
-$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
-Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
