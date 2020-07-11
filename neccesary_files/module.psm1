@@ -7,7 +7,7 @@ function Add-Folders{
     New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
     
 
-    # Cache PATH - Tools PATH
+    # Cache PATH - RalaTools PATH
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\RelaTools\"
 
@@ -172,7 +172,7 @@ function Install-Apps
   
     
     $UtilDownloadPath   = "$env:systemdrive\cache"
-    $UtilBinPath        = "$env:systemdrive\Tools\"
+    $UtilBinPath        = "$env:systemdrive\RelaTools\"
       
 
     Push-Location $UtilDownloadPath 

@@ -112,12 +112,7 @@ refreshenv
         'SpiderFoot-2.11-w32.zip'               	  = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
         'ettercap-0.7.6.zip'                        = 'http://52.210.171.72/gravity/ettercap-0.7.6.zip'
         'ophcrack-3.8.0-bin.zip'                    = 'http://52.210.171.72/gravity/ophcrack-3.8.0-bin.zip'
-        'proxytunnel-190-cygwin.zip'                = 'http://52.210.171.72/gravity/proxytunnel-190-cygwin.zip'
-        
-        
-       
-     
-
+        'proxytunnel-190-cygwin.zip'                = 'http://52.210.171.72/gravity/proxytunnel-190-cygwin.zip'    
        
         #>
         
@@ -127,7 +122,6 @@ refreshenv
         'metasploitframework-latest.msi' 			    = 'https://windows.metasploit.com/metasploitframework-latest.msi'
         
         # AHK install
-        'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
         'MaltegoSetup.JRE64.v4.2.11.13104.exe' 			= 'https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/MaltegoSetup.JRE64.v4.2.11.13104.exe'
         'VegaSetup64.exe'     						        	= 'https://support.subgraph.com/downloads/VegaSetup64.exe'
         'MedusaInstaller-d33b6ab.exe'               = 'https://github.com/pymedusa/MedusaInstaller/releases/download/0.6/MedusaInstaller-d33b6ab.exe'
