@@ -109,8 +109,8 @@ Function Add-EnvPath {
 #######################################  INSTALL PACKAGES ############################################
 
 
-### Manual Install ##
-function Install-Manual
+### Install Apps ##
+function Install-Apps
 {   
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
