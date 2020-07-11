@@ -256,4 +256,3 @@ foreach ($item in "0", "1", "2") {
 }
 
 
-if (Test-PendingReboot) { Invoke-Reboot }   
