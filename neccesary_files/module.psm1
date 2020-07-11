@@ -163,7 +163,8 @@ function Install-Apps
             
     # Kick off msi installs
     Write-Output 'Search msi files'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter {('*.msi') -or ('*.exe')} | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'exe' -File $_.FullName -SilentArgs '/qn'}  
    
 
 }

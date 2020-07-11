@@ -10,9 +10,8 @@ Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
-Add-Folders
 Add-EnvVariables
-Get-NeccesaryFiles
+
 
 #### CINST Install
 

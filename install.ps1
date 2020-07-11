@@ -168,6 +168,8 @@ function Install-myOwnModule{
   Test-PSProfile;
   Install-myOwnModule;
   Install-BoxStarter;
+  Add-Folders;
+  Get-NeccesaryFiles
 
 } #<<<<<<< Final funcion Join-Initial
 
