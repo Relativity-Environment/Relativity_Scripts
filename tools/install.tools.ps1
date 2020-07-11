@@ -234,20 +234,6 @@ Clear-Desktop
 Add-StartMenu
 
 
-<#### Remove Desktop Shortcuts ####
-Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
-$shortcut_path = "$Env:Public\Desktop\Boxstarter Shell.lnk"
-if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force -ErrorAction Ignore | Out-Null }
-$shortcut_path = "$Env:USERPROFILE\Desktop\Microsoft Edge.lnk"
-if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force  -ErrorAction Ignore | Out-Null }
-$shortcut_path = "$Env:USERPROFILE\Desktop\Google Chrome.lnk"
-if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force  -ErrorAction Ignore | Out-Null }
-$shortcut_path = "$Env:USERPROFILE\Desktop\VirusTotal Uploader 2.2.lnk"
-if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force  -ErrorAction Ignore | Out-Null }
-$shortcut_path = "$Env:Public\Desktop\Simple DNSCrypt.lnk"
-if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force -ErrorAction Ignore | Out-Null }
-#>
-
 # Remove desktop.ini files
 try {
     Get-ChildItem -Path (Join-Path ${Env:UserProfile} "Desktop") -Hidden -Filter "desktop.ini" -Force | ForEach-Object {$_.Delete()}
@@ -293,12 +279,57 @@ try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
 } catch {}
-# Babun
-$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe"
+# PITT
+$target_file = "$env:TOOLS\PITT - Public Intellegence Tool V2.5.1\Public Intellegence Tool Portable.exe"
 $target_dir = ${Env:UserProfile}
 $target_args = '-NoExit -Command "cd ' + "${Env:UserProfile}" + '"'
-$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
+$shortcut = Join-Path ${Env:UserProfile} "temp\Public Intellegence Tool Portable.lnk"
 Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -Arguments $target_args -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Babun
+$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe -"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Babun
+$target_file = Join-Path (Join-Path ${Env:USERPROFILE} ".babun\cygwin\bin\") "mintty.exe -"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\mintty.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Firefox
+$target_file = "C:\Program Files\Mozilla Firefox\firefox.exe"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\firefox.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Tor-Browser
+$target_file = "C:\ProgramData\chocolatey\lib\tor-browser\tools\tor-browser\Browser\firefox.exe"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\tor-browser.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Notepad++
+$target_file = "C:\Program Files\Notepad++\notepad++.exe"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\notepad++.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
