@@ -23,8 +23,8 @@ If (-not (Test-Path $global:chageLog )) {
 
 }
 
-Write-Output "[+] Comienza la instalacion:"  >> $global:chageLog 
-Get-Date > $global:chageLog 
+Write-Output "[+] Comienza la instalacion:"  > $global:chageLog 
+Get-Date >> $global:chageLog 
 
 
 #### CINST Install
