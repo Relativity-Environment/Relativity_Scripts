@@ -211,11 +211,12 @@ function menu {
   Write-Host "  |                                          Creado por                                              |" -ForegroundColor Green 
   Write-Host "  |                                         Victor M. Gil                                            |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "  |                                   Instalador de Gravity_tools                                   |" -ForegroundColor Green 
+  Write-Host "  |                                   Instalador de Gravity_tools                                    |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green  
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green 
+  Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |                                        Inciando Menu...                                          |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |                                  10. Instalar Minimal Version (10GB)                             |" -ForegroundColor Green
@@ -223,7 +224,7 @@ function menu {
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "  |       " -ForegroundColor Green -NoNewLine; Write-Host "                 BACK  - Restaura el sistema al punto de restauracion" -ForegroundColor Yellow -NoNewLine; Write-Host "                   |" -ForegroundColor Green
+  Write-Host "  |       " -ForegroundColor Green -NoNewLine; Write-Host "                 BACK  - Restaura el sistema al punto de restauracion" -ForegroundColor Yellow -NoNewLine; Write-Host "                     |" -ForegroundColor Green
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |                                  [-] SALIR Ctrl + C                                              |" -ForegroundColor Green
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
