@@ -1,5 +1,41 @@
 ﻿
 
+function Add-Folders{
+
+  
+  
+    # Start Menu (Tools)
+    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
+    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
+  
+    
+       
+  }
+
+  
+
+function Get-NeccesaryFiles {
+  
+    if(-not(Test-Path "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" )){
+  
+      
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.txt" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.txt"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe" 
+  
+    #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
+    
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
+  
+  
+    }
+  
+  
+  }
+
 function Add-DefenderBypassPath {
     [CmdletBinding()]
     param(
@@ -43,6 +79,11 @@ Function Add-EnvPath {
         [Environment]::SetEnvironmentVariable("PATH", $NewPaths, $Location)
     }
 }
+
+
+
+#######################################  INSTALL PACKAGES ############################################
+
 
 ### Manual Install ##
 function Install-Apps
@@ -245,17 +286,6 @@ function Install-ChocoPackages
 }
 
 
-
-
-function Add-Folders{
-
-    # Start Menu (Tools)
-    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
-    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
-
-    
-       
-}
 
 ### Create README ##
 function Add-README{

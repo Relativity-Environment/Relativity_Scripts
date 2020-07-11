@@ -122,10 +122,10 @@ refreshenv
     Get-GITPackages
 
 
-#Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
 
-# Use AutoHotKey to modify various settings
+
+# Use AutoHotKey to install various software
+
 $scripts = @(
 
   #"install-metasploit.ahk",         

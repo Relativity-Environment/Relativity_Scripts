@@ -149,7 +149,7 @@ function Test-HostSupported
 
 
 # Modulo funciones propias para optimizacion
-function Install-Module{
+function Install-myOwnModule{
   
  
   $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
@@ -159,33 +159,16 @@ function Install-Module{
 
 } 
 
-function Install-EnvFiles {
 
-  if(-not(Test-Path "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" )){
-
-    
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.txt" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.txt"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe" 
-  
-  powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
-
-
-  }
-
-
-}
 
 
 ## Llamada a las funciones
   Test-AdminExecution;
   Test-HostSupported;
   Test-PSProfile;
-  Install-Module;
+  Install-myOwnModule;
   Install-BoxStarter;
-  Install-EnvFiles
+  Get-NeccesaryFiles
   
 
  
