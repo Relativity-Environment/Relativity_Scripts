@@ -1,7 +1,5 @@
 ﻿
-
 function Add-Folders{
-
   
   
     # Start Menu (RelaTools)
@@ -50,7 +48,7 @@ function Get-NeccesaryFiles {
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe" 
   
     #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
+    #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
     
     powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
   
@@ -128,9 +126,13 @@ function Install-Apps
     
     Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
+        Write-Output "Descargando $software" >> $log_install
+
         if ( -not (Test-Path $software) ) {
             try {
+                
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Add
                 $FilesDownloaded += $software
             }
             catch {}
@@ -154,7 +156,7 @@ function Install-Apps
 
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+    Get-ChildItem -Path $UtilDownloadPath -File -Include '*.7z','*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
@@ -164,8 +166,7 @@ function Install-Apps
     # Kick off msi installs
     Write-Output 'Search msi files'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.exe' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'exe' -File $_.FullName -SilentArgs '/qn'}  
-   
+       
 
 }
 
