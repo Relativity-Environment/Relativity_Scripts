@@ -218,7 +218,15 @@ function Install-Apps
 
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.7z','*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
+        
+        #Push-Location $UtilBinPath
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
+        
+    }
+
+    Write-Output 'Extracting self-contained binaries (7z files) to our bin folder'
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.7z' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
