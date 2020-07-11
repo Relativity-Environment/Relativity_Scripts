@@ -44,7 +44,8 @@ $global:ChocoInstalls = @(
         'python3',
         'golang',
         'activeperl',
-        'strawberryperl', 
+        'strawberryperl',
+        'winpcap', 
         'curl',
         'php',
         'Cygwin',
@@ -66,7 +67,6 @@ $global:ChocoInstalls = @(
         '7zip',
         '7zip.commandline',
         'winrar',
-        'winpcap',
         'openssl',
         'tor-browser'
         'Firefox',
