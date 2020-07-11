@@ -15,16 +15,16 @@ Add-EnvVariables
 
 ## Install log
 
-$ChagesLog = "$Env:USERPROFILE\Desktop\Install_changes.log"
+$global:chageLog = "$Env:USERPROFILE\Desktop\Install_changes.log"
 
-If (-not (Test-Path $ChagesLog)) {
+If (-not (Test-Path $global:chageLog )) {
 
-  New-Item -ItemType 'file' $ChagesLog -ErrorAction SilentlyContinue
+  New-Item -ItemType 'file' $global:chageLog -ErrorAction SilentlyContinue
 
 }
 
 Write-Output "[+] Comienza la instalacion:"
-Get-Date > $ChagesLog
+Get-Date > $global:chageLog 
 
 
 #### CINST Install
@@ -381,4 +381,4 @@ foreach ($item in "0", "1", "2") {
 #Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
 
 Write-Output "[+] Instalacion Finalizada"
-Get-Date > $ChagesLog
+Get-Date > $global:chageLog 

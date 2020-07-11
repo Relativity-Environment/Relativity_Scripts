@@ -183,7 +183,7 @@ function Install-Apps
     
     Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
-        Write-Output "$software - Ok" >> $ChangeLog
+        Write-Output "$software - Ok" >> $global:chageLog 
 
         if ( -not (Test-Path $software) ) {
             try {
@@ -194,13 +194,13 @@ function Install-Apps
             }
             catch {
 
-                Write-Output "$software - Fallo" >> $ChangeLog  -ErrorAction "SilentlyContinue"
+                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction "SilentlyContinue"
 
             }
         }
         else {
             Write-Warning "File is already downloaded, skipping: $software"
-            Write-Output "$software - Existe" >> $ChangeLog
+            Write-Output "$software - Existe" >> $global:chageLog 
         }
     }
 
@@ -260,7 +260,7 @@ function Get-PE
     
     $FilesDownloaded = @()
     Write-Output "Downloading $software"
-    Write-Output "$software - Ok" >> $ChangeLog
+    Write-Output "$software - Ok" >> $global:chageLog 
     
     Foreach ($software in $global:PEAPPS.keys) {
         Write-Output "Downloading $software"
@@ -271,13 +271,13 @@ function Get-PE
             }
             catch {
 
-                Write-Output "$software - Fallo" >> $ChangeLog  -ErrorAction SilentlyContinue
+                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
 
             }
         }
         else {
             Write-Warning "File is already downloaded, skipping: $software"
-            Write-Output "$software - Existe" >> $ChangeLog
+            Write-Output "$software - Existe" >> $global:chageLog 
         }
     }
 
@@ -358,17 +358,17 @@ function Install-ChocoPackages
             try {
                 
                 cinst $_ --force
-                Write-Output "$software - Ok" >> $ChangeLog  -ErrorAction SilentlyContinue
+                Write-Output "$software - Ok" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
-                Write-Output "$_ - Fallo" >> $ChangeLog  -ErrorAction SilentlyContinue
+                Write-Output "$_ - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
         }
     }
 }
             else {
                 Write-Output 'There were no packages to install!'
-                Write-Output "$_ - Existe" >> $ChangeLog
+                Write-Output "$_ - Existe" >> $global:chageLog 
             }
 
 }
