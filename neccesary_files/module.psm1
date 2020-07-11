@@ -61,7 +61,7 @@ function Clear-Desktop
 
     if ($ClearDesktopShortcuts) {
         $Desktop = $SpecialPaths['DesktopDirectory']
-        $DesktopShortcuts = Join-Path $Desktop 'ShortcutsFolder'
+        $DesktopShortcuts = Join-Path $Desktop 'Old_Shortcuts'
         if (-not (Test-Path $DesktopShortcuts)) {
             Write-Host -ForegroundColor:Cyan "Creating a new shortcuts folder on your desktop and moving all .lnk files to it: $DesktopShortcuts"
             $null = mkdir $DesktopShortcuts
