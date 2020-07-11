@@ -4,14 +4,14 @@ function Add-Folders{
 
   
   
-    # Start Menu (Tools)
-    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
+    # Start Menu (RelaTools)
+    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
     New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
     
 
     # Cache PATH - Tools PATH
     $UtilDownloadPath   = "$env:systemdrive\cache"
-    $UtilBinPath        = "$env:systemdrive\Tools\"
+    $UtilBinPath        = "$env:systemdrive\RelaTools\"
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
@@ -31,7 +31,7 @@ function Add-Folders{
 # Add PATH to env variables
 Function Add-EnvVariables{
 
-    $toolListDirShortcut = "$env:systemdrive\Tools"
+    $toolListDirShortcut = "$env:systemdrive\RelaTools"
     [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 
 }
@@ -176,7 +176,7 @@ function Get-PE
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
   
     $UtilDownloadPath   = "$env:systemdrive\cache\pe"
-    $UtilBinPath        = "$env:systemdrive\Tools\"
+    $UtilBinPath        = "$env:systemdrive\RelaTools\"
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
@@ -228,7 +228,7 @@ function Get-PE
 function Get-GITPackages
 {
 
-    $destiny = "$env:systemdrive\Tools"
+    $destiny = "$env:systemdrive\RelaTools"
     Set-Location $destiny
        
     if ($global:GitPackages.Count -gt 0) {
@@ -304,7 +304,7 @@ function Install-ChocoPackages
 ### Create README ##
 function Add-README{
 
-    $toolsPath      = "$env:systemdrive\Tools"
+    $toolsPath      = "$env:systemdrive\RelaTools"
     Add-Folders
 
 # > arpspoof.exe
