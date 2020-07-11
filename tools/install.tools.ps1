@@ -104,13 +104,13 @@ refreshenv
    # Get-PE 
 
 
-Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
+#Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
 
 # Use AutoHotKey to modify various settings
 $scripts = @(
 
-  "install-metasploit.ahk",         
+  #"install-metasploit.ahk",         
   "install-zap.ahk"        
 
 )
@@ -188,22 +188,6 @@ try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
   syspin.exe "$shortcut" 5386
 } catch {}
-
-
-
-# Use AutoHotKey to modify various settings
-
-$scripts = @(
-  "UNCPathSoftening.ahk",           # "Softening" MS UNC Path Hardning stuffs....
-  "EnableWinRM.ahk"                 # Enable WinRM
-)
-$filesDir = "$env:LOCALAPPDATA\module_relativity\"
-ForEach ($name in $scripts) {
-  $script = Join-Path $filesDir $name
-  Write-Host "[+] Executing $script" -ForegroundColor Green
-  AutoHotKey $script
-}
-
 
 
 
