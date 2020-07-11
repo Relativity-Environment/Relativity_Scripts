@@ -93,7 +93,7 @@ refreshenv
         #>
 
     }
-    Install-Apps
+    #Install-Apps
 
 ## Get PE Files
 
@@ -123,7 +123,7 @@ refreshenv
       
 
     )
-    #Get-GITPackages
+    Get-GITPackages
 
 
 
