@@ -173,31 +173,29 @@ function Install-myOwnModule{
 
  
 
-} #<<<<<<< Final funcion InitialSetup
+} #<<<<<<< Final funcion Join-Initial
 
 
 
-## Funciones de instalacion
+## Instalacion
 
 $tools     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/tools/install.tools.ps1"
-$extra       =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/extra/install.extra.ps1" 
+$extra     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/extra/install.extra.ps1" 
 
 
-
-## Funcion para instalar todos los paquetes [0]
-function Install-Minimal{ 
+function Install-Tools{ 
       
     Join-Initial
-    #Test-DiskSpace "Install-Minimal"
+    #Test-DiskSpace "Install-Tools"
     Write-Host "[+] Instalando Minimal Version...." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $tools
 }
 
 
-function Install-Full{ 
+function Install-Extra{ 
       
     Join-Initial
-    #Test-DiskSpace "Install-Full"
+    #Test-DiskSpace "Install-Extra"
     Write-Host "[+] Instalando Full Version...." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $tools,$extra
 }
@@ -240,14 +238,14 @@ function menu {
   switch($inp){
         10 {
             Clear-Host;
-            Install-Minimal;
+            Install-Tools;
             pause;
             menu;
             break
         }
         20 {
             Clear-Host;
-            Install-Full;
+            Install-Extra;
             pause;
             menu;
             break
