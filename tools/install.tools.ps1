@@ -15,7 +15,7 @@ Add-EnvVariables
 
 ## Install log
 
-$global:chageLog = "$Env:USERPROFILE\Desktop\Install_changes.log"
+$global:chageLog = "$Env:USERPROFILE\Desktop\changelog"
 
 If (-not (Test-Path $global:chageLog )) {
 
@@ -23,7 +23,7 @@ If (-not (Test-Path $global:chageLog )) {
 
 }
 
-Write-Output "[+] Comienza la instalacion:"
+Write-Output "[+] Comienza la instalacion:"  >> $global:chageLog 
 Get-Date > $global:chageLog 
 
 
@@ -63,7 +63,6 @@ $global:ChocoInstalls = @(
         'win32diskimager',
         'windirstat',
         'winscp',
-        'yumi',
         '7zip',
         '7zip.commandline',
         'winrar',
@@ -159,7 +158,7 @@ refreshenv
        'MicEnum.exe'					                  	= 'https://www.elevenpaths.com/downloads/MicEnum.exe'
        'crunch_win.exe'                           = 'https://github.com/shadwork/Windows-Crunch/releases/download/v1.1/crunch_win.exe'
        'HashIdentifier.exe'                       = 'http://52.210.171.72/gravity/Hash Identifier.exe'
-       'tcprelay.exe'                              = 'http://52.210.171.72/gravity/tcprelay.exe'
+       'tcprelay.exe'                             = 'http://52.210.171.72/gravity/tcprelay.exe'
        
        
       # JAR
@@ -192,7 +191,6 @@ refreshenv
       'https://github.com/ElevenPaths/uac-a-mola.git'
       'https://github.com/ElevenPaths/neto.git'
       'https://github.com/ElevenPaths/PySCTChecker.git'
-      'https://github.com/PowerShellMafia/PowerSploit.git'
       'https://github.com/EmpireProject/Empire.git'
       'https://github.com/samratashok/nishang.git'
       'https://github.com/PowerShellMafia/PowerSploit.git'
@@ -380,5 +378,5 @@ foreach ($item in "0", "1", "2") {
 
 #Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
 
-Write-Output "[+] Instalacion Finalizada"
-Get-Date > $global:chageLog 
+Write-Output "[+] Instalacion Finalizada"  >> $global:chageLog 
+Get-Date >> $global:chageLog 

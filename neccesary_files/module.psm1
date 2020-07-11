@@ -61,7 +61,7 @@ function Clear-Desktop
 
     if ($ClearDesktopShortcuts) {
         $Desktop = $SpecialPaths['DesktopDirectory']
-        $DesktopShortcuts = Join-Path $Desktop 'Old_Shortcuts'
+        $DesktopShortcuts = Join-Path $Desktop 'DesktopShortcuts'
         if (-not (Test-Path $DesktopShortcuts)) {
             Write-Host -ForegroundColor:Cyan "Creating a new shortcuts folder on your desktop and moving all .lnk files to it: $DesktopShortcuts"
             $null = mkdir $DesktopShortcuts
@@ -183,13 +183,16 @@ function Install-Apps
     
     Foreach ($software in $global:ManualDownloadInstall.keys) {
         Write-Output "Downloading $software"
-        Write-Output "$software - Ok" >> $global:chageLog 
+        Write-Output "[-] Descargando Apps" >> $global:chageLog 
+       
 
         if ( -not (Test-Path $software) ) {
             try {
                 
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Write-Output "$software - Ok" >> $global:chageLog 
                 $FilesDownloaded += $software
+               
 
             }
             catch {
@@ -259,14 +262,15 @@ function Get-PE
     # Store all the file we download for later processing
     
     $FilesDownloaded = @()
-    Write-Output "Downloading $software"
-    Write-Output "$software - Ok" >> $global:chageLog 
+    Write-Output "Downloading PE $software"
     
     Foreach ($software in $global:PEAPPS.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Write-Output "Downloading PE $software" >> $global:chageLog 
+                Write-Output "$software - Ok" >> $global:chageLog 
                 $FilesDownloaded += $software
             }
             catch {
@@ -307,19 +311,24 @@ function Get-GITPackages
              try {
                     
                     Write-Output "Descargando de GITHUB $_"
+                    Write-Output "Descargando de GITHUB $_" >> $global:chageLog 
     
                     git clone $_ -q
                 }
                 
                 catch {
+                   
                     Write-Warning "Unable to download git package: $($_)"
-            }
+                    Write-Warning "Unable to download git package: $($_)" >> $global:chageLog 
+            }      
         }
     }
                 else {
+                   
                     Write-Output 'There were no git to download!'
+                    Write-Output 'There were no git to download!' >> $global:chageLog 
                 }
-
+                    
 }
 
 
@@ -348,7 +357,8 @@ function Install-ChocoPackages
     Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
     Invoke-Expression "choco feature enable -n allowEmptyChecksums"
 
-    Write-Output "Installing software via chocolatey" 
+    Write-Output "Installing software via chocolatey" >> $global:chageLog 
+    
     $InstalledChocoPackages = (Get-ChocoPackages).Name
     $global:ChocoInstalls = $global:ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
 
@@ -358,7 +368,7 @@ function Install-ChocoPackages
             try {
                 
                 cinst $_ --force
-                Write-Output "$software - Ok" >> $global:chageLog   -ErrorAction SilentlyContinue
+                Write-Output "$_ - Ok" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
