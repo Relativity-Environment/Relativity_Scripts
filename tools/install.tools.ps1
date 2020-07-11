@@ -29,16 +29,15 @@ $global:ChocoInstalls = @(
         'python2',
         'python3',
         'golang',
+        'activeperl',
         'strawberryperl', 
         'curl',
         'php',
         'Cygwin',
-        'Firefox',
         'keypirinha',
         'nano',
         'vim',
         'phantomjs',
-        'ffmpeg',
         'nmap',
         'notepadplusplus',
         'putty',
@@ -46,7 +45,7 @@ $global:ChocoInstalls = @(
         'superputty',
         'terminals',
         'toolsroot',
-        'activeperl',
+        'ffmpeg',
         'win32diskimager',
         'windirstat',
         'winscp',
@@ -55,11 +54,17 @@ $global:ChocoInstalls = @(
         '7zip.commandline',
         'winrar',
         'winpcap',
-        'nmap',
-        'wireshark',
-        'mitmproxy',
         'openssl',
-        'tor-browser'    
+        'tor-browser'
+        'Firefox',
+        'wireshark',
+        'netfoxdetective',
+        'microsoft-message-analyzer',
+        'nmap',
+        'zap',
+        'mitmproxy',
+        'hashtools',
+        'burp-suite-free-edition'
         
 )
 Install-ChocoPackages
@@ -70,45 +75,92 @@ refreshenv
   
     $global:ManualDownloadInstall = @{
 
-       <# compress files
+       # compress files
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
+        'EvilFoca.zip'					                    = 'https://github.com/ElevenPaths/EvilFOCA/releases/download/0.1.4.0/EvilFoca.zip'
         'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
-        'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
-        'SpiderFoot-2.11-w32.zip'               	  = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
         'sqlmap-master.zip'					                = 'https://github.com/sqlmapproject/sqlmap/zipball/master'
         'SMTP_Diag_Tool.zip'					            	= 'https://www.adminkit.net/files/smtp_diag_tool/SMTP_Diag_Tool.zip'
         'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
         'nikto-master.zip'			                  	= 'https://github.com/sullo/nikto/archive/master.zip'
-        'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'  
-       #>
+        'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'
+        'NetworkMiner_2-5.zip'					          	= 'https://www.netresec.com/?download=NetworkMiner'
+        'JavaRuleSetter.zip'	                    	= 'https://www.elevenpaths.com/downloads/JavaRuleSetter.zip'
+        'emetrules.zip'                 						= 'https://www.elevenpaths.com/downloads/emetrules.zip'
+        'gmtcheck'						                      = 'https://www.elevenpaths.com/downloads/gmtcheck.zip'
+        'Google_Index_Retriever.zip'	             	= 'https://www.elevenpaths.com/downloads/Google_Index_Retriever.zip'
+        'rainbowcrack-1.7-win64.zip' 				        = 'https://project-rainbowcrack.com/rainbowcrack-1.7-win64.zip'
+        'bettercap_windows_amd64_v2.28.zip'			    = 'https://github.com/bettercap/bettercap/releases/download/v2.28/bettercap_windows_amd64_v2.28.zip' 
+        'hashcat-6.0.0.7z'                          = 'https://hashcat.net/files/hashcat-6.0.0.7z'
+
+        # aws
+        'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
+        'SpiderFoot-2.11-w32.zip'               	  = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
+        'ettercap-0.7.6.zip'                        = 'http://52.210.171.72/gravity/ettercap-0.7.6.zip'
+        'ophcrack-3.8.0-bin.zip'                    = 'http://52.210.171.72/gravity/ophcrack-3.8.0-bin.zip'
+        'proxytunnel-190-cygwin.zip'                = 'http://52.210.171.72/gravity/proxytunnel-190-cygwin.zip'
+        
+        
+       
+     
+
+       
+        #>
         
         # MSI files
 
-        #'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-        #'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
+        'Nessus-8.10.1-x64.msi'                   = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'metasploitframework-latest.msi' 			    = 'https://windows.metasploit.com/metasploitframework-latest.msi'
+        
+        # AHK install
         'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
         'MaltegoSetup.JRE64.v4.2.11.13104.exe' 			= 'https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/MaltegoSetup.JRE64.v4.2.11.13104.exe'
+        'VegaSetup64.exe'     						        	= 'https://support.subgraph.com/downloads/VegaSetup64.exe'
+        'MedusaInstaller-d33b6ab.exe'               = 'https://github.com/pymedusa/MedusaInstaller/releases/download/0.6/MedusaInstaller-d33b6ab.exe'
+        'ncrack-0.7-setup.exe'                      = 'https://nmap.org/ncrack/dist/ncrack-0.7-setup.exe'
+        'smac27_setup.exe'                          = 'http://www.klcconsulting.net/smac/smac27_download/smac27_setup.exe'
+        'mitmproxy-5.1.1-windows-installer.exe'     = 'https://snapshots.mitmproxy.org/5.1.1/mitmproxy-5.1.1-windows-installer.exe'
+        'DirBuster-0.12-Setup.exe'                  = 'http://52.210.171.72/gravity/DirBuster-0.12-Setup.exe'
+        'smart_dns_changer_setup.exe'               = 'http://52.210.171.72/gravity/smart_dns_changer_setup.exe'
+          # unzip and install
+            'johnny_2.2_win.zip'                        = 'https://openwall.info/wiki/_media/john/johnny/johnny_2.2_win.zip'
+            'TMACv6.0.7_Setup.zip'                      = 'https://download.technitium.com/tmac/TMACv6.0.7_Setup.zip'
+            'SNMPScannerSetup.zip'                      = 'http://52.210.171.72/gravity/SNMPScannerSetup.zip' 
+        
         
         #>
+        
 
     }
-    #Install-Apps
+    Install-Apps
 
 ## Get PE Files
 
     $global:PEAPPS = @{
   
-       # EXE
+      # EXE
        'ipscan-3.7.2-setup.exe'					          = 'https://github.com/angryip/ipscan/releases/download/3.7.2/ipscan-win64-3.7.2.exe'
        'arpspoof.exe' 							              = 'https://github.com/alandau/arpspoof/releases/download/v0.1/arpspoof.exe'
+       'MicEnum.exe'					                  	= 'https://www.elevenpaths.com/downloads/MicEnum.exe'
+       'crunch_win.exe'                           = 'https://github.com/shadwork/Windows-Crunch/releases/download/v1.1/crunch_win.exe'
+       'HashIdentifier.exe'                       = 'http://52.210.171.72/gravity/Hash Identifier.exe'
+       'tcprelay.exe'                              = 'http://52.210.171.72/gravity/tcprelay.exe'
        
-       # JAR
+       
+      # JAR
        'webgoat-server-8.0.0.M21.jar'             = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webgoat-server-8.0.0.M21.jar'
        'webwolf-8.0.0.M21.jar'                    = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
+      
+      # PY
+       'pesto.py'						                      = 'https://raw.githubusercontent.com/ElevenPaths/PESTO/master/pesto.py'
+
+      # Others
+       'certificate transparency'		              = 'https://www.elevenpaths.com/downloads/firefox/certificate-transparency-checker.xpi'
+       'thumbprint.ps1'		                      	= 'https://raw.githubusercontent.com/ElevenPaths/Gists/master/Thumbprint/thumbprint.ps1'
 
     }
-    #Get-PE 
+    Get-PE
 
 
 ## Get GIT Files
@@ -119,7 +171,34 @@ refreshenv
       'https://github.com/beefproject/beef.git'		
       'https://github.com/andresriancho/w3af.git'
       'https://github.com/laramies/theHarvester.git'
+      'https://github.com/laramies/metagoofil.git'
       'https://github.com/sherlock-project/sherlock.git'
+      'https://github.com/cldrn/davtest.git'
+      'https://github.com/ElevenPaths/tacyt-maltego-transforms.git'
+      'https://github.com/ElevenPaths/uac-a-mola.git'
+      'https://github.com/ElevenPaths/neto.git'
+      'https://github.com/ElevenPaths/PySCTChecker.git'
+      'https://github.com/PowerShellMafia/PowerSploit.git'
+      'https://github.com/EmpireProject/Empire.git'
+      'https://github.com/samratashok/nishang.git'
+      'https://github.com/PowerShellMafia/PowerSploit.git'
+      'https://github.com/hfiref0x/UACME.git'
+      'https://github.com/commixproject/commix.git'
+      'https://github.com/xmendez/wfuzz.git'
+      'https://github.com/sysdream/hershell.git'
+      'https://github.com/lanmaster53/recon-ng.git'
+      'https://github.com/ShawnDEvans/smbmap.git'
+      'https://github.com/urbanadventurer/WhatWeb.git'
+      'https://github.com/digininja/CeWL.git'
+      'https://github.com/maaaaz/patator-windows.git'
+      'https://github.com/trustedsec/unicorn.git'
+      'https://github.com/trustedsec/social-engineer-toolkit.git'
+      'https://github.com/trustedsec/SysWhispers.git'
+      'https://github.com/trustedsec/quicksql.git'
+      'https://github.com/iphelix/dnschef.git'
+      'https://github.com/epinna/weevely3.git'
+      'https://github.com/SpiderLabs/Responder.git'
+
       
 
     )
@@ -167,7 +246,7 @@ try {
   }
 
 
-#### Fix shift+space in powershell
+#### Fix shift+space in powershell ####
 
 # https://superuser.com/questions/1365875/shiftspace-not-working-in-powershell
 Set-PSReadLineKeyHandler -Chord Shift+Spacebar -Function SelfInsert
@@ -270,4 +349,4 @@ foreach ($item in "0", "1", "2") {
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
-Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
+#Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
