@@ -239,9 +239,10 @@ ForEach ($name in $scripts) {
 
 Clear-Desktop
 
+Add-StartMenu
 
 
-#### Remove Desktop Shortcuts ####
+<#### Remove Desktop Shortcuts ####
 Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
 $shortcut_path = "$Env:Public\Desktop\Boxstarter Shell.lnk"
 if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force -ErrorAction Ignore | Out-Null }
@@ -253,6 +254,7 @@ $shortcut_path = "$Env:USERPROFILE\Desktop\VirusTotal Uploader 2.2.lnk"
 if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force  -ErrorAction Ignore | Out-Null }
 $shortcut_path = "$Env:Public\Desktop\Simple DNSCrypt.lnk"
 if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force -ErrorAction Ignore | Out-Null }
+#>
 
 # Remove desktop.ini files
 try {

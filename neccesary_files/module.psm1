@@ -26,14 +26,20 @@ function Add-Folders{
 }
 
 
-funtion Get-AppAccess
+function Add-StartMenu
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/ZIP/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
+
+    $Download = "$env:LOCALAPPDATA\module_relativity\"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/neccesary_files/ZIP/RelaTools.zip" -Outfile "$Download\RelaTools.zip" 
+    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'    
+    Expand-Archive -path "$Download\RelaTools.zip" -DestinationPath $StartMenu
+
+    $value = "$env:USERPROFILE\Desktop\"
+    New-Item -ItemType SymbolicLink -Path $value -Name "RelaTools" -Value "$StartMenu\RelaTools"
 
 }
-
 
 Function Get-SpecialPaths {
     $SpecialFolders = @{}
