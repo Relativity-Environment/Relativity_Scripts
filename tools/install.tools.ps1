@@ -5,12 +5,15 @@ if (Test-PendingReboot) { Invoke-Reboot }
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1" -ErrorAction SilentlyContinue
+
 Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
+Add-Folders
+Add-EnvVariables
 
-# CINST Install
+#### CINST Install
 
 $global:ChocoInstalls = @(
         
@@ -67,7 +70,7 @@ refreshenv
   
     $global:ManualDownloadInstall = @{
 
-       # compress files
+       <# compress files
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
@@ -78,13 +81,14 @@ refreshenv
         'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
         'nikto-master.zip'			                  	= 'https://github.com/sullo/nikto/archive/master.zip'
         'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'  
-       
+       #>
         
         # MSI files
 
-        'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
-        'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
+        #'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        #'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
         'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
+        'MaltegoSetup.JRE64.v4.2.11.13104.exe' 			= 'https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/MaltegoSetup.JRE64.v4.2.11.13104.exe'
         
         #>
 
@@ -104,7 +108,7 @@ refreshenv
        'webwolf-8.0.0.M21.jar'                    = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
 
     }
-    Get-PE 
+    #Get-PE 
 
 
 ## Get GIT Files
@@ -119,17 +123,17 @@ refreshenv
       
 
     )
-    Get-GITPackages
+    #Get-GITPackages
 
 
 
 
 # Use AutoHotKey to install various software
 
-$scripts = @(
+<#$scripts = @(
 
   #"install-metasploit.ahk",         
-  "install-zap.ahk"        
+  #"install-zap.ahk"        
 
 )
 $filesDir = "$env:systemdrive\cache"
@@ -138,15 +142,8 @@ ForEach ($name in $scripts) {
   Write-Host "[+] Executing $script" -ForegroundColor Green
   AutoHotKey $script
 
-}
+}#>
 
-
-# Add PATH 'Tool' to env variables
-
-$toolListDirShortcut = "$env:systemdrive\Tools"
-[Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
-
-Remove-Item -Recurse -path "$env:SystemDrive\cache" -Force -ErrorAction SilentlyContinue
 
 #### Remove Desktop Shortcuts ####
 Write-Host "[+] Cleaning up the Desktop" -ForegroundColor Green
@@ -273,4 +270,4 @@ foreach ($item in "0", "1", "2") {
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
 
-
+Remove-Item -Path "$env:SystemDrive\cache" -Recurse 

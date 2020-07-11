@@ -7,10 +7,34 @@ function Add-Folders{
     # Start Menu (Tools)
     $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
     New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
-  
+    
+
+    # Cache PATH - Tools PATH
+    $UtilDownloadPath   = "$env:systemdrive\cache"
+    $UtilBinPath        = "$env:systemdrive\Tools\"
+
+    If (-not (Test-Path $UtilDownloadPath)) {
+
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+    }
+
+
+    If (-not (Test-Path $UtilBinPath)) {
+
+        mkdir $UtilBinPath -ErrorAction SilentlyContinue
+    }
     
        
-  }
+}
+
+
+# Add PATH to env variables
+Function Add-EnvVariables{
+
+    $toolListDirShortcut = "$env:systemdrive\Tools"
+    [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
+
+}
 
   
 
@@ -86,25 +110,14 @@ Function Add-EnvPath {
 
 
 ### Manual Install ##
-function Install-Apps
+function Install-Manual
 {   
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
   
+    
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\Tools\"
-
-    If (-not (Test-Path $UtilDownloadPath)) {
-
-        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
-    }
-
-
-    If (-not (Test-Path $UtilBinPath)) {
-
-        mkdir $UtilBinPath -ErrorAction SilentlyContinue
-    }
-      
       
 
     Push-Location $UtilDownloadPath 

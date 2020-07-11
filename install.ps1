@@ -187,7 +187,7 @@ function Install-Tools{
       
     Join-Initial
     #Test-DiskSpace "Install-Tools"
-    Write-Host "[+] Instalando Minimal Version...." -ForegroundColor Green
+    Write-Host "[+] Instalando Herramientas..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $tools
 }
 
@@ -196,7 +196,7 @@ function Install-Extra{
       
     Join-Initial
     #Test-DiskSpace "Install-Extra"
-    Write-Host "[+] Instalando Full Version...." -ForegroundColor Green
+    Write-Host "[+] Instalando Herramientas Extra..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $tools,$extra
 }
 
