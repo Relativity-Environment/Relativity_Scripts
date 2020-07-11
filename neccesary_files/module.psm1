@@ -170,24 +170,29 @@ function Get-PE
 
 
 ### Install Git ##
-function Get-Git
+function Get-GITPackages
 {
 
-    if ($global:ChocoInstalls.Count -gt 0) {
-        # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
-        $global:ChocoInstalls | Foreach-Object {
-            try {
+    $destiny = "$env:systemdrive\Tools"
+    Set-Location $destiny
+       
+    if ($global:GitPackages.Count -gt 0) {
+        $global:GitPackages | Foreach-Object {
+             try {
+                    
+                    Write-Output "Descargando de GITHUB $_"
+    
+                    git clone $_ -q
+                }
                 
-                cinst $_ --force
+                catch {
+                    Write-Warning "Unable to download git package: $($_)"
             }
-            catch {
-                Write-Warning "Unable to install software package with Chocolatey: $($_)"
         }
     }
-}
-            else {
-                Write-Output 'There were no packages to install!'
-            }
+                else {
+                    Write-Output 'There were no git to download!'
+                }
 
 }
 
@@ -244,9 +249,11 @@ function Install-ChocoPackages
 
 function Add-Folders{
 
+    # Start Menu (Tools)
     $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tools" 
     New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
 
+    
        
 }
 

@@ -67,7 +67,7 @@ refreshenv
   
     $global:ManualDownloadInstall = @{
 
-        <# compress
+       # compress files
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'john-1.8.0.13-jumbo-b7eae75d7-win64.zip'  	= 'https://download.openwall.net/pub/projects/john/contrib/windows/john-1.8.0.13-jumbo-b7eae75d7-win64.zip'
@@ -78,18 +78,21 @@ refreshenv
         'thc-hydra.zip'								              = 'https://github.com/maaaaz/thc-hydra-windows/archive/master.zip'
         'nikto-master.zip'			                  	= 'https://github.com/sullo/nikto/archive/master.zip'
         'Vulnerator.zip'       					          	= 'https://github.com/Vulnerator/Vulnerator/releases/download/v6.1.9/Vulnerator_v6-1-9.zip'  
-       #>
+       
         
-        # MSI
+        # MSI files
+
         'Nessus-8.10.1-x64.msi'                     = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
         'metasploitframework-latest.msi' 			      = 'https://windows.metasploit.com/metasploitframework-latest.msi'
         'ZAP_2_9_0_windows.exe' 					          = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2_9_0_windows.exe'
+        
         #>
 
     }
     Install-Apps
 
 ## Get PE Files
+
     $global:PEAPPS = @{
   
        # EXE
@@ -101,7 +104,22 @@ refreshenv
        'webwolf-8.0.0.M21.jar'                    = 'https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M21/webwolf-8.0.0.M21.jar'
 
     }
-   # Get-PE 
+    Get-PE 
+
+
+## Get GIT Files
+
+    $global:GitPackages = @(
+  
+      'https://github.com/Tuhinshubhra/RED_HAWK.git'
+      'https://github.com/beefproject/beef.git'		
+      'https://github.com/andresriancho/w3af.git'
+      'https://github.com/laramies/theHarvester.git'
+      'https://github.com/sherlock-project/sherlock.git'
+      
+
+    )
+    Get-GITPackages
 
 
 #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
