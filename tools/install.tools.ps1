@@ -10,6 +10,7 @@ Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
+Get-NeccesaryFiles
 Add-Folders
 Add-EnvVariables
 
@@ -160,8 +161,8 @@ if (Test-Path $shortcut_path) { Remove-Item $shortcut_path -Force -ErrorAction I
 
 # Remove desktop.ini files
 try {
-    Get-ChildItem -Path (Join-Path ${Env:UserProfile} "Desktop") -Hidden -Filter "desktop.ini" -Force | foreach {$_.Delete()}
-    Get-ChildItem -Path (Join-Path ${Env:Public} "Desktop") -Hidden -Filter "desktop.ini" -Force | foreach {$_.Delete()}
+    Get-ChildItem -Path (Join-Path ${Env:UserProfile} "Desktop") -Hidden -Filter "desktop.ini" -Force | ForEach-Object {$_.Delete()}
+    Get-ChildItem -Path (Join-Path ${Env:Public} "Desktop") -Hidden -Filter "desktop.ini" -Force | ForEach-Object {$_.Delete()}
   } catch {
     Write-Host "Could not remove desktop.ini files"
   }

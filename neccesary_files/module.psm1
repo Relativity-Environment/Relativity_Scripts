@@ -154,7 +154,7 @@ function Install-Manual
 
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where {$FilesDownloaded -contains $_.Name} | Foreach {
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
@@ -163,7 +163,7 @@ function Install-Manual
             
     # Kick off msi installs
     Write-Output 'Search msi files'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | Foreach {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter {('*.msi') -or ('*.exe')} | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
    
 
 }
@@ -257,7 +257,7 @@ function Get-GITPackages
 
 function Get-ChocoPackages {
     if (get-command clist -ErrorAction:SilentlyContinue) {
-        clist -lo -r -all | Foreach {
+        clist -lo -r -all | ForEach-Object {
             $Name,$Version = $_ -split '\|'
             New-Object -TypeName psobject -Property @{
                 'Name' = $Name
@@ -278,7 +278,7 @@ function Install-ChocoPackages
 
     Write-Output "Installing software via chocolatey" 
     $InstalledChocoPackages = (Get-ChocoPackages).Name
-    $global:ChocoInstalls = $global:ChocoInstalls | Where { $InstalledChocoPackages -notcontains $_ }
+    $global:ChocoInstalls = $global:ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
 
     if ($global:ChocoInstalls.Count -gt 0) {
         # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course

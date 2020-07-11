@@ -168,10 +168,6 @@ function Install-myOwnModule{
   Test-PSProfile;
   Install-myOwnModule;
   Install-BoxStarter;
-  Get-NeccesaryFiles
-  
-
- 
 
 } #<<<<<<< Final funcion Join-Initial
 
@@ -206,7 +202,7 @@ function Install-Extra{
 function menu {
 
   Write-Host "`n"
-  Write-Host "  __________________________________________________________________________________________________ " -ForegroundColor Green 
+  Write-Host "   __________________________________________________________________________________________________ " -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
   Write-Host "  |                                         Creado por                                               |" -ForegroundColor Green 
   Write-Host "  |                                        Victor M. Gil                                             |" -ForegroundColor Green 
