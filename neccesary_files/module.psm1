@@ -88,6 +88,9 @@ Function Add-EnvVariables{
     $toolListDirShortcut = "$env:systemdrive\RelaTools"
     [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
 
+    $msf = "$env:systemdrive\metasploit-framework\bin"
+    [Environment]::SetEnvironmentVariable("msf", $msf, 1)
+
 }
 
   
@@ -365,7 +368,7 @@ function Install-ChocoPackages
             try {
                 
                 cinst $_ --force
-                Write-Output "$_ - Ok" >> $global:chageLog   -ErrorAction SilentlyContinue
+                Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
             catch {
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
