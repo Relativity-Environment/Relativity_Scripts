@@ -155,17 +155,18 @@ Function Test-TamperProtection
   if ($(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Defender\Features" -Name "TamperProtection").TamperProtection -ne 0){
   Write-Host "[!] Por favor deshabilita la Proteccion contra alteraciones de Windows Defender (Tamper Protection) e intentalo de nuevo." -ForegroundColor Red
   Write-Host "`t[+] Hint: https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html" -ForegroundColor Yellow
-  Write-Host "[*] Exiting..." -ForegroundColor Red
-  exit
-  }
+  Write-Host "[-] ¿Necesitas cambiar esta opcion? S/N " -ForegroundColor Yellow -NoNewline
+  $response = Read-Host
+    if ($response -eq "S") {
+      Write-Host "[*] Exiting..." -ForegroundColor Red
+      exit
+    }
+      Write-Host "`tContinuing..." -ForegroundColor Green
+    }
   } else {
-  
-     Write-Host "`tTamper Protection is off, looks good." -ForegroundColor Green
+    Write-Host "`tTamper Protection is off, looks good." -ForegroundColor Green
+  }
 }
-
-
-}
-
 
 
 # Modulo funciones propias para optimizacion
