@@ -12,10 +12,6 @@ Write-Host "Import the OWN module" -ForegroundColor red
 Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force 
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
 
-
-$BypassDefenderPaths = @('C:\', 'C:\Program Files', 'C:\Program Files (x86)', 'C:\metasploit-framework', 'C:\cache', 'C:\tools', 'C:\RelaTools' )
-$ByPassDefenderPaths | Add-DefenderBypassPath
-
 Add-EnvVariables
 
 
