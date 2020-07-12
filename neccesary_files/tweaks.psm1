@@ -663,27 +663,28 @@ Function ShowDefenderTrayIcon {
 Function DisableDefender {
 	Write-Output "Disabling Windows Defender..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender")) {
-		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force | Out-Null
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force | Out-Null 
+	
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
+	If ([System.Environment]::OSVersion.Version.Build -eq 18363) {
+		
+		Write-Output "entra en 1" -ForegroundColor red 
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiSpyware" -Value "1" -PropertyType DWORD -Force | Out-Null
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiVirus" -Value "1" -PropertyType DWORD -Force | Out-Null
 
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableBehaviorMonitoring" -Value "1" -PropertyType DWORD -Force | Out-Null
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableOnAccessProtection" -Value "1" -PropertyType DWORD -Force | Out-Null
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableScanOnRealtimeEnable" -Value "1" -PropertyType DWORD -Force | Out-Null
-	}
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-	If ([System.Environment]::OSVersion.Version.Build -eq 14393) {
-		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -ErrorAction SilentlyContinue
+
+		
 	} ElseIf ([System.Environment]::OSVersion.Version.Build -ge 15063) {
+		Write-Output "entra en 2" -ForegroundColor red 
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
-	}ElseIf ([System.Environment]::OSVersion.Version.Build -ge 18363) {
+	}ElseIf ([System.Environment]::OSVersion.Version.Build -eq 14393) {
 
-	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiSpyware" -Value "1" -PropertyType DWORD -Force | Out-Null
-	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiVirus" -Value "1" -PropertyType DWORD -Force | Out-Null
-
-	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableBehaviorMonitoring" -Value "1" -PropertyType DWORD -Force | Out-Null
-	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableOnAccessProtection" -Value "1" -PropertyType DWORD -Force | Out-Null
-	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableScanOnRealtimeEnable" -Value "1" -PropertyType DWORD -Force | Out-Null
+		Write-Output "entra en 3" -ForegroundColor red 
+		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -ErrorAction SilentlyContinue
 
 	
 	}
