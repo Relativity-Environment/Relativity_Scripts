@@ -84,10 +84,10 @@ $global:ChocoInstalls = @(
         'burp-suite-free-edition'
         
 )
-Install-ChocoPackages
-refreshenv
+#Install-ChocoPackages
+#refreshenv
 
-Stop-process -Name "HashTools"
+#Stop-process -Name "HashTools" -ErrorAction SilentlyContinue
 
 
 ## Manual Install
@@ -146,7 +146,7 @@ Stop-process -Name "HashTools"
         
 
     }
-    Install-Apps
+    #Install-Apps
 
 ## Get PE Files
 
@@ -214,7 +214,7 @@ Stop-process -Name "HashTools"
       
 
     )
-    Get-GITPackages
+    #Get-GITPackages
 
 
 
@@ -234,7 +234,7 @@ ForEach ($name in $scripts) {
   AutoHotKey $script
 
 }#>
-
+<#
 Clear-Desktop
 
 Add-StartMenu
@@ -426,7 +426,7 @@ foreach ($item in "0", "1", "2") {
   Start-Sleep -seconds 3
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
-
+#>
 #Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
 
 Write-Output "[+] Instalacion Finalizada"  >> $global:chageLog 
