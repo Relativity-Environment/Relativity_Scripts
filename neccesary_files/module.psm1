@@ -4,7 +4,7 @@ function Add-Folders{
   
     # Start Menu (RelaTools)
     $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
-    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue
+    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue | Out-Null
     
 
     # Cache PATH - RalaTools PATH
