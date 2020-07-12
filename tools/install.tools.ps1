@@ -368,7 +368,7 @@ if ($env_path -ne $old_path) {
     }
 }
 
-
+New-PSDrive -PSProvider Registry -Name HKCR -Root  HKEY_CLASSES_ROOT
 # CMD MENU CONTEXT
 New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Force | Out-Null
 Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "(Default)" -Value "System CMD - ELevated (here)"
