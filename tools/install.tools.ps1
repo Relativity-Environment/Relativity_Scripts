@@ -234,7 +234,7 @@ ForEach ($name in $scripts) {
   AutoHotKey $script
 
 }#>
-<#
+#
 Clear-Desktop
 
 Add-StartMenu
@@ -426,8 +426,12 @@ foreach ($item in "0", "1", "2") {
   Start-Sleep -seconds 3
   rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 }
-#>
+#
 #Remove-Item -Path "$env:SystemDrive\cache\*" -Force -Recurse
+
+## Disable Security Center
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name "start" -Value "4"
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\wscsvc' -Name "start" -Value "4"
 
 Write-Output "[+] Instalacion Finalizada"  >> $global:chageLog 
 Get-Date >> $global:chageLog 
