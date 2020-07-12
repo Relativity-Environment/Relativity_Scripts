@@ -670,6 +670,16 @@ Function DisableDefender {
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -ErrorAction SilentlyContinue
 	} ElseIf ([System.Environment]::OSVersion.Version.Build -ge 15063) {
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
+	}ElseIf ([System.Environment]::OSVersion.Version.Build -ge 18363) {
+
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiSpyware" -Value "1" -PropertyType DWORD -Force | Out-Null
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiVirus" -Value "1" -PropertyType DWORD -Force | Out-Null
+
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableBehaviorMonitoring" -Value "1" -PropertyType DWORD -Force | Out-Null
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableOnAccessProtection" -Value "1" -PropertyType DWORD -Force | Out-Null
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' -Name "DisableScanOnRealtimeEnable" -Value "1" -PropertyType DWORD -Force | Out-Null
+
+	
 	}
 }
 
