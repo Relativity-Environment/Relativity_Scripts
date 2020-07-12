@@ -94,7 +94,7 @@ $global:ChocoInstalls = @(
   
     $global:ManualDownloadInstall = @{
 
-       # compress files
+       <# compress files
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'EvilFoca.zip'					                    = 'https://github.com/ElevenPaths/EvilFOCA/releases/download/0.1.4.0/EvilFoca.zip'
@@ -124,10 +124,10 @@ $global:ChocoInstalls = @(
         
         # MSI files
 
-        'Nessus-8.10.1-x64.msi'                   = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        #'Nessus-8.10.1-x64.msi'                   = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
         'metasploitframework-latest.msi' 			    = 'https://windows.metasploit.com/metasploitframework-latest.msi'
         
-        # AHK install
+        <# AHK install
         'MaltegoSetup.JRE64.v4.2.11.13104.exe' 			= 'https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/MaltegoSetup.JRE64.v4.2.11.13104.exe'
         'VegaSetup64.exe'     						        	= 'https://support.subgraph.com/downloads/VegaSetup64.exe'
         'MedusaInstaller-d33b6ab.exe'               = 'https://github.com/pymedusa/MedusaInstaller/releases/download/0.6/MedusaInstaller-d33b6ab.exe'
@@ -146,7 +146,7 @@ $global:ChocoInstalls = @(
         
 
     }
-    #Install-Apps
+    Install-Apps
 
 ## Get PE Files
 
@@ -173,7 +173,7 @@ $global:ChocoInstalls = @(
        'thumbprint.ps1'		                      	= 'https://raw.githubusercontent.com/ElevenPaths/Gists/master/Thumbprint/thumbprint.ps1'
 
     }
-    Get-PE
+    #Get-PE
 
 
 ## Get GIT Files
