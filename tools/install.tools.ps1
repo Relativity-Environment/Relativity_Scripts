@@ -369,6 +369,26 @@ if ($env_path -ne $old_path) {
 }
 
 
+# CMD MENU CONTEXT
+New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Force | Out-Null
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "(Default)" -Value "System Shell - CMD ELevated (here)"
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "Icon" -Value "cmd.exe"
+New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command' -Force | Out-Null
+$valueCMD = @"
+PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList '/s,/k,pushd,%V' -Verb RunAs"
+"@
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command' -Name "(Default)" -Value $value
+
+# PS MENU CONTEXT
+New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Force | Out-Null
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Name "(Default)" -Value "System Powershell - Eleveted (here)"
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Name "Icon" -Value "powershell.exe"
+New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Force | Out-Null
+$valuePS = @"
+PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList '/s,/c,pushd %V && powershell' -Verb RunAs"
+"@
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Name "(Default)" -Value $value
+
 #### Rename the computer ####
 Write-Host "[+] Renaming host to 'relativity_tools'" -ForegroundColor Green
 (Get-WmiObject win32_computersystem).rename("relativity_tools") | Out-Null
