@@ -1,6 +1,8 @@
 ﻿
 <# Opcion 1 #>
 
+#################### PRE INSTALL
+
 if (Test-PendingReboot) { Invoke-Reboot }   
 
 $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
@@ -18,7 +20,6 @@ Add-EnvVariables
 
 
 ## Install log
-
 $global:chageLog = "$Env:USERPROFILE\Desktop\changelog"
 
 If (-not (Test-Path $global:chageLog )) {
@@ -29,6 +30,9 @@ If (-not (Test-Path $global:chageLog )) {
 
 Write-Output "[+] Comienza la instalacion:"  > $global:chageLog 
 Get-Date >> $global:chageLog 
+
+
+######################### APPS INSTALL
 
 
 #### CINST Install
@@ -84,17 +88,17 @@ $global:ChocoInstalls = @(
         'burp-suite-free-edition'
         
 )
-#Install-ChocoPackages
-#refreshenv
+Install-ChocoPackages
+refreshenv
 
-#Stop-process -Name "HashTools" -ErrorAction SilentlyContinue
+Stop-process -Name "HashTools" -ErrorAction SilentlyContinue
 
 
-## Manual Install
+### MANUAL INSTALL
   
     $global:ManualDownloadInstall = @{
 
-       <# compress files
+       ## compress files
 
         'FOCA-v3.4.7.0.zip'                         = 'https://github.com/ElevenPaths/FOCA/releases/download/v3.4.7.0/FOCA-v3.4.7.0.zip'
         'EvilFoca.zip'					                    = 'https://github.com/ElevenPaths/EvilFOCA/releases/download/0.1.4.0/EvilFoca.zip'
@@ -113,21 +117,21 @@ $global:ChocoInstalls = @(
         'bettercap_windows_amd64_v2.28.zip'			    = 'https://github.com/bettercap/bettercap/releases/download/v2.28/bettercap_windows_amd64_v2.28.zip' 
         'hashcat-6.0.0.7z'                          = 'https://hashcat.net/files/hashcat-6.0.0.7z'
 
-        # aws
+      ## aws
         'PIT-Public_Intellegence_Tool_V2.5.1.rar'   = 'http://52.210.171.72/gravity/PIT-Public_Intellegence_Tool_V2.5.1.rar'
         'SpiderFoot-2.11-w32.zip'               	  = 'http://52.210.171.72/gravity/SpiderFoot-2.11-w32.zip'
         'ettercap-0.7.6.zip'                        = 'http://52.210.171.72/gravity/ettercap-0.7.6.zip'
         'ophcrack-3.8.0-bin.zip'                    = 'http://52.210.171.72/gravity/ophcrack-3.8.0-bin.zip'
         'proxytunnel-190-cygwin.zip'                = 'http://52.210.171.72/gravity/proxytunnel-190-cygwin.zip'    
        
-        #>
+        #
         
-        # MSI files
+      ## MSI files
 
-        #'Nessus-8.10.1-x64.msi'                   = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
+        'Nessus-8.10.1-x64.msi'                   = 'http://52.210.171.72/gravity/Nessus-8.10.1-x64.msi'
         'metasploitframework-latest.msi' 			    = 'https://windows.metasploit.com/metasploitframework-latest.msi'
         
-        <# AHK install
+      ## AHK install
         'MaltegoSetup.JRE64.v4.2.11.13104.exe' 			= 'https://maltego-downloads.s3.us-east-2.amazonaws.com/windows/MaltegoSetup.JRE64.v4.2.11.13104.exe'
         'VegaSetup64.exe'     						        	= 'https://support.subgraph.com/downloads/VegaSetup64.exe'
         'MedusaInstaller-d33b6ab.exe'               = 'https://github.com/pymedusa/MedusaInstaller/releases/download/0.6/MedusaInstaller-d33b6ab.exe'
@@ -136,19 +140,20 @@ $global:ChocoInstalls = @(
         'mitmproxy-5.1.1-windows-installer.exe'     = 'https://snapshots.mitmproxy.org/5.1.1/mitmproxy-5.1.1-windows-installer.exe'
         'DirBuster-0.12-Setup.exe'                  = 'http://52.210.171.72/gravity/DirBuster-0.12-Setup.exe'
         'smart_dns_changer_setup.exe'               = 'http://52.210.171.72/gravity/smart_dns_changer_setup.exe'
-          # unzip and install
+          ## unzip and install
             'johnny_2.2_win.zip'                        = 'https://openwall.info/wiki/_media/john/johnny/johnny_2.2_win.zip'
             'TMACv6.0.7_Setup.zip'                      = 'https://download.technitium.com/tmac/TMACv6.0.7_Setup.zip'
             'SNMPScannerSetup.zip'                      = 'http://52.210.171.72/gravity/SNMPScannerSetup.zip' 
         
         
-        #>
+        ##
         
 
     }
     Install-Apps
 
-## Get PE Files
+
+### PE FILES
 
     $global:PEAPPS = @{
   
@@ -173,10 +178,10 @@ $global:ChocoInstalls = @(
        'thumbprint.ps1'		                      	= 'https://raw.githubusercontent.com/ElevenPaths/Gists/master/Thumbprint/thumbprint.ps1'
 
     }
-    #Get-PE
+    Get-PE
 
 
-## Get GIT Files
+### GIT FILES
 
     $global:GitPackages = @(
   
@@ -214,7 +219,7 @@ $global:ChocoInstalls = @(
       
 
     )
-    #Get-GITPackages
+    Get-GITPackages
 
 
 
@@ -235,8 +240,12 @@ ForEach ($name in $scripts) {
 
 }#>
 #
-Clear-Desktop
 
+
+
+############### POST INSTALL
+
+Clear-Desktop
 Add-StartMenu
 
 
