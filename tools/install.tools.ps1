@@ -83,6 +83,8 @@ $global:ChocoInstalls = @(
 Install-ChocoPackages
 refreshenv
 
+Stop-process -Name "HashTools"
+
 
 ## Manual Install
   
@@ -320,6 +322,15 @@ try {
 $target_file = "C:\Program Files\Notepad++\notepad++.exe"
 $target_dir = ${Env:UserProfile}
 $shortcut = Join-Path ${Env:UserProfile} "temp\notepad++.lnk"
+Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
+try {
+  Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
+  syspin.exe "$shortcut" 5386
+} catch {}
+# Vim
+$target_file = "C:\tools\vim\vim82\vim.exe"
+$target_dir = ${Env:UserProfile}
+$shortcut = Join-Path ${Env:UserProfile} "temp\vim.lnk"
 Install-ChocolateyShortcut -shortcutFilePath $shortcut -targetPath $target_file -WorkingDirectory $target_dir -PinToTaskbar -RunasAdmin
 try {
   Write-Host "`tPinning $target_file to taskbar" -ForegroundColor Green
