@@ -13,13 +13,13 @@ function Add-Folders{
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
-        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue | Out-Null
     }
 
 
     If (-not (Test-Path $UtilBinPath)) {
 
-        mkdir $UtilBinPath -ErrorAction SilentlyContinue
+        mkdir $UtilBinPath -ErrorAction SilentlyContinue | Out-Null
     }
     
        
@@ -389,7 +389,6 @@ function Install-ChocoPackages
 function Add-README{
 
     $toolsPath      = "$env:systemdrive\RelaTools"
-    Add-Folders
 
 # > arpspoof.exe
 $content = @" 
