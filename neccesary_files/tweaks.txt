@@ -60,7 +60,7 @@ SetCurrentNetworkPrivate        # SetCurrentNetworkPublic
 SetUnknownNetworksPrivate     # SetUnknownNetworksPublic
 DisableNetDevicesAutoInst     # EnableNetDevicesAutoInst
 # DisableHomeGroups             # EnableHomeGroups
-EnableSMB1
+#EnableSMB1
 # DisableSMBServer              # EnableSMBServer
 # DisableNetBIOS                # EnableNetBIOS
 DisableLLMNR                  # EnableLLMNR
