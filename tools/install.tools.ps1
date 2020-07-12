@@ -371,7 +371,7 @@ if ($env_path -ne $old_path) {
 
 # CMD MENU CONTEXT
 New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Force | Out-Null
-Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "(Default)" -Value "System Shell - CMD ELevated (here)"
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "(Default)" -Value "System CMD - ELevated (here)"
 Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd' -Name "Icon" -Value "cmd.exe"
 New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command' -Force | Out-Null
 $valueCMD = @"
@@ -381,7 +381,7 @@ Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command
 
 # PS MENU CONTEXT
 New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Force | Out-Null
-Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Name "(Default)" -Value "System Powershell - Eleveted (here)"
+Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Name "(Default)" -Value "System Powershell - Elevated (here)"
 Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Name "Icon" -Value "powershell.exe"
 New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Force | Out-Null
 $valuePS = @"
