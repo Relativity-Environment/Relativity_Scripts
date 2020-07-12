@@ -669,7 +669,7 @@ Function DisableDefender {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
 	If ([System.Environment]::OSVersion.Version.Build -eq 18363) {
 		
-		Write-Output "entra en 1" -ForegroundColor red 
+		Write-Output "entra en 1" >> "$env:USERPROFILE\Desktop\out.txt" 
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiSpyware" -Value "1" -PropertyType DWORD -Force | Out-Null
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender' -Name "DisableAntiVirus" -Value "1" -PropertyType DWORD -Force | Out-Null
 
@@ -679,11 +679,11 @@ Function DisableDefender {
 
 		
 	} ElseIf ([System.Environment]::OSVersion.Version.Build -ge 15063) {
-		Write-Output "entra en 2" -ForegroundColor red 
+		Write-Output "entra en 2" >> "$env:USERPROFILE\Desktop\out.txt" 
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 	}ElseIf ([System.Environment]::OSVersion.Version.Build -eq 14393) {
 
-		Write-Output "entra en 3" -ForegroundColor red 
+		Write-Output "entra en 3" >> "$env:USERPROFILE\Desktop\out.txt" 
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -ErrorAction SilentlyContinue
 
 	
