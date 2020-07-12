@@ -11,8 +11,8 @@ RequireAdmin
 ### Privacy Tweaks ###
 DisableTelemetry                # EnableTelemetry
 DisableWiFiSense                # EnableWiFiSense
-DisableSmartScreen              # EnableSmartScreen
-DisableWebSearch                # EnableWebSearch
+DisableSmartScreen            # EnableSmartScreen
+DisableWebSearch              # EnableWebSearch
 DisableAppSuggestions           # EnableAppSuggestions
 DisableActivityHistory          # EnableActivityHistory
 DisableBackgroundApps           # EnableBackgroundApps
@@ -36,16 +36,16 @@ DisableWAPPush                  # EnableWAPPush
 
 ### Security Tweaks ###
 SetUACLow                     # SetUACHigh
-# EnableSharingMappedDrives   # DisableSharingMappedDrives
-DisableAdminShares            # EnableAdminShares
+# EnableSharingMappedDrives     # DisableSharingMappedDrives
+DisableAdminShares              # EnableAdminShares
 DisableFirewall               # EnableFirewall
 HideDefenderTrayIcon          # ShowDefenderTrayIcon
 DisableDefender               # EnableDefender
 DisableDefenderCloud          # EnableDefenderCloud
-# EnableCtrldFolderAccess     DisableCtrldFolderAccess
-# EnableCIMemoryIntegrity     DisableCIMemoryIntegrity
-# EnableDefenderAppGuard      DisableDefenderAppGuard
-HideAccountProtectionWarn     # ShowAccountProtectionWarn
+# EnableCtrldFolderAccess       # DisableCtrldFolderAccess
+# EnableCIMemoryIntegrity       # DisableCIMemoryIntegrity
+# EnableDefenderAppGuard        # DisableDefenderAppGuard
+HideAccountProtectionWarn       # ShowAccountProtectionWarn
 DisableDownloadBlocking       # EnableDownloadBlocking
 EnableScriptHost
 EnableDotNetStrongCrypto        # DisableDotNetStrongCrypto
@@ -57,13 +57,13 @@ SetDEPOptOut                    # SetDEPOptIn
 
 ### Network Tweaks ###
 SetCurrentNetworkPrivate        # SetCurrentNetworkPublic
-SetUnknownNetworksPrivate       # SetUnknownNetworksPublic
-DisableNetDevicesAutoInst       # EnableNetDevicesAutoInst
+SetUnknownNetworksPrivate     # SetUnknownNetworksPublic
+DisableNetDevicesAutoInst     # EnableNetDevicesAutoInst
 # DisableHomeGroups             # EnableHomeGroups
-#EnableSMB1
+EnableSMB1
 # DisableSMBServer              # EnableSMBServer
 # DisableNetBIOS                # EnableNetBIOS
-DisableLLMNR                    # EnableLLMNR
+DisableLLMNR                  # EnableLLMNR
 # DisableLLDP                   # EnableLLDP
 # DisableLLTD                   # EnableLLTD
 # DisableMSNetClient            # EnableMSNetClient
@@ -76,13 +76,13 @@ DisableRemoteAssistance         # EnableRemoteAssistance
 # EnableRemoteDesktop           # DisableRemoteDesktop
 
 ### Service Tweaks ###
-DisableUpdateMSRT               # EnableUpdateMSRT
+DisableUpdateMSRT             # EnableUpdateMSRT
 # DisableUpdateDriver           # EnableUpdateDriver
 EnableUpdateMSProducts          # DisableUpdateMSProducts
-DisableUpdateAutoDownload       # EnableUpdateAutoDownload
+DisableUpdateAutoDownload     # EnableUpdateAutoDownload
 DisableUpdateRestart            # EnableUpdateRestart
 DisableMaintenanceWakeUp        # EnableMaintenanceWakeUp
-DisableAutoRestartSignOn        # EnableAutoRestartSignOn
+DisableAutoRestartSignOn      # EnableAutoRestartSignOn
 DisableSharedExperiences        # EnableSharedExperiences
 # EnableClipboardHistory        # DisableClipboardHistory
 DisableAutoplay                 # EnableAutoplay
@@ -99,7 +99,7 @@ EnableNTFSLongPaths             # DisableNTFSLongPaths
 # SetBIOSTimeUTC                # SetBIOSTimeLocal
 # EnableHibernation             # DisableHibernation
 # DisableSleepButton            # EnableSleepButton
-DisableSleepTimeout             # EnableSleepTimeout
+DisableSleepTimeout           # EnableSleepTimeout
 EnableFastStartup
 # DisableAutoRebootOnCrash      # EnableAutoRebootOnCrash
 
@@ -108,16 +108,16 @@ DisableActionCenter             # EnableActionCenter
 DisableLockScreen               # EnableLockScreen
 # DisableLockScreenRS1          # EnableLockScreenRS1
 HideNetworkFromLockScreen       # ShowNetworkOnLockScreen
-# HideShutdownFromLockScreen    # ShowShutdownOnLockScreen
+# HideShutdownFromLockScreen      # ShowShutdownOnLockScreen
 DisableLockScreenBlur           # EnableLockScreenBlur
-DisableAeroShake                # EnableAeroShake
+DisableAeroShake              # EnableAeroShake
 DisableAccessibilityKeys        # EnableAccessibilityKeys
 ShowTaskManagerDetails          # HideTaskManagerDetails
 ShowFileOperationsDetails       # HideFileOperationsDetails
 # EnableFileDeleteConfirm       # DisableFileDeleteConfirm
 HideTaskbarSearch               # ShowTaskbarSearchIcon         # ShowTaskbarSearchBox
-# HideTaskView                  # ShowTaskView
-# ShowSmallTaskbarIcons         # ShowLargeTaskbarIcons
+# HideTaskView                    # ShowTaskView
+# ShowSmallTaskbarIcons           # ShowLargeTaskbarIcons
 SetTaskbarCombineWhenFull       # SetTaskbarCombineNever        # SetTaskbarCombineAlways
 HideTaskbarPeopleIcon           # ShowTaskbarPeopleIcon
 ShowTrayIcons                   # HideTrayIcons
@@ -127,15 +127,15 @@ DisableNewAppPrompt             # EnableNewAppPrompt
 # HideRecentlyAddedApps         # ShowRecentlyAddedApps
 # HideMostUsedApps              # ShowMostUsedApps
 # SetWinXMenuPowerShell         # SetWinXMenuCmd
-SetControlPanelSmallIcons       # SetControlPanelLargeIcons     # SetControlPanelCategories
+SetControlPanelSmallIcons     # SetControlPanelLargeIcons     # SetControlPanelCategories
 DisableShortcutInName           # EnableShortcutInName
 # HideShortcutArrow             # ShowShortcutArrow
 SetVisualFXPerformance          # SetVisualFXAppearance
 # EnableTitleBarColor           # DisableTitleBarColor
-SetAppsDarkMode                 # SetAppsLightMode
+SetAppsDarkMode               # SetAppsLightMode
 # SetSystemLightMode            # SetSystemDarkMode
 # AddENKeyboard                 # RemoveENKeyboard
-EnableNumlock                   # DisableNumlock
+EnableNumlock                 # DisableNumlock
 # DisableEnhPointerPrecision    # EnableEnhPointerPrecision
 # SetSoundSchemeNone            # SetSoundSchemeDefault
 # DisableStartupSound           # EnableStartupSound
@@ -144,14 +144,14 @@ EnableNumlock                   # DisableNumlock
 DisableF1HelpKey                # EnableF1HelpKey
 
 ### Explorer UI Tweaks ###
-ShowExplorerTitleFullPath       # HideExplorerTitleFullPath
+ShowExplorerTitleFullPath     # HideExplorerTitleFullPath
 ShowKnownExtensions             # HideKnownExtensions
 ShowHiddenFiles                 # HideHiddenFiles
-ShowSuperHiddenFiles            # HideSuperHiddenFiles
-ShowEmptyDrives                 # HideEmptyDrives
-ShowFolderMergeConflicts        # HideFolderMergeConflicts
+ShowSuperHiddenFiles          # HideSuperHiddenFiles
+ShowEmptyDrives               # HideEmptyDrives
+ShowFolderMergeConflicts      # HideFolderMergeConflicts
 EnableNavPaneExpand             # DisableNavPaneExpand
-ShowNavPaneAllFolders           # HideNavPaneAllFolders
+ShowNavPaneAllFolders         # HideNavPaneAllFolders
 # EnableFldrSeparateProcess     # DisableFldrSeparateProcess
 # EnableRestoreFldrWindows      # DisableRestoreFldrWindows
 # ShowEncCompFilesColor         # HideEncCompFilesColor
