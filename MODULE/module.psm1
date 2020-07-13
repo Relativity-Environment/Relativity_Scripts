@@ -1178,3 +1178,8 @@ Add-Content -PassThru "$toolsPath\    \README" -Value $content
 
 
 } #< end Add-Toolslnk
+
+
+
+
+Export-ModuleMember -Function *

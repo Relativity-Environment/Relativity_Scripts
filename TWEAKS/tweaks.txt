@@ -237,5 +237,7 @@ UnpinStartMenuTiles
 UnpinTaskbarIcons
 
 ### Auxiliary Functions ###
+Add-ContextMenu
+Rename-PC
 # WaitForKey
 # Restart
