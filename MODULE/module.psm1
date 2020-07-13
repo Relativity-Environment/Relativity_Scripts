@@ -22,24 +22,39 @@ function Add-Folders{
         mkdir $UtilBinPath -ErrorAction SilentlyContinue | Out-Null
     }
     
-       
 }
 
-
-function Add-StartMenu
+function Add-PentestMenu
 {
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    $Download = "$env:LOCALAPPDATA\module_relativity\"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/neccesary_files/ZIP/RelaTools.zip" -Outfile "$Download\RelaTools.zip" 
+    $Download = "$env:LOCALAPPDATA\RELATIVITY\"
+    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
     $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'    
-    Expand-Archive -path "$Download\RelaTools.zip" -DestinationPath $StartMenu
+    Expand-Archive -path "$Download\Pentest_Tools.zip" -DestinationPath $StartMenu
 
     $value = "$env:USERPROFILE\Desktop\"
-    New-Item -ItemType SymbolicLink -Path $value -Name "RelaTools" -Value "$StartMenu\RelaTools"
+    New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Relatools\Pentest_Tools"
 
 }
+
+function Add-ReversingMenu
+{
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+
+    $Download = "$env:LOCALAPPDATA\RELATIVITY\"
+    Invoke-WebRequest -UseBasicParsing -Uri " " -Outfile "$Download\ " 
+    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'    
+    Expand-Archive -path "$Download\ " -DestinationPath $StartMenu
+
+    $value = "$env:USERPROFILE\Desktop\"
+    New-Item -ItemType SymbolicLink -Path $value -Name " " -Value "$StartMenu\Relatools\ "
+
+}
+
+
 
 Function Get-SpecialPaths {
     $SpecialFolders = @{}
@@ -68,83 +83,54 @@ function Clear-Desktop
         }
     
         Write-Output "Moving .lnk files from $($SpecialPaths['CommonDesktopDirectory']) to the Shortcuts folder"
-        Get-ChildItem -Path  $SpecialPaths['CommonDesktopDirectory'] -Filter '*.lnk' | Foreach {
+        Get-ChildItem -Path  $SpecialPaths['CommonDesktopDirectory'] -Filter '*.lnk' | ForEach-Object {
             Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
         }
     
         Write-Output "Moving .lnk files from $Desktop to the Shortcuts folder"
-        Get-ChildItem -Path $Desktop -Filter '*.lnk' | Foreach {
+        Get-ChildItem -Path $Desktop -Filter '*.lnk' | ForEach-Object {
             Move-Item -Path $_.FullName -Destination $DesktopShortcuts -ErrorAction:SilentlyContinue
+            
         }
+
+        Remove-Item $DesktopShortcuts -Force -ErrorAction SilentlyContinue
     }
-    
 
 }
 
 
-# Add PATH to env variables
+## Add PATH to env variables
 Function Add-EnvVariables{
 
     $toolListDirShortcut = "$env:systemdrive\RelaTools"
-    [Environment]::SetEnvironmentVariable("TOOLS", $toolListDirShortcut, 1)
+    [Environment]::SetEnvironmentVariable("RELATOOLS", $toolListDirShortcut, 1)
 
     $msf = "$env:systemdrive\metasploit-framework\bin"
     [Environment]::SetEnvironmentVariable("msf", $msf, 1)
 
 }
 
+## TWEAKS
+function Get-Tweaks {
   
+    if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS" )){
 
-function Get-NeccesaryFiles {
-  
-    if(-not(Test-Path "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" )){
+    New-Item -ItemType 'folder' "$env:LOCALAPPDATA\RELATIVITY\TWEAKS"
   
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
       
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.psm1"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.ps1"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/tweaks.txt" -Outfile "$env:LOCALAPPDATA\module_relativity\tweaks.txt"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\module_relativity\wallpaper.jpg"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\module_relativity\WallpaperChanger.exe" 
-  
-    #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-metasploit.ahk" -Outfile "$env:systemdrive\cache\install-metasploit.ahk"
-    #Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/install-zap.ahk" -Outfile "$env:systemdrive\cache\install-zap.ahk"
-    
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\module_relativity\tweaks.ps1" -include "$env:LOCALAPPDATA\module_relativity\tweaks.psm1" -preset "$env:LOCALAPPDATA\module_relativity\tweaks.txt" 
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -ErrorAction stop
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.ps1" -ErrorAction stop
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.txt" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.txt" -ErrorAction stop
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\wallpaper.jpg" -ErrorAction stop
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\WallpaperChanger.exe" -ErrorAction stop    
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.ps1" -include "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -preset "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.txt" -ErrorAction stop
   
   
     }
-  
-  
+    
   }
 
-function Add-DefenderBypassPath {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true, ValueFromPipeline = $true)]
-        [string[]]$Path
-    )
-    begin {
-        $Paths = @()
-    }
-    process {
-        $Paths += $Path
-    }
-    end {
-        $Paths | Foreach-Object {
-            if (-not [string]::isnullorempty($_)) {
-                Add-MpPreference -ExclusionPath $_ -Force
-               
-            }
-        }
-    }
-
-    
-} 
-#$BypassDefenderPaths = @('C:\')
-#$ByPassDefenderPaths | Add-DefenderBypassPath
-
-##
 Function Add-EnvPath {
     # Adds a path to the $ENV:Path list for a user or system if it does not already exist (in both the system and user Path variables)
     param (
@@ -161,7 +147,6 @@ Function Add-EnvPath {
         [Environment]::SetEnvironmentVariable("PATH", $NewPaths, $Location)
     }
 }
-
 
 
 #######################################  INSTALL PACKAGES ############################################
@@ -245,7 +230,7 @@ function Install-Apps
 
 }
 
-### Install PE ##
+### Install PE
 function Get-PE
 {   
 
@@ -300,7 +285,7 @@ function Get-PE
 }
 
 
-### Install Git ##
+## Install from Git
 function Get-GITPackages
 {
 
@@ -332,6 +317,57 @@ function Get-GITPackages
                     
 }
 
+
+## Install from AHK
+
+Function Get-AHKPackages
+{
+
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
+  
+    $UtilDownloadPath   = "$env:systemdrive\cache\ahk"
+    
+    If (-not (Test-Path $UtilDownloadPath)) {
+
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+    }
+
+
+    Push-Location $UtilDownloadPath 
+    # Store all the file we download for later processing
+    
+    $FilesDownloaded = @()
+    Write-Output "Downloading AHK $software"
+    
+    Foreach ($software in $global:PEAPPS.keys) {
+        Write-Output "Downloading $software"
+        if ( -not (Test-Path $software) ) {
+            try {
+                Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Write-Output "$software" >> $global:chageLog 
+                $FilesDownloaded += $software
+            }
+            catch {
+
+                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
+
+            }
+        }
+        else {
+
+            Write-Warning "File is already downloaded, skipping: $software"
+            Write-Output "$software - Existe" >> $global:chageLog 
+        }
+    }
+
+    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
+    Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
+    Push-Location "$env:SYSTEMDRIVE\cache\ahk"
+    Expand-Archive -Path $_.FullName -DestinationPath . 
+
+ }
+
+}
 
 
 

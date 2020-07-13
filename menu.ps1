@@ -1,10 +1,10 @@
 ﻿$OutputEncoding = [Console]::OutputEncoding
 
-### Funcion de instalacion de InitialSetup
+## JOIN-INITIAL
 function Join-Initial
 {
 
-    # Boxmaster
+    ## BOXSTARTER
     function Install-BoxStarter
     {
         $PathBixStarter = "C:\ProgramData\Boxstarter" 
@@ -74,7 +74,7 @@ function Join-Initial
 
 }
 
-# Comprobar $Profile
+## $PROFILE 
 function Test-PSProfile 
 {  
 
@@ -95,9 +95,7 @@ function Test-PSProfile
 
 } 
 
-
-
-# Comprobar privilegios
+## PRIVILEGE
 function Test-AdminExecution
 {
  
@@ -116,12 +114,10 @@ function Test-AdminExecution
   
 } 
 
-
-# Comprobar si el sistema es compatible
+## COMPATIBILITY
 function Test-HostSupported
 {
 
-   #
    Write-Host "[+] Comprobando compatibilidad del sistema operativo"
    if ((Get-WmiObject -class Win32_OperatingSystem).Version -eq "6.1.7601"){
      Write-Host "Windows 7 no esta soportado. ¿Deseas continuar? S/N" -ForegroundColor Yellow 
@@ -141,13 +137,10 @@ function Test-HostSupported
      }
    } else {
      Write-Host " Esta version de Windows esta soportada $osversion" -ForegroundColor Green 
-   }
- 
-   
-  
+   }  
 }
 
-
+## TAMPER
 Function Test-TamperProtection
 {
 
@@ -169,55 +162,51 @@ Function Test-TamperProtection
 }
 
 
-# Modulo funciones propias para optimizacion
-function Install-myOwnModule{
-  
- 
-  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\module_relativity" -ErrorAction SilentlyContinue
-  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/neccesary_files/module.psm1" -Outfile "$env:LOCALAPPDATA\module_relativity\module.psm1"
-  
-  Import-Module "$env:LOCALAPPDATA\module_relativity\module.psm1" -Force -ErrorAction Stop
+## MODULO
+function Install-Module{
+   
+  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY" -ErrorAction SilentlyContinue
+  Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/MODULE/module.psm1" -Outfile "$env:LOCALAPPDATA\REALATIVITY\module.psm1" -Force -ErrorAction SilentlyContinue
+  Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" -Force -ErrorAction Stop
 
 } 
 
 
-
-
-## Llamada a las funciones
+## CALL
   Test-AdminExecution;
   Test-TamperProtection;
   Test-HostSupported;
   Test-PSProfile;
-  Install-myOwnModule;
+  Install-Module;
   Install-BoxStarter;
   Add-Folders;
-  Get-NeccesaryFiles
+  Get-Tweaks
 
-} #<<<<<<< Final funcion Join-Initial
-
-
-
-## Instalacion
-
-$tools     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/tools/install.tools.ps1"
-$extra     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/extra/install.extra.ps1" 
+} #<<<<<<< Final Join-Initial
 
 
-function Install-Tools{ 
+
+## INSTALL
+
+$pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/PENTEST.TOOLS/install.pentest.ps1"
+$reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/REVERSING.TOOLS/install.reverse.ps1" 
+
+
+function Install-Petest{ 
       
     Join-Initial
     #Test-DiskSpace "Install-Tools"
-    Write-Host "[+] Instalando Herramientas..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $tools
+    Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
+    Install-BoxstarterPackage -PackageName $pentest
 }
 
 
-function Install-Extra{ 
+function Install-Reversing{ 
       
     Join-Initial
     #Test-DiskSpace "Install-Extra"
-    Write-Host "[+] Instalando Herramientas Extra..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $tools,$extra
+    Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
+    Install-BoxstarterPackage -PackageName $reversing
 }
 
 
@@ -228,19 +217,19 @@ function menu {
   Write-Host "`n"
   Write-Host "   __________________________________________________________________________________________________ " -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "  |                                         Creado por                                               |" -ForegroundColor Green 
-  Write-Host "  |                                        Victor M. Gil                                             |" -ForegroundColor Green 
+  Write-Host "  |                                        Created by:                                               |" -ForegroundColor Green 
+  Write-Host "  |                                         Victor M. Gil                                            |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "  |                                       RELATIVITY TOOLS                                           |" -ForegroundColor Green 
+  Write-Host "  |                                      RELATIVITY ENVIRONMENT                                      |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green  
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
-  Write-Host "  |                               [+] MENU INSTALACION                                               |" -ForegroundColor Green 
+  Write-Host "  |                               [+] INSTALL MENU                                                   |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
-  Write-Host "  |                               10. Instalacion principal                                          |" -ForegroundColor Green
-  Write-Host "  |                               20. Instalar Extras                                                |" -ForegroundColor Green
+  Write-Host "  |                               10. PENTEST TOOLS                                                  |" -ForegroundColor Green
+  Write-Host "  |                               20. REVERSING TOOLS (Unavalaible)                                  |" -ForegroundColor Green
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
@@ -252,21 +241,20 @@ function menu {
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green
   Write-Host ""
 
-  
-  
-  while(($inp = Read-Host -Prompt "Select an option") -ne "9"){  #> Control opciones
+  while(($inp = Read-Host -Prompt "Select an option") -ne "9"){  
   
   switch($inp){
         10 {
             Clear-Host;
-            Install-Tools;
+            Install-Pentest;
             pause;
             menu;
             break
         }
         20 {
             Clear-Host;
-            Install-Extra;
+            #Install-Reversing;
+            Write-Host "No disponible"
             pause;
             menu;
             break
