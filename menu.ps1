@@ -228,7 +228,7 @@ function Install-Pentest{
     Test-DiskSpace "Install-Pentest"
     #Test-DiskSpace "Install-Tools"
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $pentest
+    #Install-BoxstarterPackage -PackageName $pentest
 }
 
 
