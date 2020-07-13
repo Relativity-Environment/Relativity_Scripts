@@ -339,11 +339,11 @@ Function Get-AHKPackages
     $FilesDownloaded = @()
     Write-Output "Downloading AHK $software"
     
-    Foreach ($software in $global:PEAPPS.keys) {
+    Foreach ($software in $global:AHKPackages.keys) {
         Write-Output "Downloading $software"
         if ( -not (Test-Path $software) ) {
             try {
-                Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
             }
