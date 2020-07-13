@@ -201,6 +201,9 @@ function Install-Module{
 } 
 
 
+
+Export-ModuleMember -Function *
+
 ## CALL
   Test-AdminExecution;
   Test-TamperProtection;
