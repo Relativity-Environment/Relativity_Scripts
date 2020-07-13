@@ -209,7 +209,7 @@ function Install-Module{
   Test-PSProfile;
   Install-Module;
   Install-BoxStarter;
-  Add-Folders;
+  Add-InstallFolders;
   Get-Tweaks
 
 } #<<<<<<< Final Join-Initial

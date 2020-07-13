@@ -1,5 +1,5 @@
 ﻿
-function Add-Folders{
+function Add-InstallFolders{
   
   
     # Start Menu (RelaTools)
