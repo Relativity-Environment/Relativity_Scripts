@@ -222,7 +222,7 @@ $pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 $reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/REVERSING.TOOLS/install.reverse.ps1" 
 
 
-function Install-Petest{ 
+function Install-Pentest{ 
       
     Join-Initial
     Test-DiskSpace "Install-Pentest"
