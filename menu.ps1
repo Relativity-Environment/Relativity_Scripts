@@ -80,8 +80,8 @@ Function Test-DiskSpace([string]$instalacion)
 
       Switch (($instalacion) )
     {
-      "Install-Pentest    "{$espacio = 10}
-      "Install-REversing  "{$espacio = 10}
+      "Install-Pentest"{$espacio = 10}
+      "Install-REversing"{$espacio = 10}
       
     }
 
@@ -94,9 +94,9 @@ Function Test-DiskSpace([string]$instalacion)
         exit
 
       } else {
-        Enable-ComputerRestore -Drive "$env:systemdrive"
-        Write-Host " > $espacio, espacio requerido correcto" -ForegroundColor Green
+        Write-Host " > $espacio GB; espacio requerido correcto" -ForegroundColor Green
         # crea punto de restauracion
+        Enable-ComputerRestore -Drive "$env:systemdrive" -ErrorAction SilentlyContinue
         Add-Checkpoint $instalacion
     }
 
