@@ -237,6 +237,7 @@ UnpinStartMenuTiles
 UnpinTaskbarIcons
 
 ### Auxiliary Functions ###
+Disable-SecurityCenter
 Add-ContextMenu
 Rename-PC
 Add-Background

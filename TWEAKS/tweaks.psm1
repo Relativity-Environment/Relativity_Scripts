@@ -3869,7 +3869,14 @@ function Add-Background
 
 }
 
+function Disable-SecurityCenter
+{
 
+	## Disable Security Center
+	Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SecurityHealthService' -Name "start" -Value "4"
+	Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\wscsvc' -Name "start" -Value "4"
+
+}
 
 # Export functions
 Export-ModuleMember -Function *
