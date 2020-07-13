@@ -152,7 +152,6 @@ Function Test-TamperProtection
   }else{
   
     Write-Host "[!] Por favor deshabilita la Proteccion contra alteraciones de Windows Defender (Tamper Protection) e intentalo de nuevo." -ForegroundColor Red
-    #Write-Host "[!] Es necesario que reinicies el equipo despues del cambio" -ForegroundColor Yellow
     Write-Host "`t[+] Hint: https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html" -ForegroundColor Yellow
     exit
   
@@ -200,7 +199,7 @@ function Install-Pentest{
     Join-Initial
     Test-DiskSpace "Install-Pentest"
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    #Install-BoxstarterPackage -PackageName $pentest
+    Install-BoxstarterPackage -PackageName $pentest
 }
 
 
