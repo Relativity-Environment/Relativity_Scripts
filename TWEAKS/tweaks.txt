@@ -239,5 +239,6 @@ UnpinTaskbarIcons
 ### Auxiliary Functions ###
 Add-ContextMenu
 Rename-PC
+Add-Background
 # WaitForKey
 # Restart
