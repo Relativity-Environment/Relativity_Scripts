@@ -159,7 +159,6 @@ Function Add-Checkpoint($name){
    }
 }
 
-
 ## TWEAKS
 function Get-Tweaks {
   
@@ -171,11 +170,12 @@ function Get-Tweaks {
   
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
       
-    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -ErrorAction stop
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.psm1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -ErrorAction stop
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.ps1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.ps1" -ErrorAction stop
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/tweaks.txt" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.txt" -ErrorAction stop
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/wallpaper.jpg" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\wallpaper.jpg" -ErrorAction stop
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\WallpaperChanger.exe" -ErrorAction stop    
+    
     powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.ps1" -include "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -preset "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.txt" -ErrorAction stop
   
     }
