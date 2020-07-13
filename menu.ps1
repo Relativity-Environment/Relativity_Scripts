@@ -75,9 +75,8 @@ function Join-Initial
 }
 
 ## DISKSPACE & CHKPOINT
-function Test-DiskSpace([string]$instalacion)
+Function Test-DiskSpace([string]$instalacion)
 {
-
 
       Switch (($instalacion) )
     {
@@ -105,7 +104,7 @@ function Test-DiskSpace([string]$instalacion)
 }
 
 ## $PROFILE 
-function Test-PSProfile 
+Function Test-PSProfile 
 {  
 
   $CreatePowershellProfile = $true
