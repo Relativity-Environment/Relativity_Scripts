@@ -3,8 +3,8 @@ function Add-Folders{
   
   
     # Start Menu (RelaTools)
-    $ToolslnkPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
-    New-Item -ItemType "directory" $ToolslnkPath -Force -ErrorAction SilentlyContinue | Out-Null
+    $ToolsMenuPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
+    New-Item -ItemType "directory" $ToolsMenuPath -Force -ErrorAction SilentlyContinue | Out-Null
     
 
     # Cache PATH - RalaTools PATH
@@ -31,7 +31,7 @@ function Add-PentestMenu
 
     $Download = "$env:LOCALAPPDATA\RELATIVITY\"
     Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
-    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'    
+    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'    
     Expand-Archive -path "$Download\Pentest_Tools.zip" -DestinationPath $StartMenu
 
     $value = "$env:USERPROFILE\Desktop\"
@@ -98,17 +98,19 @@ function Clear-Desktop
 
 }
 
-
-## Add PATH to env variables
-Function Add-EnvVariables{
-
-    $toolListDirShortcut = "$env:systemdrive\RelaTools"
-    [Environment]::SetEnvironmentVariable("RELATOOLS", $toolListDirShortcut, 1)
-
-    $msf = "$env:systemdrive\metasploit-framework\bin"
-    [Environment]::SetEnvironmentVariable("msf", $msf, 1)
+function Remove-DesktioIni
+{
+       
+    # Remove desktop.ini files
+    try {
+        Get-ChildItem -Path (Join-Path ${Env:UserProfile} "Desktop") -Hidden -Filter "desktop.ini" -Force | ForEach-Object {$_.Delete()}
+        Get-ChildItem -Path (Join-Path ${Env:Public} "Desktop") -Hidden -Filter "desktop.ini" -Force | ForEach-Object {$_.Delete()}
+    } catch {
+        Write-Host "Could not remove desktop.ini files"
+    }
 
 }
+
 
 ## TWEAKS
 function Get-Tweaks {

@@ -3869,6 +3869,17 @@ function Add-Background
 
 }
 
+
+## Add RELATOOLS PATH to env variables
+Function Add-EnvRelaTools{
+
+    $toolListDirShortcut = "$env:systemdrive\RelaTools"
+    [Environment]::SetEnvironmentVariable("RELATOOLS", $toolListDirShortcut, 1)
+
+
+}
+
+
 function Disable-SecurityCenter
 {
 
