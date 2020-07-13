@@ -98,7 +98,7 @@ function Test-DiskSpace([string]$instalacion)
         Enable-ComputerRestore -Drive "$env:systemdrive"
         Write-Host " > $espacio, espacio requerido correcto" -ForegroundColor Green
         # crea punto de restauracion
-        Create-Checkpoint $instalacion
+        Add-Checkpoint $instalacion
     }
 
   
@@ -226,7 +226,6 @@ function Install-Pentest{
       
     Join-Initial
     Test-DiskSpace "Install-Pentest"
-    #Test-DiskSpace "Install-Tools"
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     #Install-BoxstarterPackage -PackageName $pentest
 }

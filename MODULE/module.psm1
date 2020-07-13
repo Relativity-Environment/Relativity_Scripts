@@ -112,7 +112,7 @@ function Remove-DesktioIni
 }
 
 ## Restore POINT
-Function Create-Checkpoint($name){
+Function Add-Checkpoint($name){
     $exist = Get-ComputerRestorePoint | Where-Object {$_.description -match $name } | Select-Object -ExpandProperty Description
     
     if($exist -eq $name)
@@ -135,7 +135,7 @@ function Get-Tweaks {
   
     if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS" )){
 
-    New-Item -ItemType 'folder' "$env:LOCALAPPDATA\RELATIVITY\TWEAKS"
+    New-Item -ItemType 'Directory' "$env:LOCALAPPDATA\RELATIVITY\TWEAKS"
   
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
       
