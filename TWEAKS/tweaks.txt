@@ -241,6 +241,5 @@ Disable-SecurityCenter
 Add-EnvRelaTools
 Add-ContextMenu
 Rename-PC
-Add-Background
 # WaitForKey
 # Restart

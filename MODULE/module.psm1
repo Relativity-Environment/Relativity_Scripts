@@ -201,6 +201,43 @@ Function Add-EnvPath {
 }
 
 
+function Add-Background
+{
+
+	#### Update background ####
+	Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
+	# Set desktop background to black
+	Set-ItemProperty -Path 'HKCU:\Control Panel\Colors' -Name Background -Value "0 0 0" -Force | Out-Null
+	# Set desktop wallpaper using WallpaperChanger utility
+	$wallpaperName = 'wallpaper.jpg'
+	$fileBackground = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" $wallpaperName
+	$publicWallpaper = Join-Path ${env:public} $wallpaperName
+	$WallpaperChanger = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" 'WallpaperChanger.exe'
+	Invoke-Expression "$WallpaperChanger $fileBackground 3"
+	# Copy background images
+	$background = 'wallpaper.jpg'
+	$backgrounds = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\"  $background
+	Invoke-Expression "copy $backgrounds ${Env:USERPROFILE}\Pictures"
+
+	foreach ($item in "0", "1", "2") {
+	# Try to set it multiple times! Windows 10 is not consistent
+	if ((Test-Path $publicWallpaper) -eq $false)
+	{
+		Copy-Item -Path $fileBackground -Destination $publicWallpaper -Force 
+	}
+	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
+	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
+	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
+	Start-Sleep -seconds 3
+	rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
+
+	}	
+
+
+}
+
+
+
 #######################################  INSTALL PACKAGES ############################################
 
 
