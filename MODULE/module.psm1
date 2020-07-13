@@ -1,4 +1,34 @@
 ﻿
+## DISKSPACE & CHKPOINT
+Function Test-DiskSpace([string]$instalacion)
+{
+
+      Switch (($instalacion) )
+    {
+      "Install-Pentest"{$espacio = 10}
+      "Install-REversing"{$espacio = 10}
+      
+    }
+
+    $disk = $env:systemdrive.Split(":")[0] 
+    $disk = Get-PSDrive C
+      Start-Sleep -Seconds 1
+      if (-Not (($disk.used + $disk.free)/1GB -gt $espacio)){
+        Write-Host " [ERR] Esta instalacion requiere de $espacio GB de espacio`n" -ForegroundColor Red
+        Read-Host "Pulsa cualquier tecla para continuar"
+        exit
+
+      } else {
+        Write-Host " > $espacio GB; espacio requerido correcto" -ForegroundColor Green
+        # crea punto de restauracion
+        Enable-ComputerRestore -Drive "$env:systemdrive" -ErrorAction SilentlyContinue
+        Add-Checkpoint $instalacion
+    }
+
+  
+}
+
+
 function Add-InstallFolders{
   
   
@@ -1198,8 +1228,6 @@ Add-Content -PassThru "$toolsPath\    \README" -Value $content
 
 
 } #< end Add-Toolslnk
-
-
 
 
 Export-ModuleMember -Function *
