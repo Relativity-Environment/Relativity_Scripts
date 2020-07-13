@@ -166,6 +166,8 @@ function Get-Tweaks {
     if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS" )){
 
     New-Item -ItemType 'Directory' "$env:LOCALAPPDATA\RELATIVITY\TWEAKS"
+
+
   
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
       
@@ -176,8 +178,8 @@ function Get-Tweaks {
     Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/TWEAKS/WallpaperChanger.exe" -Outfile "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\WallpaperChanger.exe" -ErrorAction stop    
     powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.ps1" -include "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.psm1" -preset "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\tweaks.txt" -ErrorAction stop
   
-  
     }
+
     
   }
 
