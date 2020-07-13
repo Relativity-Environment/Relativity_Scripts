@@ -111,6 +111,24 @@ function Remove-DesktioIni
 
 }
 
+## Restore POINT
+Function Create-Checkpoint($name){
+    $exist = Get-ComputerRestorePoint | Where-Object {$_.description -match $name } | Select-Object -ExpandProperty Description
+    
+    if($exist -eq $name)
+    {
+            
+        Write-Output "$name exist!"
+    
+    
+       }else{
+        
+        Write-Output "Checkpoint create: $name"
+        Checkpoint-Computer -Description "$name"
+    
+   }
+}
+
 
 ## TWEAKS
 function Get-Tweaks {

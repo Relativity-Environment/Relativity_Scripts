@@ -74,6 +74,36 @@ function Join-Initial
 
 }
 
+## DISKSPACE & CHKPOINT
+function Test-DiskSpace([string]$instalacion)
+{
+
+
+      Switch (($instalacion) )
+    {
+      "Install-Pentest    "{$espacio = 10}
+      "Install-REversing  "{$espacio = 10}
+      
+    }
+
+    $disk = $env:systemdrive.Split(":")[0] 
+    $disk = Get-PSDrive C
+      Start-Sleep -Seconds 1
+      if (-Not (($disk.used + $disk.free)/1GB -gt $espacio)){
+        Write-Host " [ERR] Esta instalacion requiere de $espacio GB de espacio`n" -ForegroundColor Red
+        Read-Host "Pulsa cualquier tecla para continuar"
+        exit
+
+      } else {
+        Enable-ComputerRestore -Drive "$env:systemdrive"
+        Write-Host " > $espacio, espacio requerido correcto" -ForegroundColor Green
+        # crea punto de restauracion
+        Create-Checkpoint $instalacion
+    }
+
+  
+}
+
 ## $PROFILE 
 function Test-PSProfile 
 {  
@@ -195,6 +225,7 @@ $reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 function Install-Petest{ 
       
     Join-Initial
+    Test-DiskSpace "Install-Pentest"
     #Test-DiskSpace "Install-Tools"
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $pentest
@@ -204,7 +235,7 @@ function Install-Petest{
 function Install-Reversing{ 
       
     Join-Initial
-    #Test-DiskSpace "Install-Extra"
+    Test-DiskSpace "Install-Reversing"
     Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $reversing
 }
