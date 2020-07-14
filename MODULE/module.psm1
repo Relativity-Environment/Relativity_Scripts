@@ -59,13 +59,20 @@ function Add-PentestMenu
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
-    $Download = "$env:LOCALAPPDATA\RELATIVITY\"
-    Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
-    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'    
-    Expand-Archive -path "$Download\Pentest_Tools.zip" -DestinationPath $StartMenu
+    if(-not(Test-Path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools\Pentest_Tools'))
+    {
 
-    $value = "$env:USERPROFILE\Desktop\"
-    New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"
+        $Download = "$env:LOCALAPPDATA\RELATIVITY\"
+        Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
+        $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'    
+        Expand-Archive -path "$Download\Pentest_Tools.zip" -DestinationPath $StartMenu
+    
+        $value = "$env:USERPROFILE\Desktop\"
+        New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"
+
+
+    }else{}
+
 
 }
 
