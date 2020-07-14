@@ -164,7 +164,7 @@ Function Test-TamperProtection
 ## MODULO
 function Install-Module{
    
-  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY" 
+  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY" -ErrorAction SilentlyContinue
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/MODULE/module.psm1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\module.psm1" -ErrorAction SilentlyContinue
   Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" 
 
