@@ -65,7 +65,7 @@ function Add-PentestMenu
     Expand-Archive -path "$Download\Pentest_Tools.zip" -DestinationPath $StartMenu
 
     $value = "$env:USERPROFILE\Desktop\"
-    New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Relatools\Pentest_Tools"
+    New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"
 
 }
 
