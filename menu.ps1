@@ -144,7 +144,7 @@ function Test-HostSupported
 Function Test-TamperProtection
 {
 
-  $tamperTrue = Get-MpComputerStatus | Select-Object IsTamperProtected | Where-Object {$_.IsTamperProtected -eq $true} 
+  $tamperTrue = Get-MpComputerStatus | Select-Object IsTamperProtected | Where-Object {$_.IsTamperProtected -eq $true} -ErrorAction SilentlyContinue
   if($tamperTrue -eq $null){
   
     Write-Host "`tTamper Protection is off, looks good." -ForegroundColor Green
