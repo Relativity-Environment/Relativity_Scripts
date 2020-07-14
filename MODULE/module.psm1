@@ -71,8 +71,11 @@ function Add-PentestMenu
         New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"
 
 
-    }else{}
-
+    }else
+    {
+     
+        $value = "$env:USERPROFILE\Desktop\"
+        New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"}
 
 }
 
