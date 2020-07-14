@@ -178,8 +178,8 @@ function Install-Module{
   Test-PSProfile;
   Install-Module;
   Install-BoxStarter;
-  Add-InstallFolders;
-  Get-Tweaks
+  Add-InstallFolders
+  
 
 } #<<<<<<< Final Join-Initial
 
@@ -195,6 +195,7 @@ function Install-Pentest{
       
     Join-Initial
     Test-DiskSpace "Install-Pentest"
+    Get-Tweaks
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $pentest
 }
@@ -204,6 +205,7 @@ function Install-Reversing{
       
     Join-Initial
     Test-DiskSpace "Install-Reversing"
+    Get-Tweaks
     Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $reversing
 }
