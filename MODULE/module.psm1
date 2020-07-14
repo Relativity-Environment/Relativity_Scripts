@@ -504,7 +504,6 @@ function Install-ChocoPackages
                 
                 choco install $_ -y
                 refreshenv
-                if (Test-PendingReboot) { Invoke-Reboot }  
                 Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
             catch {
