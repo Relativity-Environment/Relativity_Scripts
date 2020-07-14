@@ -493,6 +493,8 @@ function Install-ChocoPackages
             try {
                 
                 cinst $_ --force
+                refreshenv
+                if (Test-PendingReboot) { Invoke-Reboot }  
                 Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
             catch {
