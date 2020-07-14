@@ -73,7 +73,7 @@ function Add-PentestMenu
 
     }else
     {
-     
+        $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'    
         $value = "$env:USERPROFILE\Desktop\"
         New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools"}
 
