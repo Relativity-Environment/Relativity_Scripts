@@ -492,7 +492,7 @@ function Install-ChocoPackages
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                cinst $_ --force
+                choco install $_ -y
                 refreshenv
                 if (Test-PendingReboot) { Invoke-Reboot }  
                 Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
