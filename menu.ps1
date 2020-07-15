@@ -194,8 +194,8 @@ $reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 function Install-Pentest{ 
       
     Join-Initial
-    Test-DiskSpace "Install-Pentest"
-    Get-Tweaks
+    #Test-DiskSpace "Install-Pentest"
+    #Get-Tweaks
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $pentest
 }
