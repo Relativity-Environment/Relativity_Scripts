@@ -533,6 +533,8 @@ $content = @"
 
     $ arpspoof.exe --list | [-i iface] [--oneway] victim-ip [target-ip]
 
+    >>
+
 "@
 Add-Content -PassThru "$toolsPath\arpspoof\README" -Value $content
 
@@ -612,7 +614,7 @@ $content = @"
 "@
 Add-Content -PassThru "$toolsPath\wapiti3-3.0.3\README" -Value $content
 
-# > 
+#
 $content = @" 
 
  - DOCUMENTATION:
