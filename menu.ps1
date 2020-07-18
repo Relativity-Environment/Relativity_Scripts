@@ -144,19 +144,21 @@ function Test-HostSupported
 Function Test-TamperProtection
 {
 
-  $tamperTrue = Get-MpComputerStatus | Select-Object IsTamperProtected | Where-Object {$_.IsTamperProtected -eq $true} -ErrorAction SilentlyContinue
-  if($tamperTrue -eq $null){
-  
-    Write-Host "`tTamper Protection is off, looks good." -ForegroundColor Green
-  
-  }else{
-  
-    Write-Host "[!] Por favor deshabilita la Proteccion contra alteraciones de Windows Defender (Tamper Protection) e intentalo de nuevo." -ForegroundColor Red
-    Write-Host "`t[+] Hint: https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html" -ForegroundColor Yellow
-    exit
-  
-  }
- 
+  if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {
+    
+    $tamperTrue = Get-MpComputerStatus | Select-Object IsTamperProtected | Where-Object {$_.IsTamperProtected -eq $true} -ErrorAction SilentlyContinue
+    if($tamperTrue -eq $null){
+    
+      Write-Host "`tTamper Protection is off, looks good." -ForegroundColor Green
+    
+    }else{
+    
+      Write-Host "[!] Por favor deshabilita la Proteccion contra alteraciones de Windows Defender (Tamper Protection) e intentalo de nuevo." -ForegroundColor Red
+      Write-Host "`t[+] Hint: https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html" -ForegroundColor Yellow
+      exit
+    
+    }
+  }else{}
   
 }
 
@@ -195,9 +197,20 @@ function Install-Pentest{
       
     Join-Initial
     Test-DiskSpace "Install-Pentest"
-    Get-Tweaks
-    Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $pentest
+    if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
+   
+    if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_completed"))
+    {
+      Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
+      Install-BoxstarterPackage -PackageName $pentest
+
+    }else{
+
+      Write-Host "Las herramientas de pentest ya estan instaladas escoge otra opcion" -BackgroundColor Black -ForegroundColor Yellow
+      menu;
+
+    } 
+   
 }
 
 
@@ -210,7 +223,7 @@ function Install-Reversing{
     Install-BoxstarterPackage -PackageName $reversing
 }
 
-
+#Restore-Computer -RestorePoint 255 -Confirm
 
 ### Menu Instalador 
 function menu {
@@ -219,9 +232,9 @@ function menu {
   Write-Host "   __________________________________________________________________________________________________ " -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
   Write-Host "  |                                        Created by:                                               |" -ForegroundColor Green 
-  Write-Host "  |                                         Victor M. Gil                                            |" -ForegroundColor Green 
+  Write-Host "  |                                       Victor M. Gil                                              |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "  |                                      RELATIVITY ENVIRONMENT                                      |" -ForegroundColor Green 
+  Write-Host "  |                                   RELATIVITY ENVIRONMENT                                         |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green 
   Write-Host "  |                                                                                                  |" -ForegroundColor Green
   Write-Host "  |__________________________________________________________________________________________________|" -ForegroundColor Green  
@@ -262,7 +275,7 @@ function menu {
         }
         BACK {
             Clear-Host;
-            Write-Host "Has elegido restaurar el sistema"
+            Write-Host "[!] Para restaurar el sistema seguir la sigiente guia:" -ForegroundColor Red
             pause;
             menu;
             break
