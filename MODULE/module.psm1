@@ -331,17 +331,23 @@ function Install-Apps
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) 
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) -ErrorAction SilentlyContinue
         
     }
 
                
     # Kick off msi installs
+    $msiInstalled = Get-Content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" -ErrorAction SilentlyContinue
     Write-Output 'Search msi files'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'}
-       
+    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
+    Write-Output "$_" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
+    
 
 }
+
+
+
+
 
 ### Install PE
 function Get-PE
@@ -483,7 +489,7 @@ Function Get-AHKPackages
     Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
     Push-Location "$env:SYSTEMDRIVE\cache\ahk"
     Expand-Archive -Path $_.FullName -DestinationPath . 
-    Write-Output "$_.FullName" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_install"
+    
  }
 
 }
