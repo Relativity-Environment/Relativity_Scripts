@@ -337,13 +337,26 @@ function Install-Apps
 
                
     # Kick off msi installs
-    $msiInstalled = Get-Content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" -ErrorAction SilentlyContinue
-    Write-Output 'Search msi files'
-    Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
-    Write-Output "$_" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
+    #$msiInstalled = Get-Content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" -ErrorAction SilentlyContinue
+    #Write-Output 'Search msi files'
+    #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
+    #Write-Output "$_" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
     
-
+    $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
+    if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install")){New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "pentest_msi_install" }
+    ForEach ($name in $msi) {
+              
+        $content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" 
+        if(-not($content | select-string -pattern "$name")){
+        
+            Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
+            Write-Output "$name" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
+        
+    
+        }else{}
 }
+
+
 
 
 
