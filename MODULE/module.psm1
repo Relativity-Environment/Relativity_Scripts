@@ -341,7 +341,7 @@ function Install-Apps
     #Write-Output 'Search msi files'
     #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
     #Write-Output "$_" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
-    
+    Write-Output 'Instalando paquetes MSI'
     $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
     if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install")){New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "pentest_msi_install" }
     ForEach ($name in $msi) {
