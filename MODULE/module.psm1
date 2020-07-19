@@ -488,7 +488,7 @@ Function Get-AHKPackages
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
     Push-Location "$env:SYSTEMDRIVE\cache\ahk"
-    Expand-Archive -Path $_.FullName -DestinationPath . 
+    Expand-Archive -Path $_.FullName -DestinationPath . -ErrorAction SilentlyContinue
     
  }
 
