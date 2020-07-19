@@ -489,7 +489,7 @@ Function Get-AHKPackages
                 Write-Output "Downloading AHK $software"
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                Write-Output "$script" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
+                Write-Output "$software" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
             catch {
 
