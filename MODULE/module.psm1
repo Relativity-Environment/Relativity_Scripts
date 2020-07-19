@@ -264,16 +264,11 @@ function Install-Apps
       
 
     Push-Location $UtilDownloadPath 
-    # Store all the file we download for later processing
-    
-    #$FilesDownloaded = @()
-
    
     Foreach ($software in $global:ManualDownloadInstall.keys) {
     $path       = [io.path]::GetFileNameWithoutExtension($software)
     $matches    = Get-ChildItem $UtilBinPath 
     
-    #foreach($match in $matches){
     
         if (-not(Test-Path "$UtilBinPath\$path") ) {
             
@@ -362,7 +357,6 @@ function Install-Apps
     
   }
 
-#}
 
 
 ### Install PE
