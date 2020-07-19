@@ -349,7 +349,7 @@ function Install-Apps
         $content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" 
         if(-not($content | select-string -pattern "$name")){
         
-            Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
+            Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
             Write-Output "$name" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
         
     
