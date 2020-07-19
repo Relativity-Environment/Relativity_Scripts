@@ -537,7 +537,7 @@ function Install-ChocoPackages
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                choco install "$_" -y
+                choco install "$_" --update
                 refreshenv
                 Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
             }
