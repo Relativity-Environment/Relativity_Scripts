@@ -440,7 +440,7 @@ Foreach ($software in $global:GitPackages.keys) {
                     Write-Output "Descargando de GITHUB $software"
                     Write-Output "$software" >> $global:chageLog 
     
-                    git clone Write-Host $global:GitPackages[$software] -q 
+                    git clone $global:GitPackages[$software] -q 
                 
                 }
                 
