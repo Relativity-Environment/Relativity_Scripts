@@ -351,12 +351,13 @@ function Install-Apps
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
            New-Item -ItemType File -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "$name.log"
+           Write-Host "$name is installed" > "$env:LOCALAPPDATA\RELATIVITY\$name.log"
         
         }else{}
     
   }
 
-
+}
 
 
 
