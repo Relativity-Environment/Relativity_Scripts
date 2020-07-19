@@ -265,51 +265,65 @@ function Install-Apps
     Push-Location $UtilDownloadPath 
     # Store all the file we download for later processing
     
-    $FilesDownloaded = @()
+    #$FilesDownloaded = @()
 
-    
+   
     Foreach ($software in $global:ManualDownloadInstall.keys) {
-        Write-Output "Downloading $software"
-              
-
-        if ( -not (Test-Path $software) ) {
+    
+    $path = [io.path]::GetFileNameWithoutExtension($software)
+    foreach($match in $matches){
+    
+        if (-not(Test-Path "$UtilBinPath\$path") ) {
+            
             try {
                 
+                Write-Output "Downloading $software"
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                $FilesDownloaded += $software
+                #$FilesDownloaded += $software
                
 
             }
             catch {
 
-                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction "SilentlyContinue"
+                Write-Output "$software - Fallo"  -ErrorAction "SilentlyContinue"
+                Write-Output "$software - Fallo" >> $global:chageLog  
 
             }
         }
         else {
+
             Write-Warning "File is already downloaded, skipping: $software"
+            Write-Output "$software - Existe" 
             Write-Output "$software - Existe" >> $global:chageLog 
         }
+     }
     }
-
-    # Extracting self-contained binaries (rar% 7z files) to our bin folder
+    # Extracting self-contained binaries (rar / 7z files) to our bin folder
     Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
     $Rars = Get-ChildItem -filter "*.rar" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($rar in $Rars)
     {   
-        &$Winrar x $rar.FullName $UtilBinPath
+        &$Winrar x $rar.FullName $UtilBinPath\$($_.Basename)
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
        }
 
-   $7zs = Get-ChildItem -filter "*.7z" -path "$UtilDownloadPath"-Recurse
+    $7zs = Get-ChildItem -filter "*.7z" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($7z in $7zs)
     {   
-        &$Winrar x $7z.FullName $UtilBinPath
+        &$Winrar x $7z.FullName $UtilBinPath\$($_.Basename)
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
-     }
+    }
+
+    $gzs = Get-ChildItem -filter "*.gz" -path "$UtilDownloadPath"-Recurse
+    $WinRar = "C:\Program Files\WinRAR\winrar.exe"
+    foreach ($gz in $gzs)
+    {   
+        &$Winrar x $gz.FullName $UtilBinPath\$($_.Basename)
+        Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+    }
     
 
     # Extracting self-contained binaries (zip files) to our bin folder
@@ -343,28 +357,32 @@ function Get-PE
         mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
 
-
     Push-Location $UtilDownloadPath 
-    # Store all the file we download for later processing
-    
-    $FilesDownloaded = @()
-    Write-Output "Downloading PE $software"
-    
+       
+    #$FilesDownloaded = @()
+        
     Foreach ($software in $global:PEAPPS.keys) {
-        Write-Output "Downloading $software"
-        if ( -not (Test-Path $software) ) {
+        
+        $path = [io.path]::GetFileNameWithoutExtension($software)
+
+        if ( -not (Test-Path "$UtilBinPath\$path") ) {
             try {
+
+                Write-Output "Downloading $software"
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                $FilesDownloaded += $software
+                #$FilesDownloaded += $software
+            
             }
             catch {
 
+                
                 Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
 
             }
         }
         else {
+            
             Write-Warning "File is already downloaded, skipping: $software"
             Write-Output "$software - Existe" >> $global:chageLog 
         }
@@ -388,17 +406,22 @@ function Get-PE
 function Get-GITPackages
 {
 
-    $destiny = "$env:systemdrive\RelaTools"
-    Set-Location $destiny
-       
-    if ($global:GitPackages.Count -gt 0) {
-        $global:GitPackages | Foreach-Object {
-             try {
+    $UtilBinPath = "$env:systemdrive\RelaTools"
+    Set-Location $UtilBinPath
+
+Foreach ($software in $global:GitPackages.keys) {
+    
+    $path = [io.path]::GetFileNameWithoutExtension($software)
+
+    if (-not (Test-Path "$UtilBinPath\$path")){
+               
+            try {
                     
                     Write-Output "Descargando de GITHUB $_"
                     Write-Output "$_" >> $global:chageLog 
     
-                    git clone $_ -q
+                    git clone $_ -q 
+                
                 }
                 
                 catch {
@@ -408,13 +431,13 @@ function Get-GITPackages
             }      
         }
     }
-                else {
+    else {
                    
-                    Write-Output 'There were no git to download!'
-                    Write-Output 'There were no git to download!' >> $global:chageLog 
-                }
-                    
-}
+        Write-Output 'There were no git to download!'
+        Write-Output 'There were no git to download!' >> $global:chageLog 
+    }
+ }
+
 
 
 ## Install from AHK
@@ -431,20 +454,17 @@ Function Get-AHKPackages
         mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
     }
 
-
     Push-Location $UtilDownloadPath 
-    # Store all the file we download for later processing
-    
-    $FilesDownloaded = @()
-    Write-Output "Downloading AHK $software"
-    
+              
     Foreach ($software in $global:AHKPackages.keys) {
-        Write-Output "Downloading $software"
-        if ( -not (Test-Path $software) ) {
+        
+        if (-not(Test-Path $software) ) {
             try {
+
+                Write-Output "Downloading AHK $software"
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                $FilesDownloaded += $software
+                           
             }
             catch {
 
@@ -463,15 +483,12 @@ Function Get-AHKPackages
     Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
     Push-Location "$env:SYSTEMDRIVE\cache\ahk"
     Expand-Archive -Path $_.FullName -DestinationPath . 
-
+    Write-Output "$_.FullName" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_install"
  }
 
 }
 
-
-
 ### Install Choco ##
-
 function Get-ChocoPackages {
     if (get-command clist -ErrorAction:SilentlyContinue) {
         clist -lo -r -all | ForEach-Object {
@@ -502,7 +519,7 @@ function Install-ChocoPackages
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
-                choco install $_ -y
+                choco install "$_" -y
                 refreshenv
                 Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
             }

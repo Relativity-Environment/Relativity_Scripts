@@ -199,19 +199,13 @@ function Install-Pentest{
     Test-DiskSpace "Install-Pentest"
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
-    if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_completed"))
-    {
-      Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-      Install-BoxstarterPackage -PackageName $pentest
-
-    }else{
-
-      Write-Host "Las herramientas de pentest ya estan instaladas escoge otra opcion" -BackgroundColor Black -ForegroundColor Yellow
-      menu;
-
-    } 
+    Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
+    Install-BoxstarterPackage -PackageName $pentest
+    Write-Host "Las herramientas de pentest ya estan instaladas escoge otra opcion" -BackgroundColor Black -ForegroundColor Yellow
+ 
+  } 
    
-}
+
 
 
 function Install-Reversing{ 
