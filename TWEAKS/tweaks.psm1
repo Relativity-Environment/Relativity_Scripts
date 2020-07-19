@@ -3809,7 +3809,7 @@ function Add-ContextMenu
 $valueCMD = @"
 PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList '/s,/k,pushd,%V' -Verb RunAs"
 "@
-	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command' -Name "(Default)" -Value $value
+	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedCmd\command' -Name "(Default)" -Value $valueCMD
 
 	# PS MENU CONTEXT
 	New-Item -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS' -Force | Out-Null
@@ -3819,7 +3819,7 @@ PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList
 $valuePS = @"
 PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList '/s,/c,pushd %V && powershell' -Verb RunAs"
 "@
-	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Name "(Default)" -Value $value
+	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Name "(Default)" -Value $valuePS
 
 
 }
