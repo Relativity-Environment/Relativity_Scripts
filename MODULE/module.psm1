@@ -469,6 +469,8 @@ Function Get-AHKPackages
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
   
     $UtilDownloadPath   = "$env:systemdrive\cache\ahk"
+
+   
     
     If (-not (Test-Path $UtilDownloadPath)) {
 
@@ -476,16 +478,17 @@ Function Get-AHKPackages
     }
 
     Push-Location $UtilDownloadPath 
-              
+    $content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload" -ErrorAction SilentlyContinue
     Foreach ($software in $global:AHKPackages.keys) {
         
-        if (-not(Test-Path $software) ) {
+        if (-not($content | select-string -pattern $software) ) {
+           
             try {
 
                 Write-Output "Downloading AHK $software"
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                           
+                Write-Output "$script" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
             catch {
 
