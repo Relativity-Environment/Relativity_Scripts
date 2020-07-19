@@ -273,7 +273,7 @@ function Install-Apps
     $path       = [io.path]::GetFileNameWithoutExtension($software)
     $matches    = Get-ChildItem $UtilBinPath 
     
-    foreach($match in $matches){
+    #foreach($match in $matches){
     
         if (-not(Test-Path "$UtilBinPath\$path") ) {
             
@@ -362,7 +362,7 @@ function Install-Apps
     
   }
 
-}
+#}
 
 
 ### Install PE
