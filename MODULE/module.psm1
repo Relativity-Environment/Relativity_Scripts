@@ -360,8 +360,6 @@ function Install-Apps
 }
 
 
-
-
 ### Install PE
 function Get-PE
 {   
@@ -436,10 +434,10 @@ Foreach ($software in $global:GitPackages.keys) {
                
             try {
                     
-                    Write-Output "Descargando de GITHUB $_"
-                    Write-Output "$_" >> $global:chageLog 
+                    Write-Output "Descargando de GITHUB $software"
+                    Write-Output "$software" >> $global:chageLog 
     
-                    git clone $_ -q 
+                    git clone Write-Host $global:GitPackages[$software] -q 
                 
                 }
                 
@@ -449,11 +447,12 @@ Foreach ($software in $global:GitPackages.keys) {
                     Write-Warning "Unable to download git package: $($_)" >> $global:chageLog 
             }      
         }
-    }
+    
     else {
                    
         Write-Output 'There were no git to download!'
         Write-Output 'There were no git to download!' >> $global:chageLog 
+    }
     }
  }
 
