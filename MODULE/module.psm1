@@ -22,6 +22,7 @@ Function Test-DiskSpace([string]$instalacion)
         Write-Host " > $espacio GB; espacio requerido correcto" -ForegroundColor Green
         # crea punto de restauracion
         Enable-ComputerRestore -Drive "$env:systemdrive" 
+        vssadmin resize shadowstorage /for=C: /on=C: /maxsize=15GB
         Add-Checkpoint $instalacion
     }
 
