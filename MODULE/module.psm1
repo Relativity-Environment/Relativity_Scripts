@@ -270,8 +270,9 @@ function Install-Apps
 
    
     Foreach ($software in $global:ManualDownloadInstall.keys) {
+    $path       = [io.path]::GetFileNameWithoutExtension($software)
+    $matches    = Get-ChildItem $UtilBinPath 
     
-    $path = [io.path]::GetFileNameWithoutExtension($software)
     foreach($match in $matches){
     
         if (-not(Test-Path "$UtilBinPath\$path") ) {
@@ -306,7 +307,7 @@ function Install-Apps
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($rar in $Rars)
     {   
-        &$Winrar x $rar.FullName $UtilBinPath\$($_.Basename)
+        &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
        }
 
@@ -314,7 +315,7 @@ function Install-Apps
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($7z in $7zs)
     {   
-        &$Winrar x $7z.FullName $UtilBinPath\$($_.Basename)
+        &$Winrar x $7z.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
     }
 
@@ -322,7 +323,7 @@ function Install-Apps
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($gz in $gzs)
     {   
-        &$Winrar x $gz.FullName $UtilBinPath\$($_.Basename)
+        &$Winrar x $gz.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
     }
     
@@ -332,9 +333,9 @@ function Install-Apps
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
-        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename) -ErrorAction SilentlyContinue
+        Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
         
-    }
+}
 
                
     # Kick off msi installs
