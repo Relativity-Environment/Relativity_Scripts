@@ -201,8 +201,7 @@ function Install-Pentest{
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $pentest
-    Write-Host "Las herramientas de pentest ya estan instaladas escoge otra opcion" -BackgroundColor Black -ForegroundColor Yellow
- 
+     
   } 
    
 
