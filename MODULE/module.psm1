@@ -306,7 +306,7 @@ function Install-Apps
     {   
         $file = [io.path]::GetFileNameWithoutExtension($rar)
         if(-not(Test-Path "$UtilBinPath\$rar")){
-        New-Item -ItemType Directory -Path $UtilBinPath -Name $rar
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $file
         &$Winrar x $rar.FullName "$UtilBinPath\$rar"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
       }
@@ -319,7 +319,7 @@ function Install-Apps
         
         $file = [io.path]::GetFileNameWithoutExtension($7z)
         if(-not(Test-Path "$UtilBinPath\$7z")){
-        New-Item -ItemType Directory -Path $UtilBinPath -Name $7z
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $file
         &$Winrar x $7z.FullName "$UtilBinPath\$7z"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
         }
