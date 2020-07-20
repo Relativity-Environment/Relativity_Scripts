@@ -306,7 +306,7 @@ function Install-Apps
     {   
         $file = [io.path]::GetFileNameWithoutExtension($rar)
         if(-not(Test-Path "$UtilBinPath\$rar")){
-        &$Winrar x $rar.FullName $UtilBinPath
+        &$Winrar x $rar.FullName "$UtilBinPath\$rar"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
       }
     }
@@ -318,7 +318,7 @@ function Install-Apps
         
         $file = [io.path]::GetFileNameWithoutExtension($7z)
         if(-not(Test-Path "$UtilBinPath\$7z")){
-        &$Winrar x $7z.FullName $UtilBinPath
+        &$Winrar x $7z.FullName "$UtilBinPath\$7z"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
         }
     }
@@ -329,7 +329,7 @@ function Install-Apps
     {   
         $file = [io.path]::GetFileNameWithoutExtension($gz)
         if(-not(Test-Path "$UtilBinPath\$gz")){
-        &$Winrar x $gz.FullName $UtilBinPath\$($gz)
+        &$Winrar x $gz.FullName "$UtilBinPath\$gz"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
         }
     }
