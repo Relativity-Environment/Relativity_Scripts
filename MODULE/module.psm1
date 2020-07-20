@@ -215,36 +215,36 @@ Function Add-EnvPath {
 function Add-Background
 {
     if(-not(Test-Path "${Env:USERPROFILE}\Pictures\wallpaper.jpg")){
-	#### Update background ####
-	Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
-	# Set desktop background to black
-	Set-ItemProperty -Path 'HKCU:\Control Panel\Colors' -Name Background -Value "0 0 0" -Force | Out-Null
-	# Set desktop wallpaper using WallpaperChanger utility
-	$wallpaperName = 'wallpaper.jpg'
-	$fileBackground = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" $wallpaperName
-	$publicWallpaper = Join-Path ${env:public} $wallpaperName
-	$WallpaperChanger = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" 'WallpaperChanger.exe'
-	Invoke-Expression "$WallpaperChanger $fileBackground 3"
-	# Copy background images
-	$background = 'wallpaper.jpg'
-	$backgrounds = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\"  $background
-	Invoke-Expression "copy $backgrounds ${Env:USERPROFILE}\Pictures"
+        #### Update background ####
+        Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
+        # Set desktop background to black
+        Set-ItemProperty -Path 'HKCU:\Control Panel\Colors' -Name Background -Value "0 0 0" -Force | Out-Null
+        # Set desktop wallpaper using WallpaperChanger utility
+        $wallpaperName = 'wallpaper.jpg'
+        $fileBackground = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" $wallpaperName
+        $publicWallpaper = Join-Path ${env:public} $wallpaperName
+        $WallpaperChanger = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\" 'WallpaperChanger.exe'
+        Invoke-Expression "$WallpaperChanger $fileBackground 3"
+        # Copy background images
+        $background = 'wallpaper.jpg'
+        $backgrounds = Join-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS\"  $background
+        Invoke-Expression "copy $backgrounds ${Env:USERPROFILE}\Pictures"
 
-	foreach ($item in "0", "1", "2") {
-	# Try to set it multiple times! Windows 10 is not consistent
-	if ((Test-Path $publicWallpaper) -eq $false)
-	{
-		Copy-Item -Path $fileBackground -Destination $publicWallpaper -Force 
-	}
-	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
-	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
-	Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
-	Start-Sleep -seconds 3
-	rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
+        foreach ($item in "0", "1", "2") {
+        # Try to set it multiple times! Windows 10 is not consistent
+        if ((Test-Path $publicWallpaper) -eq $false)
+        {
+            Copy-Item -Path $fileBackground -Destination $publicWallpaper -Force 
+        }
+        Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name Wallpaper -value $publicWallpaper
+        Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name TileWallpaper -value "0" -Force
+        Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6" -Force
+        Start-Sleep -seconds 3
+        rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True
 
-	}	
+        }	
 
-}else{}
+    }else{}
 
 }
 
@@ -280,7 +280,7 @@ function Install-Apps
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
-               
+                
 
             }
             catch {
@@ -344,12 +344,14 @@ function Install-Apps
     $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
     #if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install")){New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "pentest_msi_install" }
     ForEach ($name in $msi) {          
-    #$content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" 
-    if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\$name.log" )){
+    #$content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
+    $file = [io.path]::GetFileNameWithoutExtension($name)  
+    if(-not(Test-Path "$UtilBinPath\$file" )){
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter $name | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
-           New-Item -ItemType File -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "$name.log"
-           Write-Host "$name is installed" > "$env:LOCALAPPDATA\RELATIVITY\$name.log"
+           #New-Item -ItemType File -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "$name.log"
+           New-Item -ItemType directory -Path $UtilBinPath -Name $file
+
         
         }else{
 
