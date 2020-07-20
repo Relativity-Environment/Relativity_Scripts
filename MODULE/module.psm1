@@ -296,7 +296,7 @@ function Install-Apps
             Write-Output "$software - Existe" >> $global:chageLog 
         }
      }
-    }
+
     # Extracting self-contained binaries (rar / 7z files) to our bin folder
     Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
     $Rars = Get-ChildItem -filter "*.rar" -path "$UtilDownloadPath"-Recurse
@@ -358,7 +358,7 @@ function Install-Apps
     
   }
 
-
+}
 
 ### Install PE
 function Get-PE
