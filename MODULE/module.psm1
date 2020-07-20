@@ -304,24 +304,34 @@ function Install-Apps
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($rar in $Rars)
     {   
+        $file = [io.path]::GetFileNameWithoutExtension($rar)
+        if(-not(Test-Path "$UtilBinPath\$rar")){
         &$Winrar x $rar.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
-       }
+      }
+    }
 
     $7zs = Get-ChildItem -filter "*.7z" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($7z in $7zs)
     {   
+        
+        $file = [io.path]::GetFileNameWithoutExtension($7z)
+        if(-not(Test-Path "$UtilBinPath\$7z")){
         &$Winrar x $7z.FullName $UtilBinPath
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        }
     }
 
     $gzs = Get-ChildItem -filter "*.gz" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($gz in $gzs)
     {   
-        &$Winrar x $gz.FullName $UtilBinPath
+        $file = [io.path]::GetFileNameWithoutExtension($gz)
+        if(-not(Test-Path "$UtilBinPath\$gz")){
+        &$Winrar x $gz.FullName $UtilBinPath\$($gz)
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        }
     }
     
 
