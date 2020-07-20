@@ -214,7 +214,7 @@ Function Add-EnvPath {
 
 function Add-Background
 {
-
+    if(-not(Test-Path "${Env:USERPROFILE}\Pictures\wallpaper.jpg")){
 	#### Update background ####
 	Write-Host "[+] Changing Desktop Background" -ForegroundColor Green
 	# Set desktop background to black
@@ -244,6 +244,7 @@ function Add-Background
 
 	}	
 
+}else{}
 
 }
 
