@@ -7,11 +7,11 @@ function Join-Initial
     ## BOXSTARTER
     function Install-BoxStarter
     {
-        $PathBixStarter = "C:\ProgramData\Boxstarter" 
+        $PathBoxStarter = "C:\ProgramData\Boxstarter" 
         $InstallBoxStarter = $true
         Write-Debug "[+] Comprobando si Boxstarter esta instalado en el sistema"
 
-    if ($InstallBoxStarter -and (-not (Test-Path $PathBixStarter))) {
+    if ($InstallBoxStarter -and (-not (Test-Path $PathBoxStarter))) {
     
       try {
         
@@ -166,7 +166,7 @@ Function Test-TamperProtection
 ## MODULO
 function Install-Module{
    
-  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY" -ErrorAction SilentlyContinue
+  $null = New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY" -ErrorAction SilentlyContinue | Out-Null
   Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/MODULE/module.psm1" -Outfile "$env:LOCALAPPDATA\RELATIVITY\module.psm1" -ErrorAction SilentlyContinue
   Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" 
 
