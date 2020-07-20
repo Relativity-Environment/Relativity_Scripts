@@ -261,7 +261,8 @@ function Install-Apps
     
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\RelaTools\"
-      
+    
+    $FilesDownloaded = @()
 
     Push-Location $UtilDownloadPath 
    
@@ -277,7 +278,7 @@ function Install-Apps
                 Write-Output "Downloading $software"
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                #$FilesDownloaded += $software
+                $FilesDownloaded += $software
                
 
             }
@@ -375,7 +376,7 @@ function Get-PE
 
     Push-Location $UtilDownloadPath 
        
-    #$FilesDownloaded = @()
+    $FilesDownloaded = @()
         
     Foreach ($software in $global:PEAPPS.keys) {
         
@@ -387,7 +388,7 @@ function Get-PE
                 Write-Output "Downloading $software"
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> $global:chageLog 
-                #$FilesDownloaded += $software
+                $FilesDownloaded += $software
             
             }
             catch {
