@@ -477,8 +477,8 @@ Foreach ($software in $global:GitPackages.keys) {
     
     else {
                    
-        Write-Output 'There were no git to download!'
-        Write-Output 'There were no git to download!' >> $global:chageLog 
+        Write-Output "There were no git to download!: $($_)"
+        Write-Output "There were no git to download!: $($_)" >> $global:chageLog 
     }
     }
  }
