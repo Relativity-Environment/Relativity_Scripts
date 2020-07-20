@@ -305,9 +305,9 @@ function Install-Apps
     foreach ($rar in $Rars)
     {   
         $file = [io.path]::GetFileNameWithoutExtension($rar)
-        if(-not(Test-Path "$UtilBinPath\$rar")){
+        if(-not(Test-Path "$UtilBinPath\$file")){
         New-Item -ItemType Directory -Path $UtilBinPath -Name $file
-        &$Winrar x $rar.FullName "$UtilBinPath\$rar"
+        &$Winrar x $rar.FullName "$UtilBinPath\$file"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
       }
     }
@@ -318,9 +318,9 @@ function Install-Apps
     {   
         
         $file = [io.path]::GetFileNameWithoutExtension($7z)
-        if(-not(Test-Path "$UtilBinPath\$7z")){
+        if(-not(Test-Path "$UtilBinPath\$file")){
         New-Item -ItemType Directory -Path $UtilBinPath -Name $file
-        &$Winrar x $7z.FullName "$UtilBinPath\$7z"
+        &$Winrar x $7z.FullName "$UtilBinPath\$file"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
         }
     }
