@@ -134,7 +134,7 @@ function Clear-Desktop
             
         }
 
-        Remove-Item $DesktopShortcuts -Force 
+        Move-Item -path $DesktopShortcuts -Destination $env:USERPROFILE 
     }
 
 }
