@@ -306,6 +306,7 @@ function Install-Apps
     {   
         $file = [io.path]::GetFileNameWithoutExtension($rar)
         if(-not(Test-Path "$UtilBinPath\$rar")){
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $rar
         &$Winrar x $rar.FullName "$UtilBinPath\$rar"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
       }
@@ -318,6 +319,7 @@ function Install-Apps
         
         $file = [io.path]::GetFileNameWithoutExtension($7z)
         if(-not(Test-Path "$UtilBinPath\$7z")){
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $7z
         &$Winrar x $7z.FullName "$UtilBinPath\$7z"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
         }
@@ -327,10 +329,13 @@ function Install-Apps
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($gz in $gzs)
     {   
-        $file = [io.path]::GetFileNameWithoutExtension($gz)
-        if(-not(Test-Path "$UtilBinPath\$gz")){
-        &$Winrar x $gz.FullName "$UtilBinPath\$gz"
+        $tar = [io.path]::GetFileNameWithoutExtension($gz)
+        $tar = [io.path]::GetFileNameWithoutExtension($tar)
+        if(-not(Test-Path "$UtilBinPath\$tar")){
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $tar
+        &$Winrar x $gz.FullName "$UtilBinPath\$tar"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+
         }
     }
     
