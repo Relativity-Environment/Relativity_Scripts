@@ -224,10 +224,10 @@ function menu {
   Write-Host "`n"
   Write-Host "      __________________________________________________________________________________________________ " -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "     |                                        Created by:                                               |" -ForegroundColor Green 
-  Write-Host "     |                                       Victor M. Gil                                              |" -ForegroundColor Green 
+  Write-Host "     |                                           Created by:                                            |" -ForegroundColor Green 
+  Write-Host "     |                                           Victor M. Gil                                          |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "     |                          RELATIVITY - SECURITY WINDOWS ENVIRONMENT                               |" -ForegroundColor Green 
+  Write-Host "     |                              RELATIVITY - SECURITY WINDOWS ENVIRONMENT                           |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green  
