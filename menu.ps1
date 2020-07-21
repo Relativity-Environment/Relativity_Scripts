@@ -243,7 +243,7 @@ function menu {
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "     |  " -ForegroundColor Green -NoNewLine; Write-Host "                         BACK. Restaurar el sistema    " -ForegroundColor Yellow -NoNewLine; Write-Host "                  |" -ForegroundColor Green
+  Write-Host "     |  " -ForegroundColor Green -NoNewLine; Write-Host "                           BACK. Restaurar el sistema    " -ForegroundColor Yellow -NoNewLine; Write-Host "                      |" -ForegroundColor Green
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
   Write-Host "     |                               [-] SALIR Ctrl + C                                                 |" -ForegroundColor Green
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
