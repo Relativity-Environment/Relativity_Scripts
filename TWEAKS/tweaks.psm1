@@ -3821,8 +3821,21 @@ PowerShell.exe -windowstyle hidden -Command "Start-Process cmd.exe -ArgumentList
 "@
 	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\OpenElevatedPS\command' -Name "(Default)" -Value $valuePS
 
+	# GOD MODE CONTEXT
+	New-Item -Path 'HKCR:\Directory\Background\shell\GodMode' -Force | Out-Null
+	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\GodMode' -Name "(Default)" -Value "God Mode"
+	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\GodMode' -Name "Icon" -Value "control.exe"
+	New-Item -Path 'HKCR:\Directory\Background\shell\GodMode\command' -Force | Out-Null
+$valueGM = @" 
+explorer shell:::{ED7BA470-8E54-465E-825C-99712043E01C}
+"@
+	
+	Set-ItemProperty -Path 'HKCR:\Directory\Background\shell\GodMode\command' -Name "(Default)" -Value $valueGM
+
 
 }
+
+
 
 Function Rename-PC
 {
