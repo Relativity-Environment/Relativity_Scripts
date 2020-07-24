@@ -68,7 +68,9 @@ function Add-PentestMenu
 
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
+
         $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'     
+        Remove-Item $StartMenu -Recurse -Force
         $Download = "$env:LOCALAPPDATA\RELATIVITY\"
         $value = "$env:USERPROFILE\Desktop\"
         Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
