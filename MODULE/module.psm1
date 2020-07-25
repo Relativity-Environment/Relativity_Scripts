@@ -13,7 +13,7 @@ Function Test-DiskSpace([string]$instalacion)
 
       Switch (($instalacion) )
     {
-      "Install-Pentest"{$espacio = 40}
+      "Install-Pentest"{$espacio = 100}
       "Install-REversing"{$espacio = 35}
       
     }
@@ -21,7 +21,7 @@ Function Test-DiskSpace([string]$instalacion)
     $disk = $env:systemdrive.Split(":")[0] 
     $disk = Get-PSDrive C
       Start-Sleep -Seconds 1
-      if (-Not (($disk.used + $disk.free)/1GB -gt $espacio)){
+      if (-Not (($disk.free)/1GB -gt $espacio)){
         Write-Host " [ERR] Esta instalacion requiere de $espacio GB de espacio`n" -ForegroundColor Red
         Read-Host "Pulsa cualquier tecla para continuar"
         exit
