@@ -60,5 +60,5 @@ No disponible
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia (GNU) - mira el archivo [LICENSE.md](LICENSE) para detalles
+Este proyecto está bajo la Licencia (GNU) - mira el archivo [LICENSE](LICENSE) para detalles
 
