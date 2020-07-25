@@ -200,7 +200,7 @@ function Install-Pentest{
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\Install-Pentest")) {
       
       Test-DiskSpace "Install-Pentest"
-      New-Item -ItemType file -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "Install-Pentest"
+      New-Item -ItemType file -Path "$env:LOCALAPPDATA\RELATIVITY" -Name "Install-Pentest"
     
     }
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
