@@ -74,15 +74,6 @@ function Join-Initial
 
 }
 
-# RESTORE COMPUTER
-Function Restore-Point{
-  
-  Write-Warning "[!] Atencion has elegido restaurar el sistema"
-  Get-ComputerRestorePoint
-  $num = Read-Host "Elige el id del punto de restauracion y pulsa enter:"
-  Restore-Computer -RestorePoint $num -Confirm
-
-}
 
 ## $PROFILE 
 Function Test-PSProfile 
@@ -233,6 +224,24 @@ function Install-Reversing{
     Install-BoxstarterPackage -PackageName $reversing
 }
 
+# RESTORE COMPUTER
+Function Restore-Point{
+  
+  if(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")
+  {
+
+    Write-Warning "[!] Atencion has elegido restaurar el sistema"
+    Get-ComputerRestorePoint
+    $num = Read-Host "Elige el id del punto de restauracion y pulsa enter:"
+    Restore-Computer -RestorePoint $num -Confirm
+  
+ }else{
+
+    Write-Warning "Aun no has instalado ninguna herramienta"
+
+  }
+
+}
 
 ### Menu Instalador 
 function menu {
@@ -286,9 +295,8 @@ function menu {
             break
         }
         BACK {
-            Install-Module; 
             Clear-Host;
-            Restore-Point;
+           
             pause;
             menu;
             break
