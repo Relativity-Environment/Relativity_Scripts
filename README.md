@@ -7,6 +7,10 @@ Preparación de un entorno de Pentesting / Seguridad, de forma desatendidad en s
 
 ### Pre-requisitos 📋
 
+#### Conexión a internet
+
+- Imprescindible para descargar las herramientas
+
 #### Espacio en disco
 
 - PentestTools   : += 40Gb
@@ -56,5 +60,5 @@ No disponible
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia (GNU) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia (GNU) - mira el archivo [LICENSE.md](LICENSE) para detalles
 
