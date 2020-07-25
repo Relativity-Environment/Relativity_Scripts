@@ -286,7 +286,7 @@ function menu {
             break
         }
         BACK {
-            Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" 
+            #Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" 
             Clear-Host;
             Restore-Point;
             pause;
