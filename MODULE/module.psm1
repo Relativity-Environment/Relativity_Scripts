@@ -175,7 +175,7 @@ Function Restore-Point{
   
     Write-Warning "[!] Atencion has elegido restaurar el sistema"
     Get-ComputerRestorePoint
-    $num = Read-Host "Elige el id del punto de restauracion y pulsa enter:"
+    $num = Read-Host "Elige el 'SequenceNumber' del punto de restauracion y pulsa enter:"
     Restore-Computer -RestorePoint $num -Confirm
   
   }
