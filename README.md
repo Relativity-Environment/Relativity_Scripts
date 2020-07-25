@@ -35,9 +35,9 @@ Para realizar la instalación es necesario desactivar antes la protección 'Anti
 ### Instalación 🔧
  
 Una vez realizado el paso anterior ejecutar en una consola de Powershell como Adminstrador:
-
+´´´´
 . {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1}|iex;menu
-
+´´´´
 ### Punto de restauración 🛠️
 
 Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos prescindir del entorno.
