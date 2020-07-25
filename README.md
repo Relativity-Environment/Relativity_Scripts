@@ -7,6 +7,10 @@ Preparación de un entorno de Pentesting / Seguridad, de forma desatendidad en s
 
 ### Pre-requisitos 📋
 
+#### Conexión a internet
+
+- Imprescindible para descargar las herramientas
+
 #### Espacio en disco
 
 - PentestTools   : += 40Gb
