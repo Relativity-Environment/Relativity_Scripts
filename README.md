@@ -36,12 +36,12 @@ Una vez realizado el paso anterior ejecutar en una consola de Powershell como Ad
 
 ### Punto de restauración 🛠️
 
-Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos precindir del entorno.
+Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos prescindir del entorno.
 
 
 ## Herramientas disponibles ⚙️
 
-De momento soolo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
+De momento solo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
 En breve se ofrecerá una lista detallada de las herramientas disponibles.
 
 
