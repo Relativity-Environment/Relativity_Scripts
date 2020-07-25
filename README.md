@@ -9,13 +9,13 @@ Preparación de un entorno de Pentesting / Seguridad, de forma desatendidad en s
 
 #### Espacio en disco
 
-- PentestTools   : =+ 40Gb
-- ReversingTools : (no disponible)
-- WiFiTools       :(No disponible)
+- PentestTools   : += 40Gb
+- ReversingTools :  (no disponible)
+- WiFiTools       : (no disponible)
 
-#### RAM
+#### Memoria RAM
 
-- =+ 4Gb
+- += 4Gb
 
 #### CPU
 
