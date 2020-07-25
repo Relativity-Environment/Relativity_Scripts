@@ -1,23 +1,44 @@
-# Relativity_Scripts
+# Relativity - Security Tools for Windows Environment
 
 Preparación de un entorno de pentesting de forma desatendidad en sistemas Microsoft Windows 10. Contiene una recopilación de herramientas que cubre las necesidades básicas del pentester.
 
-# Instalación
+
+# Comenzando 🚀
+
+### Pre-requisitos 📋
 
 Para realizar la instalación es necesario desactivar antes la protección 'Anti-Tampering' (es necesario para la instalación), para más información:
  
  - https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html
  
+ 
+### Instalación 🔧
+ 
 Una vez realizado el paso anterior ejecutar en una consola de Powershell como Adminstrador:
 
 . {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1}|iex;menu
 
-# Herramientas disponibles
+### Punto de restauración 🛠️
+
+Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos precindir del entorno.
+
+
+## Herramientas disponibles ⚙️
 
 De momento soolo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
 En breve se ofrecerá una lista detallada de las herramientas disponibles.
 
 
-# Punto de restauración
+## Wiki 📖
+No disponible
 
-Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos precindir del entorno.
+
+## Autor ✒️
+
+* **Victor M. Gil** - *Trabajo Inicial* - (victorgilasp@gmail.com)
+
+
+## Licencia 📄
+
+Este proyecto está bajo la Licencia (GNU) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+
