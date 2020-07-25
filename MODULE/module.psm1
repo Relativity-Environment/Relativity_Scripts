@@ -151,7 +151,7 @@ function Remove-DesktioIni
 
 }
 
-## Restore POINT
+## Create Restore POINT
 Function Add-Checkpoint($name){
     $exist = Get-ComputerRestorePoint | Where-Object {$_.description -match $name } | Select-Object -ExpandProperty Description
     
@@ -168,6 +168,19 @@ Function Add-Checkpoint($name){
     
    }
 }
+
+
+# Restore Computer
+Function Restore-Point{
+
+    Write-Warning "[!] Atencion has elegido restaurar el sistema"
+    Get-ComputerRestorePoint
+    $num = Read-Host "Elige el id del punto de restauracion y pulsa enter:"
+    Restore-Computer -RestorePoint $num -Confirm
+
+}
+
+
 
 ## TWEAKS
 function Get-Tweaks {
