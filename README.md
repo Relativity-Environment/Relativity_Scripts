@@ -35,7 +35,7 @@ Para realizar la instalación es necesario desactivar antes la protección 'Anti
  
 ### Instalación 🔧
  
-Una vez realizado el paso anterior ejecutar el siguinete código en una consola de Powershell como adminstrador:
+Una vez realizado el paso anterior ejecutar el siguiente código en una consola de Powershell como adminstrador:
 
 
 ```
