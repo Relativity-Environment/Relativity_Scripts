@@ -76,7 +76,7 @@ function Join-Initial
 
 # RESTORE COMPUTER
 Function Restore-Point{
-
+  
   Write-Warning "[!] Atencion has elegido restaurar el sistema"
   Get-ComputerRestorePoint
   $num = Read-Host "Elige el id del punto de restauracion y pulsa enter:"
@@ -286,6 +286,7 @@ function menu {
             break
         }
         BACK {
+            Import-Module "$env:LOCALAPPDATA\RELATIVITY\module.psm1" 
             Clear-Host;
             Restore-Point;
             pause;
