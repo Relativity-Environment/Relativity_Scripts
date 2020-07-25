@@ -196,7 +196,7 @@ $reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 function Install-Pentest{ 
       
     Join-Initial
-    
+
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\Install-Pentest")) {
       
       Test-DiskSpace "Install-Pentest"
@@ -223,7 +223,6 @@ function Install-Reversing{
     Install-BoxstarterPackage -PackageName $reversing
 }
 
-#Restore-Computer -RestorePoint 255 -Confirm
 
 ### Menu Instalador 
 function menu {
@@ -278,7 +277,7 @@ function menu {
         }
         BACK {
             Clear-Host;
-            Write-Host "[!] Para restaurar el sistema seguir la sigiente guia:" -ForegroundColor Red
+            Restore-Point;
             pause;
             menu;
             break
