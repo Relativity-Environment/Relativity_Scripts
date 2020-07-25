@@ -263,7 +263,7 @@ function menu {
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
   Write-Host "     |                               10. PENTEST TOOLS                                                  |" -ForegroundColor Green
   Write-Host "     |                               20. REVERSING TOOLS (Unavalaible)                                  |" -ForegroundColor Green
-  Write-Host "     |                                                                                                  |" -ForegroundColor Green
+  Write-Host "     |                               30. WIFI TOOLS (Unavalaible)                                       |" -ForegroundColor Green
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green 
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green
