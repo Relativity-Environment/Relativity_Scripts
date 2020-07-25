@@ -7,6 +7,22 @@ Preparación de un entorno de Pentesting / Seguridad, de forma desatendidad en s
 
 ### Pre-requisitos 📋
 
+#### Espacio en disco
+
+- PentestTools   : =+ 40Gb
+- ReversingTools : (no disponible)
+- WiFiTools       :(No disponible)
+
+#### RAM
+
+- =+ 4Gb
+
+#### CPU
+
+- Cualquier CPU con al menos 2 cores
+
+#### Protección Anti-Tampering
+
 Para realizar la instalación es necesario desactivar antes la protección 'Anti-Tampering' (es necesario para la instalación), para más información:
  
  - https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html
