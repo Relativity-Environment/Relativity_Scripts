@@ -15,6 +15,7 @@ Una vez realizado el paso anterior ejecutar en una consola de Powershell como Ad
 # Herramientas disponibles
 
 De momento soolo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
+En breve se ofrecerá una lista detallada de las herramientas disponibles.
 
 
 # Punto de restauración
