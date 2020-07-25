@@ -252,7 +252,7 @@ function menu {
   Write-Host "     |                                     Created by Victor M. Gil                                     |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
-  Write-Host "     |                             RELATIVITY - SECURITY WINDOWS ENVIRONMENT                            |" -ForegroundColor Green 
+  Write-Host "     |                          RELATIVITY - Security Tools for Windows Environment                     |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green 
   Write-Host "     |                                                                                                  |" -ForegroundColor Green
   Write-Host "     |__________________________________________________________________________________________________|" -ForegroundColor Green  
