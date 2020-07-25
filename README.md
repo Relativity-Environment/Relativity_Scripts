@@ -4,7 +4,7 @@ Preparación de un entorno de pentesting de forma desatendidad en sitemas Window
 
 # Instalación:
 
-Para realizar la instalación es necesario desctivar la protección 'anti-tampering' , para más información:
+Para realizar la instalación es necesario desactivar la protección 'anti-tampering' , para más información:
  
  - https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html
  
