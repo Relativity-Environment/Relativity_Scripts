@@ -28,7 +28,7 @@ Instalación de forma desatendidad en sistemas Microsoft Windows 10 , contiene u
 
 #### Protección Anti-Tampering
 
-Para realizar la instalación es necesario desactivar antes la protección 'Anti-Tampering' (es necesario para la instalación), para más información:
+Para realizar la instalación es necesario desactivar antes la protección 'Anti-Tampering' (es obligatorio para la instalación), para más información:
  
  - https://www.tenforums.com/tutorials/123792-turn-off-tamper-protection-windows-defender-antivirus.html
  
