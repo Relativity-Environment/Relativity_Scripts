@@ -1,6 +1,6 @@
 # Relativity - Security Tools for Windows Environment
 
-Preparación de un entorno de pentesting de forma desatendidad en sistemas Microsoft Windows 10. Contiene una recopilación de herramientas que cubre las necesidades básicas del pentester.
+Preparación de un entorno de Pentesting / Seguridad, de forma desatendidad en sistemas Microsoft Windows 10. Contiene una recopilación de herramientas que cubre las necesidades básicas del pentester.
 
 
 # Comenzando 🚀
