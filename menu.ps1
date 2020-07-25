@@ -296,7 +296,7 @@ function menu {
         }
         BACK {
             Clear-Host;
-           
+            Restore-Point;
             pause;
             menu;
             break
