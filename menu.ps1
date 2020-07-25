@@ -196,13 +196,14 @@ $reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relati
 function Install-Pentest{ 
       
     Join-Initial
-    Test-DiskSpace "Install-Pentest"
+    
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\Install-Pentest")) {
       
       Test-DiskSpace "Install-Pentest"
       New-Item -ItemType file -Path "$env:LOCALAPPDATA\RELATIVITY" -Name "Install-Pentest"
     
     }
+
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
