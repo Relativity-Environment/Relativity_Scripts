@@ -8,6 +8,10 @@ Instalación de forma desatendidad en sistemas Microsoft Windows 10 , contiene u
 
 ### Pre-requisitos 📋
 
+#### Sistema Operativo
+
+- Windows 10 (compilaciones más recientes)
+
 #### Conexión a internet
 
 - Imprescindible para descargar las herramientas
