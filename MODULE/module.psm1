@@ -501,21 +501,20 @@ Function Get-AHKPackages
            
             try {
 
-                Write-Output "Downloading AHK $software"
+                Write-Output "Descargando archivo AHK: $software"
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Write-Output "$software" >> $global:chageLog 
                 Write-Output "$software" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
             catch {
 
-                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
+                Write-Warning "$software ha fallado la descarga" 
 
             }
         }
         else {
 
-            Write-Warning "File is already downloaded, skipping: $software"
-            Write-Output "$software - Existe" >> $global:chageLog 
+            Write-Warning "Archivo ya descargado, descartando: $software"
+           
         }
     }
 
@@ -541,7 +540,6 @@ function Get-ChocoPackages {
     }
 }
 
-
 function Install-ChocoPackages
 {
 
@@ -561,22 +559,54 @@ function Install-ChocoPackages
                 
                 choco install "$_" --update
                 refreshenv
-                Write-Output "$_" >> $global:chageLog   -ErrorAction SilentlyContinue
+                
             }
             catch {
+               
                 Write-Warning "Unable to install software package with Chocolatey: $($_)"
-                Write-Output "$_ - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
+               
         }
     }
 }
             else {
+                
                 Write-Output 'There were no packages to install!'
-                Write-Output "$_ - Existe" >> $global:chageLog 
+                
             }
 
 }
 
 
+
+### Control installed ##
+Function Confirm-Installed($command){
+
+    $controlInstall = "$env:LOCALAPPDATA\RELATIVITY\control_installed"
+    # pruebas - $controlInstall = "$env:userprofile\Desktop\control_installed"
+  
+    if(-not(Test-Path $controlInstall )){New-Item -ItemType file -Path $controlInstall | Out-null} 
+    $control = get-content $controlInstall 
+        
+      if (-not($control | select-string -pattern $command) ) {
+             
+            try {
+  
+                  powershell.exe $command
+                  Write-Output "$command" >> $controlInstall
+              }
+              catch {
+  
+                  Write-Warning "$command ha fallado la ejecucion" 
+  
+              }
+          }
+          else {
+  
+              Write-Warning "Descartando: $command"
+             
+          }
+ }
+  
 
 ### Create README ##
 function Add-README{
