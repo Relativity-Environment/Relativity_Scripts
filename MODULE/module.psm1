@@ -277,7 +277,7 @@ function Install-Apps
             
             try {
                 
-                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
+                Write-Output "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
                 
@@ -420,7 +420,7 @@ function Get-PE
         if ( -not (Test-Path "$UtilBinPath\$path") ) {
             try {
 
-                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
+                Write-Output "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
             
@@ -465,7 +465,7 @@ Foreach ($software in $global:GitPackages.keys) {
                
             try {
                     
-                    Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
+                    Write-Output "[+] Downloading $software" -ForegroundColor Cyan
                     git clone $global:GitPackages[$software] -q 
                 
                 }
