@@ -45,11 +45,7 @@ Una vez realizado el paso anterior ejecutar el siguiente código en una consola 
 
 
 ```
-<<<<<<< HEAD
-. {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1} | iex; menu -Force
-=======
 . {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1} | iex ;menu -Force
->>>>>>> 95606a0ac41d0f12bf7fd81ad49d82a119166e96
 ```
 
 ### Punto de restauración 🛠️
