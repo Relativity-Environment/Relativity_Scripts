@@ -277,7 +277,7 @@ function Install-Apps
             
             try {
                 
-                Write-Output "Downloading $software"
+                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
                 
@@ -285,20 +285,18 @@ function Install-Apps
             }
             catch {
 
-                Write-Output "$software - Fallo"  -ErrorAction "SilentlyContinue"
+                Write-Output "$software fail" -ErrorAction SilentlyContinue
 
             }
         }
         else {
 
-            Write-Warning "File is already downloaded, skipping: $software"
-            Write-Output "$software - Existe" 
-
+            Write-Information "[-] File is already downloaded, skipping: $software"
+            
         }
      }
 
-    # Extracting self-contained binaries (rar / 7z files) to our bin folder
-    Write-Output 'Extracting self-contained binaries (rar files) to our bin folder'
+    Write-Information '[-] Extracting self-contained binaries (rar files) to our bin folder'
     $Rars = Get-ChildItem -filter "*.rar" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($rar in $Rars)
@@ -367,8 +365,8 @@ function Install-Apps
         }
     }#>
 
-    Extracting self-contained binaries (zip files) to our bin folder
-    Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
+    # Extracting self-contained binaries (zip files) to our bin folder
+    Write-Information '[-] Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
@@ -378,7 +376,6 @@ function Install-Apps
 
                
     # Kick off msi installs
-    Write-Output 'Instalando paquetes MSI'
     $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
     ForEach ($name in $msi) {          
     $file = [io.path]::GetFileNameWithoutExtension($name)  
@@ -390,7 +387,7 @@ function Install-Apps
         
         }else{
 
-            Write-Host "$name is installed"
+            Write-Information "[-] $name is installed"
 
         }
     
@@ -423,7 +420,7 @@ function Get-PE
         if ( -not (Test-Path "$UtilBinPath\$path") ) {
             try {
 
-                Write-Output "Downloading $software"
+                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
             
@@ -431,18 +428,16 @@ function Get-PE
             catch {
 
                 
-                Write-Output "$software - Fallo" >> $global:chageLog   -ErrorAction SilentlyContinue
-
+                Write-Error "[!] $software fail" 
             }
         }
         else {
             
-            Write-Warning "File is already downloaded, skipping: $software"
+            Write-Information "[-] File is already downloaded, skipping: $software"
         }
     }
 
         # Kick off PE files
-        Write-Output 'Search PE files'
         $Files = Get-ChildItem -Path $UtilDownloadPath
         $Files | ForEach-Object {
         $FileFullName = $_.FullName
@@ -470,20 +465,20 @@ Foreach ($software in $global:GitPackages.keys) {
                
             try {
                     
-                    Write-Output "Descargando de GITHUB $software"
+                    Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
                     git clone $global:GitPackages[$software] -q 
                 
                 }
                 
                 catch {
                    
-                    Write-Warning "Unable to download git package: $($_)"
+                    Write-Error "[!] Unable to download git package: $software"
             }      
         }
     
     else {
                    
-        Write-Output "There were no git to download!: $($_)"
+            Write-Information "[-] There were no git to download: $software"
 
        }
     }
@@ -515,19 +510,19 @@ Function Get-AHKPackages
            
             try {
 
-                Write-Output "Descargando archivo AHK: $software"
+                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
             catch {
 
-                Write-Warning "$software ha fallado la descarga" 
+                Write-Error "[!] $software fail" 
 
             }
         }
         else {
 
-            Write-Warning "Archivo ya descargado, descartando: $software"
+            Write-Information "[-] File is already downloaded, skipping: $software"
            
         }
     }
@@ -558,11 +553,9 @@ function Install-ChocoPackages
 {
 
      # Chocolatey setup
-    Write-Host "Initializing chocolatey"
+    Write-Information "[-] Initializing chocolatey"
     Invoke-Expression "choco feature enable -n allowGlobalConfirmation"
-    Invoke-Expression "choco feature enable -n allowEmptyChecksums"
-    Write-Output "Installing software via chocolatey" 
-    
+    Invoke-Expression "choco feature enable -n allowEmptyChecksums"   
     $InstalledChocoPackages = (Get-ChocoPackages).Name
     $global:ChocoInstalls = $global:ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
 
@@ -576,14 +569,14 @@ function Install-ChocoPackages
             }
             catch {
                
-                Write-Warning "Unable to install software package with Chocolatey: $($_)"
+                Write-Error "[!] Unable to install software package with Chocolatey: $_"
                
         }
     }
 }
             else {
                 
-                Write-Output 'There were no packages to install!'
+                Write-Information "[-] File is already downloaded, skipping: $_"
                 
             }
 
