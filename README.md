@@ -56,7 +56,12 @@ Al comenzar la instalación se crea un checkpoint que sirve para volver a un pun
 ## Herramientas disponibles ⚙️
 
 De momento solo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
-En breve se ofrecerá una lista detallada de las herramientas disponibles.
+
+### Pentest Tools
+
+#### Recopilación de Información
+
+* [asnlookup](https://github.com/yassineaboukir/Asnlookup)
 
 
 ## Wiki 📖
