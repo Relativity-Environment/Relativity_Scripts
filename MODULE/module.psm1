@@ -539,7 +539,6 @@ function Install-ChocoPackages
     $global:ChocoInstalls = $global:ChocoInstalls | Where-Object { $InstalledChocoPackages -notcontains $_ }
 
     if ($global:ChocoInstalls.Count -gt 0) {
-        # Install a ton of other crap I use or like, update $ChocoInsalls to suit your needs of course
         $global:ChocoInstalls | Foreach-Object {
             try {
                 
