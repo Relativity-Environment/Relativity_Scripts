@@ -34,6 +34,8 @@ Para realizar la instalación es necesario desactivar antes la protección 'Anti
  
  
 ### Instalación 🔧
+
+*Soporta ser instalado en un máquina virtual
  
 Una vez realizado el paso anterior ejecutar el siguiente código en una consola de Powershell como adminstrador:
 
