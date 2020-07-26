@@ -210,23 +210,19 @@ function Install-Pentest{
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
     Install-BoxstarterPackage -PackageName $pentest
      
-  } 
+} 
    
-
-
 
 function Install-Reversing{ 
       
-    #Join-Initial
-    #Test-DiskSpace "Install-Reversing"
-    #Get-Tweaks
-    #Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
-    #Install-BoxstarterPackage -PackageName $reversing
+  #TODO
+
 }
 
 
 function Install-Wifi{ 
       
+  #TODO
 
 }
 
