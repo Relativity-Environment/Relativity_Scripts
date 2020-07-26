@@ -597,18 +597,24 @@ Function Confirm-Installed($command){
     $controlInstall = "$env:LOCALAPPDATA\RELATIVITY\control_installed"
     # pruebas - $controlInstall = "$env:userprofile\Desktop\control_installed"
   
-    if(-not(Test-Path $controlInstall )){New-Item -ItemType file -Path $controlInstall | Out-null} 
+  
+    if(-not(Test-Path $controlInstall)){
+    
+        New-Item -ItemType file -Path $controlInstall
+        Write-Output "start" >> $controlInstall
+    } 
     $control = get-content $controlInstall 
         
-    foreach($command in $control){
+    foreach($comm in $control){
      
         if (-not($control | select-string -pattern $command)) {          
-               
-            powershell.exe $command        
             
+            powershell.exe $command        
+            Write-Output "$command" >> $controlInstall
+
          }else{}
     }    
-}       
+}    
   
 
 ### Create README (not used) ##
