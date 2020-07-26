@@ -353,28 +353,28 @@ function Install-Apps
     }
 
 
-    $zips = Get-ChildItem -filter "*.zip" -path "$UtilDownloadPath"-Recurse
+    <#$zips = Get-ChildItem -filter "*.zip" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($zip in $zips)
     {   
         $zp = [io.path]::GetFileNameWithoutExtension($zip)
-        if(-not(Test-Path "$UtilBinPath\$tg")){
+        if(-not(Test-Path "$UtilBinPath\$zp")){
        
         New-Item -ItemType Directory -Path $UtilBinPath -Name $zp
         &$Winrar x $zip.FullName "$UtilBinPath\$zp"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
 
         }
-    }
+    }#>
 
-    <# Extracting self-contained binaries (zip files) to our bin folder
+    Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
         
-    }#>
+    }
 
                
     # Kick off msi installs
@@ -591,7 +591,7 @@ function Install-ChocoPackages
 
 
 
-### Control installed ##
+### Control installed (not used)##
 Function Confirm-Installed($command){
 
     $controlInstall = "$env:LOCALAPPDATA\RELATIVITY\control_installed"
