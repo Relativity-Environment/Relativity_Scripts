@@ -406,7 +406,7 @@ function Get-PE
 
     If (-not (Test-Path $UtilDownloadPath)) {
 
-        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue | Out-Null
     }
 
     Push-Location $UtilDownloadPath 
@@ -499,7 +499,7 @@ Function Get-AHKPackages
     
     If (-not (Test-Path $UtilDownloadPath)) {
 
-        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue
+        mkdir $UtilDownloadPath -ErrorAction SilentlyContinue | Out-Null
     }
 
     Push-Location $UtilDownloadPath 
