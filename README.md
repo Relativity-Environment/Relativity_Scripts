@@ -18,7 +18,7 @@ Instalación de forma desatendidad en sistemas Microsoft Windows 10 , contiene u
 
 #### Espacio en disco
 
-- PentestTools   : += 40Gb
+- PentestTools   : += 45Gb libres
 - ReversingTools :  (aún no disponible)
 - WiFiTools       : (aún no disponible)
 
