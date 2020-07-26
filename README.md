@@ -44,7 +44,7 @@ Para realizar la instalación es necesario desactivar antes la protección 'Anti
 Una vez realizado el paso anterior ejecutar el siguiente código en una consola de Powershell como adminstrador:
 
 
-```
+```powershell
 . {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1} | iex ;menu -Force
 ```
 
@@ -59,9 +59,12 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 ### Pentest Tools
 
-#### Recopilación de Información                                            Analisis de Aplicaciones Web
+#### Recopilación de Información                                           
 
 * [asnlookup](https://github.com/yassineaboukir/Asnlookup)
+
+
+ #### Análisis de Aplicaciones Web
 
 
 ## Wiki 📖
