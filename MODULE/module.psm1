@@ -600,25 +600,15 @@ Function Confirm-Installed($command){
     if(-not(Test-Path $controlInstall )){New-Item -ItemType file -Path $controlInstall | Out-null} 
     $control = get-content $controlInstall 
         
-      if (-not($control | select-string -pattern $command) ) {
-             
-            try {
-  
-                  powershell.exe $command
-                  Write-Output "$command" >> $controlInstall
-              }
-              catch {
-  
-                  Write-Warning "$command ha fallado la ejecucion" 
-  
-              }
-          }
-          else {
-  
-              Write-Warning "Descartando: $command"
-             
-          }
- }
+    foreach($command in $control){
+     
+        if (-not($control | select-string -pattern $command)) {          
+               
+            powershell.exe $command        
+            
+         }else{}
+    }    
+}       
   
 
 ### Create README (not used) ##
