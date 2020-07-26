@@ -70,7 +70,7 @@ function Add-PentestMenu
 
 
         $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'     
-        Remove-Item $StartMenu -Force -Recurse 
+        Remove-Item $StartMenu -Force -Recurse
         $Download = "$env:LOCALAPPDATA\RELATIVITY\"
         $value = "$env:USERPROFILE\Desktop\"
         Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
