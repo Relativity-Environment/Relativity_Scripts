@@ -59,7 +59,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 ### Pentest Tools
 
-#### Recopilación de Información                                        #### 2 - Analisis de Aplicaciones Web
+#### Recopilación de Información                                            Analisis de Aplicaciones Web
 
 * [asnlookup](https://github.com/yassineaboukir/Asnlookup)
 
