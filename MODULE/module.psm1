@@ -110,6 +110,8 @@ Function Get-SpecialPaths {
 
 function Clear-Desktop
 {
+    $clearDesktop = "$env:LOCALAPPDATA\RELATIVITY\clear_desktop"
+    if(-not(Test-Path $clearDesktop)){
     $ClearDesktopShortcuts = $True
     $SpecialPaths = Get-SpecialPaths
 
@@ -134,8 +136,9 @@ function Clear-Desktop
 
         Move-Item -path $DesktopShortcuts -Destination $env:USERPROFILE -ErrorAction SilentlyContinue
         Remove-Item -Path $DesktopShortcuts -Force -Recurse -ErrorAction SilentlyContinue
+        New-Item -ItemType file -Path $clearDesktop
+        }
     }
-
 }
 
 function Remove-DesktioIni
