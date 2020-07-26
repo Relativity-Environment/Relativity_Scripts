@@ -163,7 +163,7 @@ Function Add-Checkpoint($name){
     
        }else{
         
-        Write-Output "Checkpoint create: $name"
+        Write-Host "[+] Checkpoint create: $name" -ForegroundColor Cyan
         Checkpoint-Computer -Description "$name"
     
    }
@@ -277,7 +277,7 @@ function Install-Apps
             
             try {
                 
-                Write-Output "[+] Downloading $software" -ForegroundColor Cyan
+                Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
                 
@@ -420,7 +420,7 @@ function Get-PE
         if ( -not (Test-Path "$UtilBinPath\$path") ) {
             try {
 
-                Write-Output "[+] Downloading $software" -ForegroundColor Cyan
+                Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 $FilesDownloaded += $software
             
@@ -465,7 +465,7 @@ Foreach ($software in $global:GitPackages.keys) {
                
             try {
                     
-                    Write-Output "[+] Downloading $software" -ForegroundColor Cyan
+                    Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                     git clone $global:GitPackages[$software] -q 
                 
                 }
@@ -510,7 +510,7 @@ Function Get-AHKPackages
            
             try {
 
-                Write-Output "[+] Downloading $software" -ForegroundColor:Cyan
+                Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
                 Write-Output "$software" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
@@ -526,6 +526,8 @@ Function Get-AHKPackages
            
         }
     }
+
+    
 
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
