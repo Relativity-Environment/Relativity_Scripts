@@ -16,7 +16,7 @@ Function Test-DiskSpace([string]$instalacion)
       "Install-Pentest"{$espacio = 40}
       "Install-REversing"{$espacio = 35}
       
-    }
+}
 
     $disk = $env:systemdrive.Split(":")[0] 
     $disk = Get-PSDrive C
