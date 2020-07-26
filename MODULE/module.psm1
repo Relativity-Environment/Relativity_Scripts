@@ -338,6 +338,20 @@ function Install-Apps
         }
     }
     
+    $tgzs = Get-ChildItem -filter "*.tgz" -path "$UtilDownloadPath"-Recurse
+    $WinRar = "C:\Program Files\WinRAR\winrar.exe"
+    foreach ($tgz in $tgzs)
+    {   
+        $tg = [io.path]::GetFileNameWithoutExtension($tgz)
+        if(-not(Test-Path "$UtilBinPath\$tg")){
+       
+        New-Item -ItemType Directory -Path $UtilBinPath -Name $tg
+        &$Winrar x $tgz.FullName "$UtilBinPath\$tg"
+        Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+
+        }
+    }
+
 
     # Extracting self-contained binaries (zip files) to our bin folder
     Write-Output 'Extracting self-contained binaries (zip files) to our bin folder'
