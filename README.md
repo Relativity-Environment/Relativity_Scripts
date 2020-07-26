@@ -1,6 +1,6 @@
 # Relativity - Security Tools for Windows Environment
 
-Script para la preparación de un entorno con herramientas orientadas a la seguridad y al pentesting. 
+Script en Powershell que prepara un entorno con herramientas orientadas a la seguridad y al pentesting. 
 Instalación de forma desatendidad en sistemas Microsoft Windows 10 , contiene una recopilación de herramientas que cubre las necesidades básicas del pentester.
 
 
