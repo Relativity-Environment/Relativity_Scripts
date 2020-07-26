@@ -279,7 +279,6 @@ function Install-Apps
                 
                 Write-Output "Downloading $software"
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
                 
 
@@ -287,7 +286,6 @@ function Install-Apps
             catch {
 
                 Write-Output "$software - Fallo"  -ErrorAction "SilentlyContinue"
-                Write-Output "$software - Fallo" >> $global:chageLog  
 
             }
         }
@@ -295,7 +293,7 @@ function Install-Apps
 
             Write-Warning "File is already downloaded, skipping: $software"
             Write-Output "$software - Existe" 
-            Write-Output "$software - Existe" >> $global:chageLog 
+
         }
      }
 
@@ -352,20 +350,13 @@ function Install-Apps
 
                
     # Kick off msi installs
-    #$msiInstalled = Get-Content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install" -ErrorAction SilentlyContinue
-    #Write-Output 'Search msi files'
-    #Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi' | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} -ErrorAction SilentlyContinue
-    #Write-Output "$_" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
     Write-Output 'Instalando paquetes MSI'
     $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
-    #if(-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install")){New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "pentest_msi_install" }
     ForEach ($name in $msi) {          
-    #$content = get-content "$env:LOCALAPPDATA\RELATIVITY\pentest_msi_install"
     $file = [io.path]::GetFileNameWithoutExtension($name)  
     if(-not(Test-Path "$UtilBinPath\$file" )){
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter $name | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
-           #New-Item -ItemType File -Path "$env:LOCALAPPDATA\RELATIVITY\" -Name "$name.log"
            New-Item -ItemType directory -Path $UtilBinPath -Name $file
 
         
@@ -406,7 +397,6 @@ function Get-PE
 
                 Write-Output "Downloading $software"
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                Write-Output "$software" >> $global:chageLog 
                 $FilesDownloaded += $software
             
             }
@@ -420,7 +410,6 @@ function Get-PE
         else {
             
             Write-Warning "File is already downloaded, skipping: $software"
-            Write-Output "$software - Existe" >> $global:chageLog 
         }
     }
 
@@ -454,8 +443,6 @@ Foreach ($software in $global:GitPackages.keys) {
             try {
                     
                     Write-Output "Descargando de GITHUB $software"
-                    Write-Output "$software" >> $global:chageLog 
-    
                     git clone $global:GitPackages[$software] -q 
                 
                 }
@@ -463,15 +450,14 @@ Foreach ($software in $global:GitPackages.keys) {
                 catch {
                    
                     Write-Warning "Unable to download git package: $($_)"
-                    Write-Warning "Unable to download git package: $($_)" >> $global:chageLog 
             }      
         }
     
     else {
                    
         Write-Output "There were no git to download!: $($_)"
-        Write-Output "There were no git to download!: $($_)" >> $global:chageLog 
-    }
+
+       }
     }
  }
 
@@ -523,7 +509,7 @@ Function Get-AHKPackages
     Push-Location "$env:SYSTEMDRIVE\cache\ahk"
     Expand-Archive -Path $_.FullName -DestinationPath . -ErrorAction SilentlyContinue
     
- }
+  }
 
 }
 

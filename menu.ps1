@@ -217,12 +217,19 @@ function Install-Pentest{
 
 function Install-Reversing{ 
       
-    Join-Initial
-    Test-DiskSpace "Install-Reversing"
-    Get-Tweaks
-    Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $reversing
+    #Join-Initial
+    #Test-DiskSpace "Install-Reversing"
+    #Get-Tweaks
+    #Write-Host "[+] Instalando Reversing Tools..." -ForegroundColor Green
+    #Install-BoxstarterPackage -PackageName $reversing
 }
+
+
+function Install-Wifi{ 
+      
+
+}
+
 
 # RESTORE COMPUTER
 Function Restore-Point{
