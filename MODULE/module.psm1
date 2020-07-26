@@ -608,135 +608,10 @@ Function Confirm-Installed($command){
  }
   
 
-### Create README ##
+### Create README (not used) ##
 function Add-README{
 
     $toolsPath      = "$env:systemdrive\RelaTools"
-
-# > arpspoof.exe
-$content = @" 
-
- - EXAMPLES:
-
-    $ arpspoof.exe --list | [-i iface] [--oneway] victim-ip [target-ip]
-
-    >>
-
-"@
-Add-Content -PassThru "$toolsPath\arpspoof\README" -Value $content
-
-
-# > webgoat-server
-$content = @" 
-
- - DOCUMENTATION:
-    
-    https://github.com/WebGoat/WebGoat
-
- - EXAMPLES:
-
-  $ java -jar webgoat-server-8.1.0.jar [--server.port=8080] [--server.address=localhost]
-  $ java -jar webwolf-8.1.0.jar [--server.port=9090] [--server.address=localhost]
-
-  http://127.0.0.1:8080/WebGoat WebWolf will be located at: http://127.0.0.1:9090/WebWolf
-
-"@
-Add-Content -PassThru "$toolsPath\webgoat-server\README" -Value $content
-
-
-# > PITT
-$content = @" 
-
- - DOCUMENTATION:
-    
-    https://sourceforge.net/projects/publicintelligencetool/
-
-    https://github.com/TheCyberViking/PublicIntelligenceTool
-
-
- - EXAMPLES:
-
-   Portable Executable - Run as Administrator
- 
-
-"@
-Add-Content -PassThru "$toolsPath\PITT - Public Intellegence Tool V2.5.1\README" -Value $content
-
-# > Vulenrator
-$content = @" 
-
- - DOCUMENTATION:
-    
-    The official distribution of the vulnerability parsing utility.
-
-    https://github.com/Vulnerator/Vulnerator
-
- - EXAMPLES:
-
-    Portable Executable - Run as Administrator
- 
-
-"@
-Add-Content -PassThru "$toolsPath\Vulnerator_v6-1-9\README" -Value $content
-
-# > Wapiti
-$content = @" 
-
- - DOCUMENTATION:
-    
-    https://sourceforge.net/p/wapiti/wiki/Installation/
-
-    Read:
-
-        - INSTALL.md
-        - README.md
-
- - EXAMPLES:
-
-    Installation: python setup.py install
-
-    Use: wapiti -h 
- 
-
-"@
-Add-Content -PassThru "$toolsPath\wapiti3-3.0.3\README" -Value $content
-
-#
-$content = @" 
-
- - DOCUMENTATION:
-
-        Modules that require an API key:
-        --------------------------------
-        Documentation to setup API keys can be found at - https://github.com/laramies/theHarvester/wiki/Installation#api-keys
-        
-        * bing
-        * github
-        * hunter
-        * intelx
-        * pentesttools
-        * securityTrails
-        * shodan
-        * spyse
- 
- 
-        Install and dependencies:
-        -------------------------
-        * Python 3.7+
-        * python3 -m pip install pipenv
-        * https://github.com/laramies/theHarvester/wiki/Installation 
-   
-
- - EXAMPLES:
-
-        !! before use require installation
-
-        python theHarvester.py -h
-
- 
-
-"@
-Add-Content -PassThru "$toolsPath\theHarvester-master\README" -Value $content
 
 # > 
 $content = @" 
@@ -754,4 +629,5 @@ Add-Content -PassThru "$toolsPath\    \README" -Value $content
 
 
 }
+
 Export-ModuleMember -Function *
