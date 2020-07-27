@@ -67,7 +67,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |[CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)
 |[enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|     [joomscan](https://github.com/rezasp/joomscan)
 |[fierce](https://github.com/mschwager/fierce)|                   [mutiny-fuzzer](https://github.com/Cisco-Talos/mutiny-fuzzer)
-|[FOCA](https://github.com/ElevenPaths/FOCA)|                     [N-Stalker Web Application Security Scanner X Free Edition](https://www.nstalker.com/products/editions/free/)
+|[FOCA](https://github.com/ElevenPaths/FOCA)|                     [N-Stalker X - Free Edition](https://www.nstalker.com/products/editions/free/)
 |[gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)| [radamsa](https://github.com/aoh/radamsa)
 |[googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)|[w3af](https://github.com/andresriancho/w3af)
 |[instagram-py](https://github.com/deathsec/instagram-py)|  [wapiti](https://wapiti.sourceforge.io/)
