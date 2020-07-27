@@ -13,8 +13,8 @@ Function Test-DiskSpace([string]$instalacion)
 
       Switch (($instalacion) )
     {
-      "Install-Pentest"{$espacio = 40}
-      "Install-REversing"{$espacio = 35}
+      "Install-Pentest"{$espacio = 32}
+      "Install-REversing"{$espacio = 32}
       
 }
 
