@@ -61,36 +61,36 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 1- Recopilación de Información                       | 2 - Analisis de Aplicaciones Web |
 |------------------------------------------------------|--------------------------------------------------|                                 
-|* [adaudit](https://github.com/phillips321/adaudit) |              [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)|
-|* [aquatone](https://github.com/michenriksen/aquatone)|            * [dirbuster](https://sourceforge.net/projects/dirbuster/)
-|* [Asnlookup](https://github.com/yassineaboukir/Asnlookup)|        * [droopescan](https://github.com/droope/droopescan)
-|* [CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                * [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)
-|* [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|     * []()
-|* [fierce](https://github.com/mschwager/fierce)|                   * []()
-|* [FOCA](https://github.com/ElevenPaths/FOCA)|
-|* [gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)|
-|* [googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)|
-|* [instagram-py](https://github.com/deathsec/instagram-py)|
-|* [ipscan](https://github.com/angryip/ipscan)|
-|* [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)|
-|* [Maltego Community](https://www.maltego.com/maltego-community/)|
-|* [NetfoxDetective](https://github.com/nesfit/NetfoxDetective)|
-|* [NetworkMiner](https://www.netresec.com/?page=NetworkMiner)|
-|* [Nmap](https://nmap.org/)|
-|* [PhEmail](https://github.com/Dionach/PhEmail)|
-|* [PhoneInfoga](https://github.com/sundowndev/PhoneInfoga)|
-|* [Public Intelligence Tool](https://sourceforge.net/projects/publicintelligencetool/)|
-|* [pwnedOrNot](https://github.com/thewhiteh4t/pwnedOrNot)|
-|* [Ultimate-Facebook-Scraper](https://github.com/harismuneer/Ultimate-Facebook-Scraper)|
-|* [sherlock](https://github.com/sherlock-project/sherlock)|
-|* [smbmap](https://github.com/ShawnDEvans/smbmap)|
-|* [smtp_diag_tool](https://www.adminkit.net/smtp_diag_tool.aspx)|
-|* [snmp-scanner](https://sourceforge.net/projects/snmp-scanner/)|
-|* [spiderfoot](https://www.spiderfoot.net/documentation/)|
-|* [tacyt-maltego-transforms](https://github.com/ElevenPaths/tacyt-maltego-transforms)|
-|* [theHarvester](https://github.com/laramies/theHarvester)|
-|* [wesng](https://github.com/bitsadmin/wesng)|
-|* [zenmap](https://nmap.org/zenmap/)|
+|[adaudit](https://github.com/phillips321/adaudit) |              [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)|
+|[aquatone](https://github.com/michenriksen/aquatone)|            [dirbuster](https://sourceforge.net/projects/dirbuster/)
+|[Asnlookup](https://github.com/yassineaboukir/Asnlookup)|        [droopescan](https://github.com/droope/droopescan)
+|[CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)
+|[enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|     [joomscan](https://github.com/rezasp/joomscan)
+|[fierce](https://github.com/mschwager/fierce)|                   [mutiny-fuzzer](https://github.com/Cisco-Talos/mutiny-fuzzer)
+|[FOCA](https://github.com/ElevenPaths/FOCA)|                     [N-Stalker Web Application Security Scanner X Free Edition](https://www.nstalker.com/products/editions/free/)
+|[gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)| [radamsa](https://github.com/aoh/radamsa)
+|[googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)|[w3af](https://github.com/andresriancho/w3af)
+|[instagram-py](https://github.com/deathsec/instagram-py)|  [wapiti](https://wapiti.sourceforge.io/)
+|[ipscan](https://github.com/angryip/ipscan)|               [weevely3](https://github.com/epinna/weevely3)        
+|[ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)| [wfuzz](https://github.com/xmendez/wfuzz)
+|[Maltego Community](https://www.maltego.com/maltego-community/)| [WhatWeb](https://github.com/urbanadventurer/WhatWeb)
+|[NetfoxDetective](https://github.com/nesfit/NetfoxDetective)| [OWASP-Xenotix-XSS-Exploit-Framework](https://github.com/ajinabraham/OWASP-Xenotix-XSS-Exploit-Framework)
+|[NetworkMiner](https://www.netresec.com/?page=NetworkMiner)|[XSStrike](https://github.com/s0md3v/XSStrike)
+|[Nmap](https://nmap.org/)| [zaproxy](https://github.com/zaproxy/zaproxy)
+|[PhEmail](https://github.com/Dionach/PhEmail)| []()
+|[PhoneInfoga](https://github.com/sundowndev/PhoneInfoga)|
+|[Public Intelligence Tool](https://sourceforge.net/projects/publicintelligencetool/)|
+|[pwnedOrNot](https://github.com/thewhiteh4t/pwnedOrNot)|
+|[Ultimate-Facebook-Scraper](https://github.com/harismuneer/Ultimate-Facebook-Scraper)|
+|[sherlock](https://github.com/sherlock-project/sherlock)|
+|[smbmap](https://github.com/ShawnDEvans/smbmap)|
+|[smtp_diag_tool](https://www.adminkit.net/smtp_diag_tool.aspx)|
+|[snmp-scanner](https://sourceforge.net/projects/snmp-scanner/)|
+|[spiderfoot](https://www.spiderfoot.net/documentation/)|
+|[tacyt-maltego-transforms](https://github.com/ElevenPaths/tacyt-maltego-transforms)|
+|[theHarvester](https://github.com/laramies/theHarvester)|
+|[wesng](https://github.com/bitsadmin/wesng)|
+|[zenmap](https://nmap.org/zenmap/)|
 
  
 * []()
