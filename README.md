@@ -59,12 +59,43 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 ### Pentest Tools
 
-#### Recopilación de Información                                           
+#### 1- Recopilación de Información                                           
 
-* [asnlookup](https://github.com/yassineaboukir/Asnlookup)
+* []()
+* [adaudit](https://github.com/phillips321/adaudit)
+* [aquatone](https://github.com/michenriksen/aquatone)
+* [Asnlookup](https://github.com/yassineaboukir/Asnlookup)
+* [CCrawlDNS](https://github.com/lgandx/CCrawlDNS)
+* [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)
+* [fierce](https://github.com/mschwager/fierce)
+* [FOCA](https://github.com/ElevenPaths/FOCA)
+* [gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)
+* [googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)
+* [instagram-py](https://github.com/deathsec/instagram-py)
+* [ipscan](https://github.com/angryip/ipscan)
+* [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)
+* [Maltego Community](https://www.maltego.com/maltego-community/)
+* [NetfoxDetective](https://github.com/nesfit/NetfoxDetective)
+* [NetworkMiner](https://www.netresec.com/?page=NetworkMiner)
+* [Nmap](https://nmap.org/)
+* [PhEmail](https://github.com/Dionach/PhEmail)
+* [PhoneInfoga](https://github.com/sundowndev/PhoneInfoga)
+* [Public Intelligence Tool](https://sourceforge.net/projects/publicintelligencetool/)
+* [pwnedOrNot](https://github.com/thewhiteh4t/pwnedOrNot)
+* [Ultimate-Facebook-Scraper](https://github.com/harismuneer/Ultimate-Facebook-Scraper)
+* [sherlock](https://github.com/sherlock-project/sherlock)
+* [smbmap](https://github.com/ShawnDEvans/smbmap)
+* [smtp_diag_tool](https://www.adminkit.net/smtp_diag_tool.aspx)
+* [snmp-scanner](https://sourceforge.net/projects/snmp-scanner/)
+* [spiderfoot](https://www.spiderfoot.net/documentation/)
+* [tacyt-maltego-transforms](https://github.com/ElevenPaths/tacyt-maltego-transforms)
+* [theHarvester](https://github.com/laramies/theHarvester)
+* [wesng](https://github.com/bitsadmin/wesng)
+* [zenmap](https://nmap.org/zenmap/)
+
+ #### 2 - Análisis de Aplicaciones Web
 
 
- #### Análisis de Aplicaciones Web
 
 
 ## Wiki 📖
