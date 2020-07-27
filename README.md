@@ -99,7 +99,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |[RED_HAWK](https://github.com/Tuhinshubhra/RED_HAWK)   |[demonsaw](https://www.demonsaw.com/)                              | [john-jumbo](https://www.openwall.com/john/) |
 |[Nessus](https://docs.tenable.com/Nessus.htm)          |[onionshare](https://blog.torproject.org/new-release-onionshare-2) | [ncrack](https://nmap.org/ncrack/) |
 |[Nikto2](https://cirt.net/Nikto2)                      |[proxytunnel](https://proxytunnel.sourceforge.io/)                 | [pack](https://github.com/iphelix/pack) |
-|[vega](https://subgraph.com/vega/)                     |[tor-network-anon](https://trac.torproject.org/projects/tor/wiki)  | [Responder](https://github.com/lgandx/Responder-Windows) |
+|[Vega](https://subgraph.com/vega/)                     |[tor-network-anon](https://trac.torproject.org/projects/tor/wiki)  | [Responder](https://github.com/lgandx/Responder-Windows) |
 |[Vulnerator](https://github.com/Vulnerator/Vulnerator) |[torchat](https://github.com/prof7bit/TorChat)                     | [brutescrape](https://github.com/cheetz/brutescrape) |
 | []() | []() | [hashcat](https://hashcat.net/hashcat/) |
 | []() | []() | [johnny](https://openwall.info/wiki/john/johnny) |
