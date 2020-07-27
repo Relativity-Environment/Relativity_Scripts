@@ -60,8 +60,6 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 ### Pentest Tools
 
 #### 1- Recopilación de Información                                           
-
-* []()
 * [adaudit](https://github.com/phillips321/adaudit)
 * [aquatone](https://github.com/michenriksen/aquatone)
 * [Asnlookup](https://github.com/yassineaboukir/Asnlookup)
@@ -94,6 +92,11 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 * [zenmap](https://nmap.org/zenmap/)
 
  #### 2 - Análisis de Aplicaciones Web
+* []()
+* []()
+* []()
+* []()
+* []()
 
 
 
