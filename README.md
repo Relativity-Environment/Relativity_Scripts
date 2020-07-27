@@ -57,7 +57,9 @@ Al comenzar la instalación se crea un checkpoint que sirve para volver a un pun
 
 De momento solo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
 
-### Pentest Tools
+
+
+### Pentest Tools (aún en pruebas -  no definitivas)
 
 | 1- Recopilación de Información | 2 - Analisis de Aplicaciones Web | 3 - Analisis de Bases de Datos  |
 |--------------------------------|----------------------------------|---------------------------------|                                 
