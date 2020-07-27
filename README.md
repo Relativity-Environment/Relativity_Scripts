@@ -61,12 +61,12 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 1- Recopilación de Información                       | 2 - Analisis de Aplicaciones Web |
 |------------------------------------------------------|--------------------------------------------------|                                 
-|* [adaudit](https://github.com/phillips321/adaudit) |
-|* [aquatone](https://github.com/michenriksen/aquatone)|
-|* [Asnlookup](https://github.com/yassineaboukir/Asnlookup)|
-|* [CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|
-|* [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|
-|* [fierce](https://github.com/mschwager/fierce)|
+|* [adaudit](https://github.com/phillips321/adaudit) |              * [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)|
+|* [aquatone](https://github.com/michenriksen/aquatone)|            * [dirbuster](https://sourceforge.net/projects/dirbuster/)
+|* [Asnlookup](https://github.com/yassineaboukir/Asnlookup)|        * [droopescan](https://github.com/droope/droopescan)
+|* [CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                * [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)
+|* [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|     * []()
+|* [fierce](https://github.com/mschwager/fierce)|                   * []()
 |* [FOCA](https://github.com/ElevenPaths/FOCA)|
 |* [gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)|
 |* [googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)|
@@ -92,8 +92,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |* [wesng](https://github.com/bitsadmin/wesng)|
 |* [zenmap](https://nmap.org/zenmap/)|
 
- #### 2 - Análisis de Aplicaciones Web
-* [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)
+ 
 * []()
 * []()
 * []()
