@@ -61,7 +61,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 1- Recopilación de Información                       | 2 - Analisis de Aplicaciones Web |
 |------------------------------------------------------|--------------------------------------------------|                                 
-|* [adaudit](https://github.com/phillips321/adaudit) |              * [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)|
+|* [adaudit](https://github.com/phillips321/adaudit) |              [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)|
 |* [aquatone](https://github.com/michenriksen/aquatone)|            * [dirbuster](https://sourceforge.net/projects/dirbuster/)
 |* [Asnlookup](https://github.com/yassineaboukir/Asnlookup)|        * [droopescan](https://github.com/droope/droopescan)
 |* [CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                * [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)
