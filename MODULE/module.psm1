@@ -357,7 +357,7 @@ function Install-Apps
         }
     }
 
-
+    <#
     $zips = Get-ChildItem -filter "*.zip" -path "$UtilDownloadPath"-Recurse
     $WinRar = "C:\Program Files\WinRAR\winrar.exe"
     foreach ($zip in $zips)
@@ -370,9 +370,9 @@ function Install-Apps
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
 
         }
-    }
+    }#>
 
-    <# Extracting self-contained binaries (zip files) to our bin folder
+    # Extracting self-contained binaries (zip files) to our bin folder
     Write-Information '[-] Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
