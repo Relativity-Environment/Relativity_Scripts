@@ -378,6 +378,7 @@ function Install-Apps
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
+        refreshenv
         if (Test-PendingReboot) { Invoke-Reboot }
         
     }
@@ -391,6 +392,7 @@ function Install-Apps
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter $name | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
            New-Item -ItemType directory -Path $UtilBinPath -Name $file
+           refreshenv
            if (Test-PendingReboot) { Invoke-Reboot }
 
         
@@ -431,6 +433,7 @@ function Get-PE
 
                 Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:PEAPPS[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                refreshenv
                 $FilesDownloaded += $software
             
             }
@@ -476,6 +479,7 @@ Foreach ($software in $global:GitPackages.keys) {
                     
                     Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                     git clone $global:GitPackages[$software] -q
+                    refreshenv
                     if (Test-PendingReboot) { Invoke-Reboot }
                 
                 }
@@ -522,6 +526,7 @@ Function Get-AHKPackages
 
                 Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:AHKPackages[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
+                refreshenv
                 Write-Output "$software" >> "$env:LOCALAPPDATA\RELATIVITY\pentest_ahk_dowload"
             }
             catch {
@@ -545,10 +550,9 @@ Function Get-AHKPackages
     Get-ChildItem -Path "$env:SYSTEMDRIVE\cache\ahk" -File -Filter '*.zip' | ForEach-Object {
     Push-Location "$env:SYSTEMDRIVE\cache\ahk"
     Expand-Archive -Path $_.FullName -DestinationPath . -ErrorAction SilentlyContinue
+    refreshenv
     
   }
-
-    if (Test-PendingReboot) { Invoke-Reboot }
 
 }
 
