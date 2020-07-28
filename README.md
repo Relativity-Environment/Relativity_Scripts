@@ -49,6 +49,12 @@ Una vez realizado el paso anterior ejecutar el siguiente código en una consola 
 . {iwr -useb https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/menu.ps1} | iex ;menu -Force
 ```
 
+#### ERRORES
+
+El script está aún en desarrollo y aunque la mayoría de errores no interrumpen la instalación hay casos en que si lo hacen, así mismo reiniciando la máquina y volviendo a lanzar la instalación estos errores son resueltos.
+
+Aunque de forma mínima algunas aplicaciones no se estan instalando correctamente, se está trabajando para solventar estos problemas.
+
 ### Punto de restauración 🛠️
 
 Al comenzar la instalación se crea un checkpoint que sirve para volver a un punto anterior el sistema en caso de que algo vaya mal o que queramos prescindir del entorno.
