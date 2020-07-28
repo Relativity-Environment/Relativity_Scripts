@@ -309,6 +309,7 @@ function Install-Apps
         New-Item -ItemType Directory -Path $UtilBinPath -Name $file
         &$Winrar x $rar.FullName "$UtilBinPath\$file"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        if (Test-PendingReboot) { Invoke-Reboot }
       }
     }
 
@@ -322,6 +323,7 @@ function Install-Apps
         New-Item -ItemType Directory -Path $UtilBinPath -Name $file
         &$Winrar x $7z.FullName "$UtilBinPath\$file"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        if (Test-PendingReboot) { Invoke-Reboot }
         }
     }
 
@@ -335,6 +337,7 @@ function Install-Apps
         New-Item -ItemType Directory -Path $UtilBinPath -Name $tar
         &$Winrar x $gz.FullName "$UtilBinPath\$tar"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        if (Test-PendingReboot) { Invoke-Reboot }
 
         }
     }
@@ -349,6 +352,7 @@ function Install-Apps
         New-Item -ItemType Directory -Path $UtilBinPath -Name $tg
         &$Winrar x $tgz.FullName "$UtilBinPath\$tg"
         Get-Process winrar | Wait-Process -ErrorAction SilentlyContinue
+        if (Test-PendingReboot) { Invoke-Reboot }
 
         }
     }
@@ -374,6 +378,7 @@ function Install-Apps
         
         #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
+        if (Test-PendingReboot) { Invoke-Reboot }
         
     }
 
@@ -386,6 +391,7 @@ function Install-Apps
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter $name | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
            New-Item -ItemType directory -Path $UtilBinPath -Name $file
+           if (Test-PendingReboot) { Invoke-Reboot }
 
         
         }else{
@@ -469,7 +475,8 @@ Foreach ($software in $global:GitPackages.keys) {
             try {
                     
                     Write-Host "[+] Downloading $software" -ForegroundColor Cyan
-                    git clone $global:GitPackages[$software] -q 
+                    git clone $global:GitPackages[$software] -q
+                    if (Test-PendingReboot) { Invoke-Reboot }
                 
                 }
                 
@@ -528,6 +535,8 @@ Function Get-AHKPackages
             Write-Information "[-] File is already downloaded, skipping: $software"
            
         }
+
+        
     }
 
     
@@ -538,6 +547,8 @@ Function Get-AHKPackages
     Expand-Archive -Path $_.FullName -DestinationPath . -ErrorAction SilentlyContinue
     
   }
+
+    if (Test-PendingReboot) { Invoke-Reboot }
 
 }
 
