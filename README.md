@@ -40,6 +40,7 @@ Para realizar la instalación es necesario desactivar antes la protección 'Anti
 ### Instalación 🔧
 
 *Soporta ser instalado en un máquina virtual
+
 *El sistema se reiniciará varias veces y se instalarán todos los parches disponibles
  
 Una vez realizado el paso anterior ejecutar el siguiente código en una consola de Powershell como adminstrador:
