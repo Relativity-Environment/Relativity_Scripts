@@ -392,10 +392,7 @@ function Install-Apps
             
            Get-ChildItem -Path $UtilDownloadPath -File -Filter $name | ForEach-Object {Install-ChocolateyPackage -PackageName $_.Name -FileType 'msi' -File $_.FullName -SilentArgs '/qn'} 
            New-Item -ItemType directory -Path $UtilBinPath -Name $file
-           refreshenv
-           if (Test-PendingReboot) { Invoke-Reboot }
-
-        
+                 
         }else{
 
             Write-Information "[-] $name is installed"
