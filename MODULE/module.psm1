@@ -14,8 +14,7 @@ Function Test-DiskSpace([string]$instalacion)
       Switch (($instalacion) )
     {
       "Install-Pentest"{$espacio = 32}
-      "Install-REversing"{$espacio = 32}
-      
+            
 }
 
     $disk = $env:systemdrive.Split(":")[0] 
