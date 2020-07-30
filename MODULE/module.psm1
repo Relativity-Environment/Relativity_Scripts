@@ -70,7 +70,7 @@ function Add-PentestMenu
 
 
         $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'     
-        Remove-Item $StartMenu -Force -Recurse
+        Remove-Item "$StartMenu\Pentest_Tools" -Force -Recurse
         $Download = "$env:LOCALAPPDATA\RELATIVITY\"
         $value = "$env:USERPROFILE\Desktop\"
         Invoke-WebRequest -UseBasicParsing -Uri "https://github.com/Relativity-Environment/Relativity_Scripts/raw/master/PENTEST.TOOLS/FILES/ZIP/Pentest_Tools.zip" -Outfile "$Download\Pentest_Tools.zip" 
@@ -261,20 +261,14 @@ function Add-Background
 function Install-Apps
 {   
 
-    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
-  
-    
+    [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"  
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\RelaTools\"
-    
     $FilesDownloaded = @()
-
     Push-Location $UtilDownloadPath 
-   
     Foreach ($software in $global:ManualDownloadInstall.keys) {
     $path       = [io.path]::GetFileNameWithoutExtension($software)
     $matches    = Get-ChildItem $UtilBinPath 
-    
     
         if (-not(Test-Path "$UtilBinPath\$path") ) {
             
@@ -282,8 +276,7 @@ function Install-Apps
                 
                 Write-Host "[+] Downloading $software" -ForegroundColor Cyan
                 Invoke-WebRequest $global:ManualDownloadInstall[$software] -OutFile $software -UseBasicParsing -ErrorAction SilentlyContinue
-                $FilesDownloaded += $software
-                
+                $FilesDownloaded += $software  
 
             }
             catch {
@@ -372,19 +365,15 @@ function Install-Apps
         }
     }#>
 
-    # Extracting self-contained binaries (zip files) to our bin folder
+    # ZIP
     Write-Information '[-] Extracting self-contained binaries (zip files) to our bin folder'
     Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.zip' | Where-Object {$FilesDownloaded -contains $_.Name} | ForEach-Object {
         
-        #Push-Location $UtilBinPath
         Expand-Archive -Path $_.FullName -DestinationPath $UtilBinPath\$($_.Basename)
         refreshenv
-        
-        
-    }#>
-
+    }
                
-    # Kick off msi installs
+    # MSI
     $msi = Get-ChildItem -Path $UtilDownloadPath -File -Filter '*.msi'
     ForEach ($name in $msi) {          
     $file = [io.path]::GetFileNameWithoutExtension($name)  
