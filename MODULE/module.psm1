@@ -10,7 +10,6 @@
 ## DISKSPACE & CHKPOINT
 Function Test-DiskSpace([string]$instalacion)
 {
-
       Switch (($instalacion) )
     {
       "Install-Pentest"{$espacio = 32}
@@ -19,7 +18,7 @@ Function Test-DiskSpace([string]$instalacion)
 
     $disk = $env:systemdrive.Split(":")[0] 
     $disk = Get-PSDrive C
-      Start-Sleep -Seconds 1
+    Start-Sleep -Seconds 1
       if (-Not (($disk.free)/1GB -gt $espacio)){
         Write-Host " [ERR] Esta instalacion requiere de $espacio GB de espacio en disco`n" -ForegroundColor Red
         Read-Host "Pulsa cualquier tecla para continuar"
@@ -39,12 +38,10 @@ Function Test-DiskSpace([string]$instalacion)
 
 function Add-InstallFolders{
   
-  
     # Start Menu (RelaTools)
     $ToolsMenuPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
     New-Item -ItemType "directory" $ToolsMenuPath -Force -ErrorAction SilentlyContinue | Out-Null
     
-
     # Cache PATH - RalaTools PATH
     $UtilDownloadPath   = "$env:systemdrive\cache"
     $UtilBinPath        = "$env:systemdrive\RelaTools\"
@@ -53,7 +50,6 @@ function Add-InstallFolders{
 
         mkdir $UtilDownloadPath -ErrorAction SilentlyContinue | Out-Null
     }
-
 
     If (-not (Test-Path $UtilBinPath)) {
 
@@ -77,6 +73,7 @@ function Add-PentestMenu
         New-Item -ItemType SymbolicLink -Path $value -Name "Pentest_Tools" -Value "$StartMenu\Pentest_Tools" -Force
 }
 
+## no usado
 function Add-ReversingMenu
 {
 
@@ -158,16 +155,13 @@ Function Add-Checkpoint($name){
     $exist = Get-ComputerRestorePoint | Where-Object {$_.description -match $name } | Select-Object -ExpandProperty Description
     
     if($exist -eq $name)
-    {
-            
+    {      
         Write-Output "$name exist!"
     
-    
-       }else{
+    }else{
         
         Write-Host "[+] Checkpoint create: $name" -ForegroundColor Cyan
         Checkpoint-Computer -Description "$name"
-    
    }
 }
 
