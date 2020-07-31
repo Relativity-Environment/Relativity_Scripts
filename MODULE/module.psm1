@@ -6,14 +6,12 @@
 
 }
 
-
 ## DISKSPACE & CHKPOINT
 Function Test-DiskSpace([string]$instalacion)
 {
       Switch (($instalacion) )
     {
-      "Install-Pentest"{$espacio = 32}
-            
+      "Install-Pentest"{$espacio = 32}          
 }
 
     $disk = $env:systemdrive.Split(":")[0] 
@@ -32,9 +30,7 @@ Function Test-DiskSpace([string]$instalacion)
         Add-Checkpoint $instalacion
     }
 
-  
 }
-
 
 function Add-InstallFolders{
   
