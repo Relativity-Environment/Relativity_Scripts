@@ -187,19 +187,6 @@ function Install-Module{
 } #<<<<<<< Final Join-Initial
 
 
-# Autologin credentials
-$Boxstarter.AutoLogin = $true
-Write-Host "[+] Introduce credenciales de usuario para autologin..."
-Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name "ConsolePrompting" -Value $True
-if ([string]::IsNullOrEmpty($password)) {
-	$cred=Get-Credential $env:username
-} else {
-	$spasswd=ConvertTo-SecureString -String $password -AsPlainText -Force
-	$cred=New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $env:username, $spasswd
-}
-
-
-
 ## INSTALL
 
 $pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/PENTEST.TOOLS/install.pentest.ps1"
@@ -220,7 +207,7 @@ function Install-Pentest{
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $pentest
+    Install-BoxstarterPackage -PackageName $pentest -Credential (Get-Credential $env:username)
      
 } 
    
