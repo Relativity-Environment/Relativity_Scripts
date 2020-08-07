@@ -187,6 +187,18 @@ function Install-Module{
 } #<<<<<<< Final Join-Initial
 
 
+# Autologin credentials
+$Boxstarter.AutoLogin = $true
+Write-Host "[+] Introduce credenciales de usuario para autologin..."
+Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name "ConsolePrompting" -Value $True
+if ([string]::IsNullOrEmpty($password)) {
+	$cred=Get-Credential $env:username
+} else {
+	$spasswd=ConvertTo-SecureString -String $password -AsPlainText -Force
+	$cred=New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $env:username, $spasswd
+}
+
+
 
 ## INSTALL
 
