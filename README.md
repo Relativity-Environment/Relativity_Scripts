@@ -70,24 +70,24 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 ### Pentest Tools (aún en pruebas -  no definitivas)
 
 | 1 - Recopilación de Información - | 2 - Analisis de Aplicaciones Web - | 3 - Analisis de Bases de Datos -  |
-|--------------------------------|----------------------------------|---------------------------------|                                 
-|[adaudit](https://github.com/phillips321/adaudit) |              [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)| [Damn Small SQLi Scanner](https://github.com/stamparm/DSSS)|
-|[aquatone](https://github.com/michenriksen/aquatone)|            [dirbuster](https://sourceforge.net/projects/dirbuster/)  | [explo](https://github.com/dtag-dev-sec/explo)
-|[Asnlookup](https://github.com/yassineaboukir/Asnlookup)|        [droopescan](https://github.com/droope/droopescan)        | [jsql-injection](https://github.com/ron190/jsql-injection)
-|[CCrawlDNS](https://github.com/lgandx/CCrawlDNS)|                [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)  | [NoSQLMap](https://github.com/codingo/NoSQLMap)
-|[enum4linux](https://github.com/CiscoCXSecurity/enum4linux)|     [joomscan](https://github.com/rezasp/joomscan)                                            | [padding-oracle-attacker](https://github.com/KishanBagaria/padding-oracle-attacker)
-|[fierce](https://github.com/mschwager/fierce)|                   [mutiny-fuzzer](https://github.com/Cisco-Talos/mutiny-fuzzer)                             | [quicksql](https://github.com/trustedsec/quicksql)
-|[FOCA](https://github.com/ElevenPaths/FOCA)|                     [N-Stalker X - Free Edition](https://www.nstalker.com/products/editions/free/)            | [safe3si](https://sourceforge.net/projects/safe3si/)
-|[gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html)| [radamsa](https://github.com/aoh/radamsa)                                      | [sqlmap](https://github.com/sqlmapproject/sqlmap)
-|[googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html)|[w3af](https://github.com/andresriancho/w3af)           | [themole](https://github.com/tiankonguse/themole)
-|[instagram-py](https://github.com/deathsec/instagram-py)|  [wapiti](https://wapiti.sourceforge.io/)                                                        | [whitewidow](https://github.com/WhitewidowScanner/whitewidow/blob/master/whitewidow.rb)
-|[ipscan](https://github.com/angryip/ipscan)|               [weevely3](https://github.com/epinna/weevely3)                                                  
-|[ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)| [wfuzz](https://github.com/xmendez/wfuzz)
-|[Maltego Community](https://www.maltego.com/maltego-community/)| [WhatWeb](https://github.com/urbanadventurer/WhatWeb)
-|[NetfoxDetective](https://github.com/nesfit/NetfoxDetective)| [OWASP-Xenotix-XSS-Exploit-Framework](https://github.com/ajinabraham/OWASP-Xenotix-XSS-Exploit-Framework)
-|[NetworkMiner](https://www.netresec.com/?page=NetworkMiner)|[XSStrike](https://github.com/s0md3v/XSStrike)
-|[Nmap](https://nmap.org/)| [zaproxy](https://github.com/zaproxy/zaproxy)
-|[PhEmail](https://github.com/Dionach/PhEmail)| []()
+|--------------------------------|---------------------------------------|-----------------------------------|                                 
+|[adaudit](https://github.com/phillips321/adaudit)                          | [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)                                          | [Damn Small SQLi Scanner](https://github.com/stamparm/DSSS)|
+|[aquatone](https://github.com/michenriksen/aquatone)                       | [dirbuster](https://sourceforge.net/projects/dirbuster/)                                  | [whitewidow](https://github.com/WhitewidowScanner/whitewidow/blob/master/whitewidow.rb)
+|[Asnlookup](https://github.com/yassineaboukir/Asnlookup)                   | [droopescan](https://github.com/droope/droopescan)                                        | [jsql-injection](https://github.com/ron190/jsql-injection)
+|[CCrawlDNS](https://github.com/lgandx/CCrawlDNS)                           | [havij](https://www.darknet.org.uk/2010/09/havij-advanced-automated-sql-injection-tool/)  | [NoSQLMap](https://github.com/codingo/NoSQLMap)
+|[enum4linux](https://github.com/CiscoCXSecurity/enum4linux)                | [joomscan](https://github.com/rezasp/joomscan)                                            | [padding-oracle-attacker](https://github.com/KishanBagaria/padding-oracle-attacker)
+|[fierce](https://github.com/mschwager/fierce)                              | [mutiny-fuzzer](https://github.com/Cisco-Talos/mutiny-fuzzer)                             | [quicksql](https://github.com/trustedsec/quicksql)
+|[FOCA](https://github.com/ElevenPaths/FOCA)                                | [N-Stalker X - Free Edition](https://www.nstalker.com/products/editions/free/)            | [safe3si](https://sourceforge.net/projects/safe3si/)
+|[gmtcheck](https://www.elevenpaths.com/es/labstools/gmtchecksp/index.html) | [radamsa](https://github.com/aoh/radamsa)                                                 | [sqlmap](https://github.com/sqlmapproject/sqlmap)
+|[googleindexretriever](https://www.elevenpaths.com/es/labstools/googleindexretriever-2/index.html) |[w3af](https://github.com/andresriancho/w3af)                      | [themole](https://github.com/tiankonguse/themole)
+|[instagram-py](https://github.com/deathsec/instagram-py)                   | [wapiti](https://wapiti.sourceforge.io/)                                                  
+|[ipscan](https://github.com/angryip/ipscan)                                | [weevely3](https://github.com/epinna/weevely3)                                                  
+|[ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)               | [wfuzz](https://github.com/xmendez/wfuzz)
+|[Maltego Community](https://www.maltego.com/maltego-community/)            | [WhatWeb](https://github.com/urbanadventurer/WhatWeb)
+|[NetfoxDetective](https://github.com/nesfit/NetfoxDetective)               | [OWASP-Xenotix-XSS-Exploit-Framework](https://github.com/ajinabraham/OWASP-Xenotix-XSS-Exploit-Framework)
+|[NetworkMiner](https://www.netresec.com/?page=NetworkMiner)                | [XSStrike](https://github.com/s0md3v/XSStrike)
+|[Nmap](https://nmap.org/)                                                  | [zaproxy](https://github.com/zaproxy/zaproxy)
+|[PhEmail](https://github.com/Dionach/PhEmail)                              | [explo](https://github.com/dtag-dev-sec/explo)
 |[PhoneInfoga](https://github.com/sundowndev/PhoneInfoga)|
 |[Public Intelligence Tool](https://sourceforge.net/projects/publicintelligencetool/)|
 |[pwnedOrNot](https://github.com/thewhiteh4t/pwnedOrNot)|
@@ -119,9 +119,9 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 | []() | []() | [Crunch](https://github.com/shadwork/Windows-Crunch/) |
 | []() | []() | [cupp](https://github.com/Mebus/cupp) |
 
-| 7 - Criptografia y Hashing | 8 - Explotacion de Vulnerabilidades - | 9 - MITM - Envenenamiento - |
-|--------------------------------|----------------------------------|---------------------------------|
-| [Hash Suite](https://hashsuite.openwall.net/)                       | [commix](https://github.com/commixproject/commix)            | []() |
+| 7 - Criptografia y Hashing     | 8 - Explotacion de Vulnerabilidades - | 9 - MITM - Envenenamiento - |
+|--------------------------------|---------------------------------------|---------------------------------|
+| [Hash Suite](https://hashsuite.openwall.net/)                       | [Commix](https://github.com/commixproject/commix)            | []() |
 | [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin) | []() |
 | [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | []() | []() |
 | []()                                                                | []() | []() |
