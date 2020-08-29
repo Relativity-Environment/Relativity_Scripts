@@ -63,8 +63,11 @@ Al comenzar la instalación se crea un checkpoint que sirve para volver a un pun
 
 ## Herramientas disponibles ⚙️
 
-De momento solo estas disponibles las herramentas orientas a un pentest básico, más adelante se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
+De momento solo estas disponibles las herramentas orientas a pentesting, próximamente se agregarán herramientas para auditorias WiFi y Reversing/Análisis de Malware.
 
+### Informar de errores y sugerencias
+
+Dado que este proyecto se encuentra en una fase muy temprana se agredece el reporte de errores y sugerencias al correo victorgilasp@gmail.com 
 
 
 ### Pentest Tools (aún en pruebas -  no definitivas)
@@ -122,11 +125,11 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 | 7 - Criptografia y Hashing    | 8 - Explotacion de Vulnerabilidades  | 9 - MITM - Envenenamiento  |
 |--------------------------------|---------------------------------------|---------------------------------|
 | [Hash Suite](https://hashsuite.openwall.net/)                       | [Commix](https://github.com/commixproject/commix)                           | [Ettercap-ng](https://sourceforge.net/projects/ettercap/files/unofficial%20binaries/windows/) |
-| [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin)                | []() |
-| [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | [mimikatz](https://github.com/gentilkiwi/mimikatz/)                         | []() |
-| []()                                                                | [PowerMemory](https://github.com/giMini/PowerMemory)                        | []() |
-| []()                                                                | [PrivExchange](https://github.com/dirkjanm/PrivExchange)                    | []() |
-| []()                                                                | [SessionGopher](https://github.com/Arvanaghi/SessionGopher)                 | []() |
+| [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin)                | [evil-foca](https://www.elevenpaths.com/es/labstools/evil-focasp/index.html) |
+| [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | [mimikatz](https://github.com/gentilkiwi/mimikatz/)                         | [mitmproxy](https://docs.mitmproxy.org/stable/overview-tools/) |
+| []()                                                                | [PowerMemory](https://github.com/giMini/PowerMemory)                        | [arpspoof](https://github.com/alandau/arpspoof) |
+| []()                                                                | [PrivExchange](https://github.com/dirkjanm/PrivExchange)                    | [dnschef](https://github.com/iphelix/dnschef) |
+| []()                                                                | [SessionGopher](https://github.com/Arvanaghi/SessionGopher)                 | [tmac](https://technitium.com/tmac/) |
 | []()                                                                | [DAVOSET (DoS)](https://github.com/MustLive/DAVOSET)                        | []() |
 | []()                                                                | [LOIC (DoS)](https://github.com/NewEraCracker/LOIC)                         | []() |
 | []()                                                                | [evil-winrm](https://github.com/Hackplayers/evil-winrm)                     | []() |
@@ -145,6 +148,30 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 10 - Networking - | 11 - Diccionarios - | 12 - RAT - | 
 |--------------------------------|----------------------------------|---------------------------------|
+| [netcat](https://crysol.org/recipe/2005-10-10/netcat-la-navaja-suiza-de-tcp-ip.html#.X0qrOO9xfyY) | [fuzdb](https://github.com/fuzzdb-project/)           | [DarkComet](https://github.com/zxo2004/DarkComet-RAT-5.3.1) |
+| [socat](https://sourceforge.net/projects/unix-utils/files/socat/1.7.3.2/)                         | [SecList](https://github.com/danielmiessler/SecLists) | [NjRat](https://github.com/AliBawazeEer/RAT-NjRat-0.7d-modded-source-code) |
+| [tcping](https://www.elifulkerson.com/projects/tcping.php)                                        | []() | []() |
+| [tcprelay](https://tcpreplay.appneta.com/)                                                        | []() | []() |
+| [tcptrace](http://www.tcptrace.org/)                                                              | []() | []() |
+| [tcptunnel](http://www.vakuumverpackt.de/tcptunnel/)                                              | []() | []() |
+| [tcpview](https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview)                        | []() | []() |
+| [Wireshark](https://www.wireshark.org/)                                                           | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
+| []() | []() | []() |
 | []() | []() | []() |
 | []() | []() | []() |
 | []() | []() | []() |
