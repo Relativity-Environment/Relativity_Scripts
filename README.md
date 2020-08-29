@@ -121,10 +121,27 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 7 - Criptografia y Hashing    | 8 - Explotacion de Vulnerabilidades  | 9 - MITM - Envenenamiento  |
 |--------------------------------|---------------------------------------|---------------------------------|
-| [Hash Suite](https://hashsuite.openwall.net/)                       | [Commix](https://github.com/commixproject/commix)            | []() |
-| [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin) | []() |
-| [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | []() | []() |
-| []()                                                                | []() | []() |
+| [Hash Suite](https://hashsuite.openwall.net/)                       | [Commix](https://github.com/commixproject/commix)                           | [Ettercap-ng](https://sourceforge.net/projects/ettercap/files/unofficial%20binaries/windows/) |
+| [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin)                | []() |
+| [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | [mimikatz](https://github.com/gentilkiwi/mimikatz/)                         | []() |
+| []()                                                                | [PowerMemory](https://github.com/giMini/PowerMemory)                        | []() |
+| []()                                                                | [PrivExchange](https://github.com/dirkjanm/PrivExchange)                    | []() |
+| []()                                                                | [SessionGopher](https://github.com/Arvanaghi/SessionGopher)                 | []() |
+| []()                                                                | [DAVOSET (DoS)](https://github.com/MustLive/DAVOSET)                        | []() |
+| []()                                                                | [LOIC (DoS)](https://github.com/NewEraCracker/LOIC)                         | []() |
+| []()                                                                | [evil-winrm](https://github.com/Hackplayers/evil-winrm)                     | []() |
+| []()                                                                | [impacket](https://github.com/SecureAuthCorp/impacket)                      | []() |
+| []()                                                                | [metasploit-framework](https://github.com/rapid7/metasploit-framework)      | []() |
+| []()                                                                | [nishang](https://github.com/samratashok/nishang)                           | []() |
+| []()                                                                | [p0wnedShell](https://github.com/Cn33liz/p0wnedShell)                       | []() |
+| []()                                                                | [PowerSploit](https://github.com/PowerShellMafia/PowerSploit)               | []() |
+| []()                                                                | [SysWhispers](https://github.com/jthuraisamy/SysWhispers)                   | []() |
+| []()                                                                | [uacamola](https://github.com/ElevenPaths/uac-a-mola/tree/master/uacamola)  | []() |
+| []()                                                                | [AutoBlue-MS17-010 (exploit)](https://github.com/3ndG4me/AutoBlue-MS17-010) | []() |
+| []()                                                                | [MS17-010 (exploit)](https://github.com/worawit/MS17-010)                   | []() |
+| []()                                                                | []()                                                                        | []() |
+| []()                                                                | []()                                                                        | []() |
+
 
 | 10 - Networking - | 11 - Diccionarios - | 12 - RAT - | 
 |--------------------------------|----------------------------------|---------------------------------|
