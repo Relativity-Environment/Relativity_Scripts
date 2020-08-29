@@ -121,12 +121,12 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 | 7 - Criptografia y Hashing | 8 - Explotacion de Vulnerabilidades| 9 - MITM - Envenenamiento |
 |--------------------------------|----------------------------------|---------------------------------|
-| []() | []() | []() |
-| []() | []() | []() |
-| []() | []() | []() |
+| [Hash Suite](https://hashsuite.openwall.net/) | []() | []() |
+| [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | []() | []() |
+| [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/) | []() | []() |
 | []() | []() | []() |
 
-| 10 - Networking | 11 - Diccionarios | 12 - RAT| 
+| 10 - Networking - | 11 - Diccionarios - | 12 - RAT - | 
 |--------------------------------|----------------------------------|---------------------------------|
 | []() | []() | []() |
 | []() | []() | []() |
