@@ -109,15 +109,15 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |[Nikto2](https://cirt.net/Nikto2)                      |[proxytunnel](https://proxytunnel.sourceforge.io/)                 | [pack](https://github.com/iphelix/pack) |
 |[Vega](https://subgraph.com/vega/)                     |[tor-network-anon](https://trac.torproject.org/projects/tor/wiki)  | [Responder](https://github.com/lgandx/Responder-Windows) |
 |[Vulnerator](https://github.com/Vulnerator/Vulnerator) |[torchat](https://github.com/prof7bit/TorChat)                     | [brutescrape](https://github.com/cheetz/brutescrape) |
-| []() | []() | [hashcat](https://hashcat.net/hashcat/) |
-| []() | []() | [johnny](https://openwall.info/wiki/john/johnny) |
-| []() | []() | [ophcrack](https://ophcrack.sourceforge.io/) |
-| []() | []() | [patator](https://github.com/lanjelot/patator) |
-| []() | []() | [pwdump](https://www.openwall.com/passwords/windows-pwdump) |
-| []() | []() | [rainbowcrack](https://project-rainbowcrack.com/) |
-| []() | []() | [thc-hydra](https://github.com/maaaaz/thc-hydra-windows/) |
-| []() | []() | [Crunch](https://github.com/shadwork/Windows-Crunch/) |
-| []() | []() | [cupp](https://github.com/Mebus/cupp) |
+| []() | []()                                                                                                               | [hashcat](https://hashcat.net/hashcat/) |
+| []() | []()                                                                                                               | [johnny](https://openwall.info/wiki/john/johnny) |
+| []() | []()                                                                                                               | [ophcrack](https://ophcrack.sourceforge.io/) |
+| []() | []()                                                                                                               | [patator](https://github.com/lanjelot/patator) |
+| []() | []()                                                                                                               | [pwdump](https://www.openwall.com/passwords/windows-pwdump) |
+| []() | []()                                                                                                               | [rainbowcrack](https://project-rainbowcrack.com/) |
+| []() | []()                                                                                                               | [thc-hydra](https://github.com/maaaaz/thc-hydra-windows/) |
+| []() | []()                                                                                                               | [Crunch](https://github.com/shadwork/Windows-Crunch/) |
+| []() | []()                                                                                                               | [cupp](https://github.com/Mebus/cupp) |
 
 | 7 - Criptografia y Hashing     | 8 - Explotacion de Vulnerabilidades - | 9 - MITM - Envenenamiento - |
 |--------------------------------|---------------------------------------|---------------------------------|
