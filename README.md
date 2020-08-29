@@ -69,7 +69,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 
 ### Pentest Tools (aún en pruebas -  no definitivas)
 
-| 1- Recopilación de Información | 2 - Analisis de Aplicaciones Web | 3 - Analisis de Bases de Datos  |
+| 1 - Recopilación de Información - | 2 - Analisis de Aplicaciones Web - | 3 - Analisis de Bases de Datos -  |
 |--------------------------------|----------------------------------|---------------------------------|                                 
 |[adaudit](https://github.com/phillips321/adaudit) |              [CMSeeK](https://github.com/Tuhinshubhra/CMSeeK)| [Damn Small SQLi Scanner](https://github.com/stamparm/DSSS)|
 |[aquatone](https://github.com/michenriksen/aquatone)|            [dirbuster](https://sourceforge.net/projects/dirbuster/)  | [explo](https://github.com/dtag-dev-sec/explo)
@@ -102,7 +102,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |[wesng](https://github.com/bitsadmin/wesng)|
 |[zenmap](https://nmap.org/zenmap/)|
 
-| 4 - Analisis de Vulnerabilidades | 5 - Anonimato           | 6 - Ataques de Contraseña |
+| 4 - Analisis de Vulnerabilidades - | 5 - Anonimato          - | 6 - Ataques de Contraseña - |
 |--------------------------------|----------------------------------|---------------------------------|
 |[RED_HAWK](https://github.com/Tuhinshubhra/RED_HAWK)   |[demonsaw](https://www.demonsaw.com/)                              | [john-jumbo](https://www.openwall.com/john/) |
 |[Nessus](https://docs.tenable.com/Nessus.htm)          |[onionshare](https://blog.torproject.org/new-release-onionshare-2) | [ncrack](https://nmap.org/ncrack/) |
