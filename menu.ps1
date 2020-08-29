@@ -187,6 +187,7 @@ function Install-Module{
 } #<<<<<<< Final Join-Initial
 
 
+
 ## INSTALL
 
 $pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/PENTEST.TOOLS/install.pentest.ps1"
@@ -207,7 +208,7 @@ function Install-Pentest{
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $pentest -Credential (Get-Credential $env:username)
+    Install-BoxstarterPackage -PackageName $pentest
      
 } 
    
