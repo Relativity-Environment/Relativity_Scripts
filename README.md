@@ -102,7 +102,7 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 |[wesng](https://github.com/bitsadmin/wesng)|
 |[zenmap](https://nmap.org/zenmap/)|
 
-| 4 - Analisis de Vulnerabilidades | 5 - Anonimato | 6 - Ataques de Contraseña |
+| 4 - Analisis de Vulnerabilidades | 5 - Anonimato           | 6 - Ataques de Contraseña |
 |--------------------------------|----------------------------------|---------------------------------|
 |[RED_HAWK](https://github.com/Tuhinshubhra/RED_HAWK)   |[demonsaw](https://www.demonsaw.com/)                              | [john-jumbo](https://www.openwall.com/john/) |
 |[Nessus](https://docs.tenable.com/Nessus.htm)          |[onionshare](https://blog.torproject.org/new-release-onionshare-2) | [ncrack](https://nmap.org/ncrack/) |
