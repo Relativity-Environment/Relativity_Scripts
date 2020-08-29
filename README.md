@@ -119,9 +119,9 @@ De momento solo estas disponibles las herramentas orientas a un pentest básico,
 | []() | []() | [Crunch](https://github.com/shadwork/Windows-Crunch/) |
 | []() | []() | [cupp](https://github.com/Mebus/cupp) |
 
-| 7 - Criptografia y Hashing | 8 - Explotacion de Vulnerabilidades| 9 - MITM - Envenenamiento |
+| 7 - Criptografia y Hashing | 8 - Explotacion de Vulnerabilidades - | 9 - MITM - Envenenamiento - |
 |--------------------------------|----------------------------------|---------------------------------|
-| [Hash Suite](https://hashsuite.openwall.net/)                       | [commix](https://github.com/commixproject/commix) | []() |
+| [Hash Suite](https://hashsuite.openwall.net/)                       | [commix](https://github.com/commixproject/commix)            | []() |
 | [Hash Identifier](https://sourceforge.net/projects/hashidentifier/) | [CrackMapExecWin](https://github.com/maaaaz/CrackMapExecWin) | []() |
 | [HashTools](https://www.binaryfortress.com/HashTools/ChangeLog/)    | []() | []() |
 | []()                                                                | []() | []() |
