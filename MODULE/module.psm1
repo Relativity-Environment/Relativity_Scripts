@@ -35,7 +35,7 @@ Function Test-DiskSpace([string]$instalacion)
 function Add-InstallFolders{
   
     # Start Menu (RelaTools)
-    $ToolsMenuPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
+    $ToolsMenuPath = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools" 
     New-Item -ItemType "directory" $ToolsMenuPath -Force -ErrorAction SilentlyContinue | Out-Null
     
     # Cache PATH - RalaTools PATH
@@ -60,7 +60,7 @@ function Add-PentestMenu
     [Net.ServicePointManager]::SecurityProtocol=[System.Security.Authentication.SslProtocols] "tls, tls11, tls12"
 
 
-        $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools'     
+        $StartMenu = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\RelaTools"     
         Remove-Item "$StartMenu\Pentest_Tools" -Force -Recurse
         $Download = "$env:LOCALAPPDATA\RELATIVITY\"
         $value = "$env:USERPROFILE\Desktop\"
@@ -77,7 +77,7 @@ function Add-ReversingMenu
 
     $Download = "$env:LOCALAPPDATA\RELATIVITY\"
     Invoke-WebRequest -UseBasicParsing -Uri " " -Outfile "$Download\ " 
-    $StartMenu = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'    
+    $StartMenu = "$env:ProgramData\Microsoft\Windows\Start Menu\Programs"    
     Expand-Archive -path "$Download\ " -DestinationPath $StartMenu
 
     $value = "$env:USERPROFILE\Desktop\"

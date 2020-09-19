@@ -191,7 +191,7 @@ function Install-Module{
 ## INSTALL
 
 $pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/PENTEST.TOOLS/install.pentest.ps1"
-$reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/REVERSING.TOOLS/install.reverse.ps1" 
+#$reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/REVERSING.TOOLS/install.reverse.ps1" 
 
 
 function Install-Pentest{ 
