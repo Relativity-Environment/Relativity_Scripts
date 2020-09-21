@@ -194,7 +194,7 @@ Function Add-EnvPath {
         [string]$NewPath
     )
 
-    $AllPaths = $Env:Path -split ';'
+    $AllPaths = $env:Path -split ';'
     if ($AllPaths -notcontains $NewPath) {
         Write-Output "Adding Utilties bin directory path to the environmental path list: $UtilBinPath"
 
