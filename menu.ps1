@@ -208,7 +208,7 @@ function Install-Pentest{
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    $cred=Get-Credential domain\username
+    $cred=Get-Credential 
     Install-BoxstarterPackage -PackageName $pentest -Credential $cred
      
 } 
