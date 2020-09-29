@@ -179,8 +179,8 @@ Dado que este proyecto se encuentra en una fase muy temprana se agredece el repo
 
 
 ## Wiki 📖
-Aún no disponible 
 
+[Go to wiki!!](https://github.com/Relativity-Environment/Relativity_Scripts/wiki)
 
 ## Autor ✒️
 
