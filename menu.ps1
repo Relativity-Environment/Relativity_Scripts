@@ -188,7 +188,7 @@ function Install-Module{
 
 
 
-## INSTALL
+## INSTALLATION PACKAGES
 
 $pentest     =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/PENTEST.TOOLS/install.pentest.ps1"
 #$reversing   =  "https://raw.githubusercontent.com/Relativity-Environment/Relativity_Scripts/master/REVERSING.TOOLS/install.reverse.ps1" 
@@ -208,7 +208,8 @@ function Install-Pentest{
     if (-not(Test-Path "$env:LOCALAPPDATA\RELATIVITY\TWEAKS")) {Get-Tweaks}   
    
     Write-Host "[+] Instalando Pentest Tools..." -ForegroundColor Green
-    Install-BoxstarterPackage -PackageName $pentest
+    $cred=Get-Credential domain\username
+    Install-BoxstarterPackage -PackageName $pentest -Credential $cred
      
 } 
    
