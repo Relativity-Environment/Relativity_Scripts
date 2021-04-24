@@ -181,9 +181,9 @@ function Test-PowershellExecution{
 
 ## CALL FUNCTIONS
   Test-AdminExecution;
+  Test-PowershellExecution;
   Test-TamperProtection;
   Test-HostSupported;
-  Test-PowersellExecution;
   Test-PSProfile;
   Install-Module;
   Install-BoxStarter;
