@@ -1,4 +1,4 @@
-﻿$OutputEncoding = [Console]::OutputEncoding
+﻿#$OutputEncoding = [Console]::OutputEncoding
 
 ## JOIN-INITIAL
 function Join-Initial
