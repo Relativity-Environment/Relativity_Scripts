@@ -173,11 +173,17 @@ function Install-Module{
 
 } 
 
+function Test-PowershellExecution{
+   
+  Set-ExecutionPolicy Unrestricted | Out-Null
+ 
+} 
 
 ## CALL FUNCTIONS
   Test-AdminExecution;
   Test-TamperProtection;
   Test-HostSupported;
+  Test-PowersellExecution;
   Test-PSProfile;
   Install-Module;
   Install-BoxStarter;
