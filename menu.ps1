@@ -1,4 +1,4 @@
-﻿#$OutputEncoding = [Console]::OutputEncoding
+﻿[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 ## JOIN-INITIAL
 function Join-Initial
