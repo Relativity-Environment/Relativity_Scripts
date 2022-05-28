@@ -2,7 +2,8 @@
 
 (Actualmente en desarrollo algunas funciones no estan disponibles)
 
-Script en Powershell que prepara un entorno con herramientas orientadas a la seguridad y al pentesting. 
+Prepara un entorno con herramientas orientadas al pentesting.
+
 Instalación de forma desatendidad en sistemas Microsoft Windows 10 , contiene una recopilación de herramientas que cubre las necesidades básicas del pentester.
 
 
